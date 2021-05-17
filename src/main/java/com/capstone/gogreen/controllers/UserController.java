@@ -23,4 +23,6 @@ public class UserController {
     public String showUserDashboard(){
         return "users/dashboard";
     }
+
 }
+

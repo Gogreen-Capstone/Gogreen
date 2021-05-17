@@ -37,4 +37,6 @@ public class UserWithRoles extends User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }
+
