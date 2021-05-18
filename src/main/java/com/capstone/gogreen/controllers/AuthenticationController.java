@@ -65,7 +65,6 @@ public class AuthenticationController {
             return "users/register";
         }
 
-
         user.setPassword(hash);
         usersDao.save(user);
         return "redirect:/login";
