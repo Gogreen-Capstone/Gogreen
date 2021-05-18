@@ -2,6 +2,7 @@ package com.capstone.gogreen.controllers;
 
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,18 +20,11 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/register")
-    public String showRegisterPage(Model model){
-        model.addAttribute("user", new User());
-        return "/users/register";
-    }
-
-    @PostMapping("/register")
-    public String registerUser(@ModelAttribute User user){
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        usersDao.save(user);
-        return "redirect: /login";
+    @GetMapping("/dashboard")
+    public String showUserDashboard(Model model){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", loggedInUser);
+        return "users/dashboard";
     }
 
 }
