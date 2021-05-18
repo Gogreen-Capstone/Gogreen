@@ -1,0 +1,8 @@
+body {
+    background-color: green;
+    opacity: 75%;
+}
+
+.card-styling {
+    min-height: 150px;
+}

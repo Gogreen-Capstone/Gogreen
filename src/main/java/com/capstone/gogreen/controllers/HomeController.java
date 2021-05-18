@@ -29,4 +29,27 @@ public class HomeController {
         return "about_us";
     }
 
+    @GetMapping("/how-it-works")
+    public String howItWorks(Model model) {
+        model.addAttribute("title", "How it Works");
+        return "how_it_works";
+    }
+
+    @GetMapping("/services")
+    public String services(Model model) {
+        model.addAttribute("title", "Services");
+        return "services";
+    }
+
+    @GetMapping("/reviews")
+    public String reviews(Model model) {
+        model.addAttribute("title", "Reviews");
+        return "reviews";
+    }
+
+    @GetMapping("/gallery")
+    public String gallery(Model model) {
+        model.addAttribute("title", "Gallery");
+        return "gallery";
+    }
 }

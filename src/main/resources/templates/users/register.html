@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/header :: header('Register')"/>
 <body>
-
+<nav th:replace="partials/navbar :: navbar"></nav>
 <main class="container">
     <form th:action="@{/register}" method="POST" th:object="${user}">
         <h1>Register</h1>
