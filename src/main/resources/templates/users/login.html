@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/header :: header('Login')"/>
+<head th:replace="partials/header :: header('Login')"></head>
 <body>
-
+<nav th:replace="partials/navbar :: navbar"></nav>
 <main class="container">
     <form th:action="@{/login}" method="POST">
         <div th:if="${param.error}">
