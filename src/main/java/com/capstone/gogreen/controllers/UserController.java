@@ -2,6 +2,7 @@ package com.capstone.gogreen.controllers;
 
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,9 @@ public class UserController {
     }
 
     @GetMapping("/dashboard")
-    public String showUserDashboard(){
+    public String showUserDashboard(Model model){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", loggedInUser);
         return "users/dashboard";
     }
 

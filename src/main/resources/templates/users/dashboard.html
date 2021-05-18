@@ -5,7 +5,15 @@
 
 <div sec:authorize="isAuthenticated()">
 <main class="container">
-    <h1>My profile</h1>
+    <h1><span th:text="${user.username}"></span>'s Dashboard</h1>
+
+    <h2>
+        shows pending jobs in bootstrap cards
+    </h2>
+
+    <h2>
+        shows completed jobs in bootstrap cards
+    </h2>
 </main>
 </div>
 
