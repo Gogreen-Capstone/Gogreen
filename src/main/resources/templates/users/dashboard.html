@@ -4,17 +4,74 @@
 <body>
 
 <div sec:authorize="isAuthenticated()">
-<main class="container">
-    <h1><span th:text="${user.username}"></span>'s Dashboard</h1>
+    <main class="container">
+        <h1><span th:text="${user.username}"></span>'s Dashboard</h1>
 
-    <h2>
-        shows pending jobs in bootstrap cards
-    </h2>
+        <h2>
+            shows pending jobs in bootstrap cards
+        </h2>
 
-    <h2>
-        shows completed jobs in bootstrap cards
-    </h2>
-</main>
+        <h2>
+            shows completed jobs in bootstrap cards
+        </h2>
+
+        <h2>Edit your information</h2>
+        <!--Edit Form where user can edit their information--> <!--To access user have used th:object${user}-->
+        <div class="container-fluid">
+            <h2>Edit your information</h2>
+            <form th:action="@{/dashboard}" method="POST" th:object="${user}">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input id="username" class="form-control" th:field="*{username}">
+                    <small class="form-text text-muted">Enter your username.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input id="email" class="form-control" th:field="*{email}">
+                    <small class="form-text text-muted">Enter your email.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Email:</label>
+                    <input id="city" class="form-control" th:field="${user}">
+                    <small class="form-text text-muted">Enter your city.</small>
+                </div>
+
+<!--                <div class="form-group" th:object="${location}">-->
+<!--                    <label for="houseNumber">Email:</label>-->
+<!--                    <input id="houseNumber" class="form-control" th:field="*{houseNumber}">-->
+<!--                    <small class="form-text text-muted">Enter your city.</small>-->
+<!--                </div>-->
+
+<!--                <div class="form-group" th:object="${location}">-->
+<!--                    <label for="state">Email:</label>-->
+<!--                    <input id="state" class="form-control" th:field="*{state}">-->
+<!--                    <small class="form-text text-muted">Enter your city.</small>-->
+<!--                </div>-->
+
+<!--                <div class="form-group" th:object="${location}">-->
+<!--                    <label for="street">Email:</label>-->
+<!--                    <input id="street" class="form-control" th:field="*{street}">-->
+<!--                    <small class="form-text text-muted">Enter your city.</small>-->
+<!--                </div>-->
+
+<!--                <div class="form-group" th:object="${location}">-->
+<!--                    <label for="zipCode">Email:</label>-->
+<!--                    <input id="zipCode" class="form-control" th:field="*{zipCode}">-->
+<!--                    <small class="form-text text-muted">Enter your city.</small>-->
+<!--                </div>-->
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input id="password" class="form-control" th:field="*{password}">
+                    <small class="form-text text-muted">Enter your password.</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </form>
+        </div>
+
+    </main>
 </div>
 
 </body>
