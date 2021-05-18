@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta width="100%">
     <title>Navbar</title>
 </head>
 <body>
@@ -30,13 +29,13 @@
             <div>
                 <div>
                     <form th:action="@{/login}" th:method="get">
-                        <input type="submit" value="Log In" />
+                        <input type="submit" value="Log In"/>
                     </form>
                 </div>
             </div>
 
             <form th:action="@{/register}" method="get">
-                <input type="submit" value="Register" />
+                <input type="submit" value="Register"/>
             </form>
 
 <!--            <form th:action="@{/logout}" method="post">-->
