@@ -3,6 +3,7 @@ package com.capstone.gogreen.services;
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.models.UserWithRoles;
 import com.capstone.gogreen.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
