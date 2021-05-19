@@ -14,31 +14,31 @@
         <div>
             <ul>
                 <li>
-                    <a class="nav-link" th:href="@{/how-it-works}">How it Works</a>
+                    <a class="nav-link" th:href="@{how-it-works}">How it Works</a>
                 </li>
                 <li>
-                    <a class="nav-link" th:href="@{/services}">Services</a>
+                    <a class="nav-link" th:href="@{services}">Services</a>
                 </li>
                 <li>
-                    <a class="nav-link" th:href="@{/reviews}">Reviews</a>
+                    <a class="nav-link" th:href="@{reviews}">Reviews</a>
                 </li>
                 <li>
-                    <a class="nav-link" th:href="@{/gallery}">Gallery</a>
+                    <a class="nav-link" th:href="@{gallery}">Gallery</a>
                 </li>
             </ul>
             <div>
                 <div>
-                    <form th:action="@{/login}" th:method="get">
+                    <form th:action="@{login}" th:method="get">
                         <input type="submit" value="Log In"/>
                     </form>
                 </div>
             </div>
 
-            <form th:action="@{/register}" method="get">
+            <form th:action="@{register}" method="get">
                 <input type="submit" value="Register"/>
             </form>
 
-<!--            <form th:action="@{/logout}" method="post">-->
+<!--            <form th:action="@{logout}" method="post">-->
 <!--                <input type="submit" value="Log Out" />-->
 <!--            </form>-->
         </div>
