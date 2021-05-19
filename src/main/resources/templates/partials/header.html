@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:fragment="header(title)">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=100%">
     <title th:text="${'GoGreen | ' + 'title'}"></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <body>
-<header th:fragment="header(title)" class="container my-3">
-    <h1 class="my-5 text-center display-4" th:text="${title}"></h1>
-</header>
+
 </body>
 </html>
