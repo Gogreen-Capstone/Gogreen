@@ -30,7 +30,7 @@ public class Job {
     private String reviewBody;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    @DateTimeFormat(pattern = "mm.dd.yyyy") //changed this to mm.dd.yyyy to match our input
     private Date scheduledDate;
 
     @Column(nullable = false)
@@ -127,5 +127,29 @@ public class Job {
 
     public void setScheduledTime(int scheduledTime) {
         this.scheduledTime = scheduledTime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public List<Service> getJobServices() {
+        return jobServices;
+    }
+
+    public void setJobServices(List<Service> jobServices) {
+        this.jobServices = jobServices;
     }
 }
