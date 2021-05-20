@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="services.html" xmlns:th="http://www.thymeleaf.org" lang="en">
+<html id="home.html" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:fragment="head('Home')">
     <meta charset="UTF-8">
     <!--    MOBILE VIEW ON LINES 6 & 7-->
@@ -7,15 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--    https://stackoverflow.com/questions/6771258/what-does-meta-http-equiv-x-ua-compatible-content-ie-edge-do-->
     <title th:text="${'GoGreen | ' + 'title'}"></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="static/css/main.css" rel="stylesheet"/>
+    <th:block th:replace="partials/styles :: styles"/>
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-    <h1>GO GREEN HOME PAGE</h1>
+<header th:replace="partials/header :: header('Go Green Home Page')"></header>
 
     <h1>DISPLAY REVIEWS FROM ReviewRepository</h1>
 
-    <h1>FOOTER WITH about_us.html LINK</h1>
+<footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>

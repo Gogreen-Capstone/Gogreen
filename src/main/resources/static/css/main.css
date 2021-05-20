@@ -1,0 +1,11 @@
+body {
+    background-color: lightblue;
+}
+
+.card-styling {
+    min-height: 150px;
+}
+
+header {
+    background-color: darkgreen;
+}

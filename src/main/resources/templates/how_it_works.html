@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html id="how-it-works-html" xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: header('How It Works')">
+<html id="how_it_works.html" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head('How It Works')">
     <meta charset="UTF-8">
     <title>How it Works</title>
+    <th:block th:replace="partials/styles :: styles"/>
 </head>
 <body id="how-it-works-body">
 <!--HEADER WITH NAVBAR-->
 <div class="jumbotron home-jumbotron header">
-  <nav th:replace="partials/navbar :: navbar"></nav>
+    <nav th:replace="partials/navbar :: navbar"></nav>
+    <header th:replace="partials/header :: header('Go Green How it Works Page')"></header>
 
-  <div>
-    <h1>How it Works Page</h1>
     <div class="container">
-      <h1>GoGreen.works</h1>
-      <p>We Work for You!</p>
-      <div>
-        <h1>Description of user CRUD to arrange yard work from services, schedule date/time, and review work.</h1>
-      </div>
-      <div>
-        <h1>If you like this, AND YOU DO MORTAL, then register below</h1>
-        <a th:href="@{/register}" role="button">Register</a>
-      </div>
+        <h1>GoGreen.works</h1>
+        <p>We Work for You!</p>
+        <div>
+            <h1>Description of user CRUD to arrange yard work from services, schedule date/time, and review work.</h1>
+        </div>
+        <div>
+            <h1>If you like this, AND YOU DO MORTAL, then register below</h1>
+            <a th:href="@{/register}" role="button">Register</a>
+        </div>
     </div>
-  </div>
+
 </div>
+<footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>

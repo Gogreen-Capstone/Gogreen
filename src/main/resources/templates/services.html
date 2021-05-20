@@ -7,12 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--    https://stackoverflow.com/questions/6771258/what-does-meta-http-equiv-x-ua-compatible-content-ie-edge-do-->
     <title th:text="${'GoGreen | ' + 'title'}"></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="static/css/main.css" rel="stylesheet"/>
+    <th:block th:replace="partials/styles :: styles"/>
 </head>
 <div>
     <nav th:replace="partials/navbar :: navbar"></nav>
-    <h1>SERVICES PAGE</h1>
+    <header th:replace="partials/header :: header('Go Green Services Page')"></header>
 </div>
     <ol>
         <li>Mowing and Edging</li>
@@ -23,5 +22,6 @@
         <li>Ancient Magic to Summon the Tree Spirits to Reap Vengance Upon Your Foes</li>
         <li>Junk Removal</li>
     </ol>
+<footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>

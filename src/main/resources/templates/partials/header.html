@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html id="services.html" xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<html id="header.html" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:fragment="head('Header')">
     <meta charset="UTF-8">
-    <title>Services</title>
-    <th:block th:fragment="scripts">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-        <script src="static/main.js"></script>
-    </th:block>
+    <!--    MOBILE VIEW ON LINES 6 & 7-->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--    https://stackoverflow.com/questions/6771258/what-does-meta-http-equiv-x-ua-compatible-content-ie-edge-do-->
+    <title th:text="${'GoGreen | ' + 'title'}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link  rel="stylesheet" href="static/main.css"/>
 </head>
 <body>
-<div>
-    <header th:fragment="header(content)" class="container my-3">
+
+<header th:fragment="header(content)" class="container my-3">
     <h1 class="my-5 text-center display-4" th:text="${content}"></h1>
 </header>
+
 </body>
 </html>

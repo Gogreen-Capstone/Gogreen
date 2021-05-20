@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html id="about-us-html" lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: header('About Us')">
+<html id="about_us.html" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:fragment="head('About Us')">
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    <!--    MOBILE VIEW ON LINES 6 & 7-->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--    https://stackoverflow.com/questions/6771258/what-does-meta-http-equiv-x-ua-compatible-content-ie-edge-do-->
+    <title th:text="${'GoGreen | ' + 'title'}"></title>
+    <th:block th:replace="partials/styles :: styles"/>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<header th:replace="partials/header :: header('About the Creators')"></header>
 
   <h1>CARLOS</h1>
 
