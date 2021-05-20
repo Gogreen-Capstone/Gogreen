@@ -10,44 +10,99 @@
     <th:block th:replace="partials/styles :: styles"/>
 </head>
 <body>
-<nav th:fragment="navbar">
-    <div class="container">
-        <a th:href="@{/}">
-            Go Green
-        </a>
 
-        <div>
-            <ul>
-                <li>
-                    <a class="nav-link" th:href="@{how-it-works}">How it Works</a>
-                </li>
-                <li>
-                    <a class="nav-link" th:href="@{services}">Services</a>
-                </li>
-                <li>
-                    <a class="nav-link" th:href="@{reviews}">Reviews</a>
-                </li>
-                <li>
-                    <a class="nav-link" th:href="@{gallery}">Gallery</a>
-                </li>
-            </ul>
-            <div>
-                <div>
-                    <form th:action="@{login}" th:method="get">
+<nav th:fragment="guest-navbar" id="guest-navbar" class="navbar navbar-expand-lg">
+    <div class="container">
+        <a th:href="@{/}">Go Green</a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <ul class="navbar-ul">
+                    <li class="navbar-list-item">
+                        <a sec:authorize="!isAuthorized()" class="nav-link" th:href="@{how-it-works}">How it Works</a>
+                    </li>
+                    <li class="navbar-list-item">
+                        <a sec:authorize="!isAuthorized()" class="nav-link" th:href="@{services}">Services</a>
+                    </li>
+                    <li class="navbar-list-item">
+                        <a sec:authorize="!isAuthorized()" class="nav-link" th:href="@{reviews}">Reviews</a>
+                    </li>
+                    <li class="navbar-list-item">
+                        <a sec:authorize="!isAuthorized()" class="nav-link" th:href="@{gallery}">Gallery</a>
+                    </li>
+
+                    <form sec:authorize="!isAuthenticated()" th:action="@{login}" th:method="get">
                         <input type="submit" value="Log In"/>
                     </form>
-                </div>
+                    <form sec:authorize="isAuthenticated()" th:action="@{logout}" method="post">
+                        <input type="submit" value="Log Out" />
+                    </form>
+                    <form sec:authorize="!isAuthenticated()" th:action="@{register}" method="get">
+                        <input type="submit" value="Register"/>
+                    </form>
+                    <form sec:authorize="isAuthenticated()" th:action="@{dashboard}" method="post">
+                        <input type="submit" value="Dashboard" />
+                    </form>
+                </ul>
             </div>
-
-            <form th:action="@{register}" method="get">
-                <input type="submit" value="Register"/>
-            </form>
-
-<!--            <form th:action="@{logout}" method="post">-->
-<!--                <input type="submit" value="Log Out" />-->
-<!--            </form>-->
         </div>
     </div>
 </nav>
 </body>
 </html>
+
+
+<!-- User Navbar (Logged In) -->
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">-->
+<!--<head th:fragment="head(title)">-->
+<!--    <meta charset="UTF-8">-->
+<!--    &lt;!&ndash;    MOBILE VIEW ON LINES 6 & 7&ndash;&gt;-->
+<!--    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--    &lt;!&ndash;    https://stackoverflow.com/questions/6771258/what-does-meta-http-equiv-x-ua-compatible-content-ie-edge-do&ndash;&gt;-->
+<!--    <title th:text="${'GoGreen | ' + 'title'}"></title>-->
+<!--    <th:block th:replace="partials/styles :: styles"/>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<nav th:fragment="navbar">-->
+<!--    <div class="container">-->
+<!--        <a th:href="@{/}">Go Green</a>-->
+<!--        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
+<!--            <div class="navbar-nav">-->
+<!--                <ul>-->
+<!--                    <li class="navbar-list-item">-->
+<!--                        <a class="nav-link" th:href="@{how-it-works}">How it Works</a>-->
+<!--                    </li>-->
+<!--                    <li class="navbar-list-item">-->
+<!--                        <a class="nav-link" th:href="@{services}">Services</a>-->
+<!--                    </li>-->
+<!--                    <li class="navbar-list-item">-->
+<!--                        <a class="nav-link" th:href="@{reviews}">Reviews</a>-->
+<!--                    </li>-->
+<!--                    <li class="navbar-list-item">-->
+<!--                        <a class="nav-link" th:href="@{gallery}">Gallery</a>-->
+<!--                    </li>-->
+
+<!--                    <form sec:authorize="!isAuthenticated()" th:action="@{login}" th:method="get">-->
+<!--                        <input type="submit" value="Log In"/>-->
+<!--                    </form>-->
+<!--                    <form sec:authorize="isAuthenticated()" th:action="@{logout}" method="post">-->
+<!--                        <input type="submit" value="Log Out" />-->
+<!--                    </form>-->
+<!--                    <form sec:authorize="!isAuthenticated()" th:action="@{register}" method="get">-->
+<!--                        <input type="submit" value="Register"/>-->
+<!--                    </form>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+<!--</body>-->
+<!--</html>-->
