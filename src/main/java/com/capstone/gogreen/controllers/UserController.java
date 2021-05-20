@@ -1,6 +1,8 @@
 package com.capstone.gogreen.controllers;
 
+import com.capstone.gogreen.models.Job;
 import com.capstone.gogreen.models.User;
+import com.capstone.gogreen.repositories.JobRepository;
 import com.capstone.gogreen.repositories.UserRepository;
 import com.capstone.gogreen.services.UserDetailsLoader;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,17 +18,20 @@ import javax.validation.Valid;
 public class UserController {
 
     private UserRepository usersDao;
+    private JobRepository jobsDao;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository usersDao, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository usersDao, PasswordEncoder passwordEncoder, JobRepository jobsDao) {
         this.usersDao = usersDao;
         this.passwordEncoder = passwordEncoder;
+        this.jobsDao = jobsDao;
     }
 
     @GetMapping("/dashboard")
-    public String showUserDashboard(Model model) {
+    public String showUserDashboard(Model model, @ModelAttribute Job job) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", loggedInUser);
+        model.addAttribute("job", jobsDao.findByUserId(loggedInUser.getId()));
         return "users/dashboard";
     }
 
@@ -87,7 +92,6 @@ public class UserController {
         usersDao.save(userId);
         return "redirect:/dashboard";
     }
-
 
 }
 
