@@ -6,112 +6,70 @@
 </head>
 <body>
 
+<!--        NEW JOB MODAL-->
+
 <th:block th:fragment="newJobModal">
-    <!--Modal Starts here-->
-    <!-- Button for trigger modal -->
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        New Job Request
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+</th:block>
+
+<!--        REVIEW MODAL-->
+
+<thblock th:fragment="reviewModal">
+    <!--Card starts Here for Job Review-->
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <p class="card-title"><strong>Job Title:</strong> <span name="jobTitle" th:text="${job.jobTitle}"></span>
+            </p>
+            <p class="card-text" name="jobDetails" th:text="${job.jobDetails}"></p>
+            <hr>
+            <p class="card-text"><strong>Scheduled Date:</strong> <span name="scheduledDate"
+                                                                        th:text="${job.scheduledDate}"></span></p>
+            <p class="card-text"><strong>Scheduled Time:</strong> <span name="scheduledTime"
+                                                                        th:text="${job.scheduledTime}"></span></p>
+            <hr th:if="${job.reviewTitle != null}">
+            <p class="card-title" th:if="${job.reviewTitle != null}"><strong>Review Title: </strong><span
+                    name="reviewTitle" th:text="${job.reviewTitle}"></span></p>
+            <p class="card-text" name="reviewBody" th:if="${job.reviewBody != null}" th:text="${job.reviewBody}"></p>
+        </div>
+        <!--Modal Starts here-->
+        <!-- Button for trigger modal -->
+        <div class="card-body">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                    th:if="${job.isCompleted}">
+                Create a Review
+            </button>
+        </div>
+    </div>
+    <!--Card ends Here-->
+    <!-- Modal for Add Job Review -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">New Job</h5>
+                    <p class="modal-title" id="staticBackdropLabel">Job Review</p>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!--Form starts here for a job review-->
-                    <form th:action="@{/modals}" th:method="POST" th:object="${job}">
+                    <form th:action="@{/modals-review}" th:method="POST">
                         <div class="form-group">
-                            <label for="jobTitle">Job Title</label>
-                            <input type="text" id="jobTitle" class="form-control" th:field="*{jobTitle}">
+                            <label for="reviewTitle">Review Title</label>
+                            <input id="reviewTitle" class="form-control" name="reviewTitle">
+                            <input type="hidden" name="jobId" th:value="${jobs.id}">
                         </div>
+                        <!--Adding hidden values for all details for a job-->
+                        <input type="hidden" class="card-title" name="jobTitle" th:value="${jobs.jobTitle}">
+                        <input type="hidden" class="card-text" name="jobDetails" th:value="${jobs.jobDetails}">
+                        <input type="hidden" class="card-text" name="scheduledDate" th:value="${jobs.scheduledDate}">
+                        <input type="hidden" class="card-text" name="scheduledTime" th:value="${jobs.scheduledTime}">
                         <div class="form-group">
-                            <label for="scheduledTime">Time:</label>
-                            <select id="scheduledTime" class="form-select" th:field="*{scheduledTime}">
-                                <option value="0" disabled>- none selected -</option>
-                                <option value="1">Morning(8am - 12pm)</option>
-                                <option value="2">Afternoon(1pm - 5pm)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="scheduledDate"></label>
-                            <input type="date" class="form-control" id="scheduledDate" th:field="*{scheduledDate}">
-                        </div>
-                        <div class="form-group">
-                            <label for="jobDetails">Job Details:</label>
-                            <textarea id="jobDetails" class="form-control"  rows="3" th:field="*{jobDetails}" placeholder="e.g. mow front yard; tree to trim located in backyard;"></textarea>
-                        </div>
-                        <hr>
-                        <h5 class="modal-title" id="serviceHeading">Service Type:</h5>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="1">
-                            <label class="form-check-label" for="1">
-                                Mowing and Edging
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="2">
-                            <label class="form-check-label" for="2">
-                                Fertilizing
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="3">
-                            <label class="form-check-label" for="3">
-                                Trimming and Branch Removal
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="4">
-                            <label class="form-check-label" for="4">
-                                Dethatching and Aeration Services
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="5">
-                            <label class="form-check-label" for="5">
-                                Weed Control and Removal
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="6">
-                            <label class="form-check-label" for="6">
-                                Reseeding and Sod Install
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="7">
-                            <label class="form-check-label" for="7">
-                                Clean up and Hauling
-                            </label>
-                        </div>
-                        <hr>
-                        <h5 class="modal-title" id="locationHeading">Location</h5>
-                        <div>
-                            <label for="houseNumber">House number</label>
-                            <input type="text" class="form-control" id="houseNumber" name="houseNumber" placeholder="1234">
-                        </div>
-                        <div class="form-group">
-                            <label for="street">Street name</label>
-                            <input type="text" class="form-control" id="street" name="street" placeholder="Main St">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="state">State</label>
-                            <input type="text" id="state" class="form-control" name="state" maxlength="2" placeholder="TX">
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="zip">Zip</label>
-                            <input type="text" class="form-control" id="zip" name="zip" placeholder="78250">
+                            <label for="reviewBody">Review Body</label>
+                            <textarea id="reviewBody" class="form-control" rows="3" name="reviewBody"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Done</button>
+                            <button type="submit" class="btn btn-primary">Submit Review</button>
                         </div>
                     </form>
                 </div>
@@ -120,7 +78,7 @@
         </div>
     </div>
     <!--Modal ends here-->
-</th:block>
+</thblock>
 
 </body>
 </html>

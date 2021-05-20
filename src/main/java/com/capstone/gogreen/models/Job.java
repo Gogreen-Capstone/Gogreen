@@ -28,7 +28,6 @@ public class Job {
     private String reviewBody;
 
     @Column(nullable = false)
-//    @DateTimeFormat(pattern = "yyyy.MM.dd")
     private String scheduledDate;
 
     @Column(nullable = false)
@@ -60,7 +59,7 @@ public class Job {
         this.user = user;
     }
 
-    public Job(long id, String jobTitle, String jobDetails, boolean isCompleted, String reviewTitle, String reviewBody, String scheduledDate, int scheduledTime, User user, Location location, List<Service> jobServices) {
+    public Job(long id, String jobTitle, String jobDetails, boolean isCompleted, String reviewTitle, String reviewBody, String scheduledDate, int scheduledTime, User user, Location location, List<Service> jobServices){
         this.id = id;
         this.jobTitle = jobTitle;
         this.jobDetails = jobDetails;
@@ -72,6 +71,11 @@ public class Job {
         this.user = user;
         this.location = location;
         this.jobServices = jobServices;
+    }
+
+    public Job(String reviewTitle, String reviewBody) {
+        this.reviewTitle = reviewTitle;
+        this.reviewBody = reviewBody;
     }
 
     public long getId() {

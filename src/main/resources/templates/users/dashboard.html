@@ -18,13 +18,11 @@
         <h2>Edit your information</h2>
 
         <a class="nav-link" href="/edit-user">Edit User Information</a>
+        <a class="nav-link" th:href="@{/jobs/create}">New Job Request</a>
 
-<!--        modal to show job create form-->
-        <th:block th:replace="partials/modals :: newJobModal"></th:block>
     </main>
 </div>
 
-<script th:replace="partials/scripts :: scripts"></script>
-
+<th:block th:replace="partials/scripts :: scripts"/>
 </body>
 </html>

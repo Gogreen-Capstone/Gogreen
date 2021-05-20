@@ -4,72 +4,123 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"/>
 <main class="container">
-    <form th:action="@{/jobs/create}" th:method="post">
-        <h2>New Job</h2>
+    <form th:action="@{/jobs/create}" th:method="POST" th:object="${job}">
+        <h5>New Job:</h5>
+        <div class="form-group">
+            <label for="jobTitle">Job Title</label>
+            <input type="text" id="jobTitle" class="form-control" th:field="*{jobTitle}">
+        </div>
+        <div class="form-group">
+            <label for="scheduledTime">Time:</label>
+            <select id="scheduledTime" class="form-select" th:field="*{scheduledTime}">
+                <option value="0" disabled>- none selected -</option>
+                <option value="1">Morning(8am - 12pm)</option>
+                <option value="2">Afternoon(1pm - 5pm)</option>
+            </select>
+        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="service">Service Type:</label>-->
+<!--            <select multiple="multiple" id="service" class="form-select" name="services">-->
+<!--                <option value="" disabled>- none selected -</option>-->
+<!--                <option value="1">Morning(8am - 12pm)</option>-->
+<!--                <option value="2">Afternoon(1pm - 5pm)</option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div th:name="services" id="services">-->
+<!--        <th:block th:each="service : ${services}">-->
+
+        <div class="form-group">
+            <label for="services">Service Type:</label>
+            <select multiple="multiple" name="services" id="services">
+                <option th:each="service : ${services}" th:value="${service.id}" th:text="${service.title}"></option>
+            </select>
+        </div>
+<!--            <div class="form-check">-->
+<!--                <input type="checkbox" class="form-check-input" id="service" th:value="${service.id}">-->
+<!--                <label class="form-check-label" for="service" th:text="${service.title}"></label>-->
+<!--            </div>-->
+<!--        </th:block>-->
+<!--        </div>-->
+        <div class="form-group">
+            <label for="scheduledDate"></label>
+            <input type="date" class="form-control" id="scheduledDate" th:field="*{scheduledDate}">
+        </div>
+        <div class="form-group">
+            <label for="jobDetails">Job Details:</label>
+            <textarea id="jobDetails" class="form-control" rows="3" th:field="*{jobDetails}"
+                      placeholder="e.g. mow front yard; tree to trim located in backyard;"></textarea>
+        </div>
         <hr>
-        <h4>Job Title:</h4>
-        <input class="form-control" type="text" id="jobTitle" placeholder="Job Title" name="jobTitle">
-        <h4>Job Time:</h4>
-        <select class="form-select" name="scheduledTime">
-            <option value="0" disabled>- none selected -</option>
-            <option value="1">Morning(8am - 12pm)</option>
-            <option value="2">Afternoon(1pm - 5pm)</option>
-        </select>
-        <h4>Job Date:</h4>
-        <input type="date" name="scheduledDate">
-        <h4>Service Type:</h4>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="1">
-            <label class="form-check-label" for="1">
-                Mowing and Edging
-            </label>
+<!--        <h5>Service Type:</h5>-->
+<!--        <div class="form-check">-->
+<!--            <input class="form-check-input" type="checkbox" name="service" value="Mowing and Edging" id="1">-->
+<!--            <label class="form-check-label" for="1">-->
+<!--                Mowing and Edging-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div class="form-check">-->
+<!--            <input class="form-check-input" type="checkbox" name="service" value="Fertilizing" id="2">-->
+<!--            <label class="form-check-label" for="2">-->
+<!--                Fertilizing-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div class="form-check">-->
+<!--            <input class="form-check-input" type="checkbox" name="service" value="Trimming and Branch Removal" id="3">-->
+<!--            <label class="form-check-label" for="3">-->
+<!--                Trimming and Branch Removal-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div class="form-check">-->
+<!--            <input class="form-check-input" type="checkbox" name="service" value="Dethatching and Aeration Services" id="4">-->
+<!--            <label class="form-check-label" for="4">-->
+<!--                Dethatching and Aeration Services-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div class="form-check">-->
+<!--            <input class="form-check-input" type="checkbox" name="service" value="Weed Control and Removal" id="5">-->
+<!--            <label class="form-check-label" for="5">-->
+<!--                Weed Control and Removal-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div class="form-check">-->
+<!--            <input class="form-check-input" type="checkbox" name="service" value="Reseeding and Sod Install" id="6">-->
+<!--            <label class="form-check-label" for="6">-->
+<!--                Reseeding and Sod Install-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div class="form-check">-->
+<!--            <input class="form-check-input" type="checkbox" name="service" value="Clean up and Hauling" id="7">-->
+<!--            <label class="form-check-label" for="7">-->
+<!--                Clean up and Hauling-->
+<!--            </label>-->
+<!--        </div>-->
+        <hr>
+        <h5>Location:</h5>
+        <div>
+            <label for="houseNumber">House number</label>
+            <input type="text" class="form-control" id="houseNumber" name="houseNumber"
+                   placeholder="1234" required>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="2">
-            <label class="form-check-label" for="2">
-                Fertilizing
-            </label>
+        <div class="form-group">
+            <label for="street">Street name</label>
+            <input type="text" class="form-control" id="street" name="street" placeholder="Main St" required>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="3">
-            <label class="form-check-label" for="3">
-                Trimming and Branch Removal
-            </label>
+        <div class="form-group col-md-6">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio" required>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="4">
-            <label class="form-check-label" for="4">
-                Dethatching and Aeration Services
-            </label>
+        <div class="form-group col-md-4">
+            <label for="state">State</label>
+            <input type="text" id="state" class="form-control" name="state" maxlength="2"
+                   placeholder="TX" required>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="5">
-            <label class="form-check-label" for="5">
-                Weed Control and Removal
-            </label>
+        <div class="form-group col-md-2 mb-1">
+            <label for="zip">Zip</label>
+            <input type="text" class="form-control" id="zip" name="zip" placeholder="78250" required>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="6">
-            <label class="form-check-label" for="6">
-                Reseeding and Sod Install
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="7">
-            <label class="form-check-label" for="7">
-                Clean up and Hauling
-            </label>
-        </div>
-
-        <label for="jobDetails">Additional details:</label>
-        <textarea class="form-control" id="jobDetails" cols="15" rows="3" placeholder="e.g. fence door is unlocked; please cut grass at level 3; tree to trim located in backyard;" name="jobDetails"></textarea>
-
-
-
-        <button type="submit" class="btn btn-primary">Done</button>
-
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a type="submit" class="btn btn-secondary" th:href="@{/dashboard}">Cancel</a>
     </form>
 </main>
-
 </body>
 </html>
