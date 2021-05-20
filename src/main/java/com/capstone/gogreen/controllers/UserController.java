@@ -23,6 +23,20 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @GetMapping("/register")
+    public String showSignupForm(Model model){
+        model.addAttribute("user", new User());
+        return "users/register";
+    }
+
+    @PostMapping("/register")
+    public String saveUser(@ModelAttribute User user){
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
+        usersDao.save(user);
+        return "redirect:/login";
+    }
+
     @GetMapping("/dashboard")
     public String showUserDashboard(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
