@@ -9,3 +9,25 @@ body {
 header {
     background-color: darkgreen;
 }
+
+/*MEDIA QUERIES*/
+
+/* Breakpoints
+   Breakpoints are what we refer to as major resolution changes, which you specify with media queries,
+   usually based on popular device configurations. They are called breakpoints because traditionally major layout elements
+   are broken and repositioned, though not always the case, and the name stuck.
+   You can determine whatever breakpoint px size you want, but you can find plenty of resources online to find the most
+    frequently used breakpoints.
+*/
+
+/* Small devices (phones and pocket devices, 576 and up) */
+/* @media screen and (min-width:576px) { /* ... */
+
+/* Medium devices (tablets, 768px and up) */
+/* @media screen and (min-width:768px) { /* ... */
+
+/* Large devices (desktops, 992px and up) */
+/* @media screen and (min-width:992px) { /* ... */
+
+/* Extra large devices (large desktops, 1200px and up) */
+/* @media screen and (min-width:1200px) { /* ... */
