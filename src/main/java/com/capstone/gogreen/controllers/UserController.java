@@ -31,7 +31,7 @@ public class UserController {
     public String showUserDashboard(Model model, @ModelAttribute Job job) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", loggedInUser);
-        model.addAttribute("job", jobsDao.findByUserId(loggedInUser.getId()));
+        model.addAttribute("job", jobsDao.findJobByUserId(loggedInUser.getId())); //Getting Job according to logged in user
         return "users/dashboard";
     }
 

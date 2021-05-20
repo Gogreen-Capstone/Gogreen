@@ -19,11 +19,12 @@
 
         <a class="nav-link" href="/edit-user">Edit User Information</a>
 
-
-        <th:block th:replace="partials/modals :: reviewModal"/>
+        <!--Our Job Card and Create Job Review Button shows in that user dashboard if only user has a job -->
+        <th:block th:if="${job != null}">
+            <th:block th:replace="partials/modals :: reviewModal"/>
+        </th:block>
     </main>
 </div>
-
 
 <th:block th:replace="partials/scripts :: scripts"/>
 </body>
