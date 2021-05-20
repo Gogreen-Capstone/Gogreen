@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<th:block th:fragment="newJobModal">
+    <!--Modal Starts here-->
+    <!-- Button for trigger modal -->
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        New Job Request
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">New Job</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!--Form starts here for a job review-->
+                    <form th:action="@{/modals}" th:method="POST" th:object="${job}">
+                        <div class="form-group">
+                            <label for="jobTitle">Job Title</label>
+                            <input type="text" id="jobTitle" class="form-control" th:field="*{jobTitle}">
+                        </div>
+                        <div class="form-group">
+                            <label for="scheduledTime">Time:</label>
+                            <select id="scheduledTime" class="form-select" name="scheduledTime">
+                                <option value="0" disabled>- none selected -</option>
+                                <option value="1">Morning(8am - 12pm)</option>
+                                <option value="2">Afternoon(1pm - 5pm)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="scheduledDate"></label>
+                            <input type="date" class="form-control" id="scheduledDate" th:field="*{scheduledDate}">
+                        </div>
+                        <div class="form-group">
+                            <label for="jobDetails">Additional details:</label>
+                            <textarea id="jobDetails" class="form-control"  rows="3" th:field="*{jobDetails}" placeholder="e.g. mow front yard; tree to trim located in backyard;"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Done</button>
+                        </div>
+                    </form>
+                </div>
+                <!--Form ends here for a job review-->
+            </div>
+        </div>
+    </div>
+    <!--Modal ends here-->
+</th:block>
+
+</body>
+</html>

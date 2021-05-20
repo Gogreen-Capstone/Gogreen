@@ -1,5 +1,7 @@
 package com.capstone.gogreen.controllers;
 
+import com.capstone.gogreen.models.Job;
+import com.capstone.gogreen.models.Location;
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.UserRepository;
 import com.capstone.gogreen.services.UserDetailsLoader;
@@ -27,6 +29,9 @@ public class UserController {
     public String showUserDashboard(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", loggedInUser);
+        model.addAttribute("job", new Job());
+        model.addAttribute("location", new Location());
+
         return "users/dashboard";
     }
 

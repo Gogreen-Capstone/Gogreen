@@ -3,7 +3,7 @@ package com.capstone.gogreen.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -30,8 +30,8 @@ public class Job {
     private String reviewBody;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "mm.dd.yyyy") //changed this to mm.dd.yyyy to match our input
-    private Date scheduledDate;
+//    @DateTimeFormat(pattern = "yyyy.MM.dd")
+    private String scheduledDate;
 
     @Column(nullable = false)
     private int scheduledTime;
@@ -54,7 +54,15 @@ public class Job {
     public Job() {
     }
 
-    public Job(long id, String jobTitle, String jobDetails, boolean isCompleted, String reviewTitle, String reviewBody, Date scheduledDate, int scheduledTime) {
+    public Job(String jobTitle, String jobDetails, String scheduledDate, int scheduledTime, User user) {
+        this.jobTitle = jobTitle;
+        this.jobDetails = jobDetails;
+        this.scheduledDate = scheduledDate;
+        this.scheduledTime = scheduledTime;
+        this.user = user;
+    }
+
+    public Job(long id, String jobTitle, String jobDetails, boolean isCompleted, String reviewTitle, String reviewBody, String scheduledDate, int scheduledTime, User user, Location location, List<Service> jobServices) {
         this.id = id;
         this.jobTitle = jobTitle;
         this.jobDetails = jobDetails;
@@ -63,6 +71,9 @@ public class Job {
         this.reviewBody = reviewBody;
         this.scheduledDate = scheduledDate;
         this.scheduledTime = scheduledTime;
+        this.user = user;
+        this.location = location;
+        this.jobServices = jobServices;
     }
 
     public long getId() {
@@ -113,11 +124,11 @@ public class Job {
         this.reviewBody = reviewBody;
     }
 
-    public Date getScheduledDate() {
+    public String getScheduledDate() {
         return scheduledDate;
     }
 
-    public void setScheduledDate(Date scheduledDate) {
+    public void setScheduledDate(String scheduledDate) {
         this.scheduledDate = scheduledDate;
     }
 
