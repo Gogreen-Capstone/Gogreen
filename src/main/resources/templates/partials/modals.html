@@ -29,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             <label for="scheduledTime">Time:</label>
-                            <select id="scheduledTime" class="form-select" name="scheduledTime">
+                            <select id="scheduledTime" class="form-select" th:field="*{scheduledTime}">
                                 <option value="0" disabled>- none selected -</option>
                                 <option value="1">Morning(8am - 12pm)</option>
                                 <option value="2">Afternoon(1pm - 5pm)</option>
@@ -40,8 +40,74 @@
                             <input type="date" class="form-control" id="scheduledDate" th:field="*{scheduledDate}">
                         </div>
                         <div class="form-group">
-                            <label for="jobDetails">Additional details:</label>
+                            <label for="jobDetails">Job Details:</label>
                             <textarea id="jobDetails" class="form-control"  rows="3" th:field="*{jobDetails}" placeholder="e.g. mow front yard; tree to trim located in backyard;"></textarea>
+                        </div>
+                        <hr>
+                        <h5 class="modal-title" id="serviceHeading">Service Type:</h5>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="1">
+                            <label class="form-check-label" for="1">
+                                Mowing and Edging
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="2">
+                            <label class="form-check-label" for="2">
+                                Fertilizing
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="3">
+                            <label class="form-check-label" for="3">
+                                Trimming and Branch Removal
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="4">
+                            <label class="form-check-label" for="4">
+                                Dethatching and Aeration Services
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="5">
+                            <label class="form-check-label" for="5">
+                                Weed Control and Removal
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="6">
+                            <label class="form-check-label" for="6">
+                                Reseeding and Sod Install
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="7">
+                            <label class="form-check-label" for="7">
+                                Clean up and Hauling
+                            </label>
+                        </div>
+                        <hr>
+                        <h5 class="modal-title" id="locationHeading">Location</h5>
+                        <div>
+                            <label for="houseNumber">House number</label>
+                            <input type="text" class="form-control" id="houseNumber" name="houseNumber" placeholder="1234">
+                        </div>
+                        <div class="form-group">
+                            <label for="street">Street name</label>
+                            <input type="text" class="form-control" id="street" name="street" placeholder="Main St">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="state">State</label>
+                            <input type="text" id="state" class="form-control" name="state" maxlength="2" placeholder="TX">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="zip">Zip</label>
+                            <input type="text" class="form-control" id="zip" name="zip" placeholder="78250">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

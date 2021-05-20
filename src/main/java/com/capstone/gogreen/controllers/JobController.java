@@ -1,8 +1,10 @@
 package com.capstone.gogreen.controllers;
 
 import com.capstone.gogreen.models.Job;
+import com.capstone.gogreen.models.Location;
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.JobRepository;
+import com.capstone.gogreen.repositories.LocationRepository;
 import com.capstone.gogreen.repositories.UserRepository;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,10 +23,12 @@ public class JobController {
 
     private JobRepository jobsDao;
     private UserRepository usersDao;
+    private LocationRepository locationsDao;
 
-    public JobController(JobRepository jobsDao, UserRepository usersDao) {
+    public JobController(JobRepository jobsDao, UserRepository usersDao, LocationRepository locationsDao) {
         this.jobsDao = jobsDao;
         this.usersDao = usersDao;
+        this.locationsDao = locationsDao;
     }
 
 //    @GetMapping("jobs/create")
@@ -33,22 +37,23 @@ public class JobController {
 //        return "jobs/create";
 //    }
 
-    @PostMapping("/dashboard")
-    public String saveJob(@ModelAttribute Job job,
-                          @RequestParam(name = "jobTitle") String title,
-                          @RequestParam(name = "jobDetails") String details,
-                          @RequestParam(name = "scheduledTime") int scheduledTime,
-                          @RequestParam(name = "scheduledDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date scheduledDate){
-        System.out.println("testing");
-//        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        User user = usersDao.getOne(principal.getId());  // getting currently signed in user; our Dao gets all info needed
-//        job.setUser(user); // assigning currently sing user to newly created post
-//        String str = "2015-03-31";
-//        Date date = Date.valueOf(scheduledDate);
-//        job.setJobTitle(title);
-//        job.setJobDetails(details);
-        job.setScheduledTime(scheduledTime);
-//        job.setScheduledDate(scheduledDate);
+    @PostMapping("/modals")
+    public String saveJob(@ModelAttribute Job job, @ModelAttribute Location location,
+                          @RequestParam(name = "houseNumber") int houseNumber,
+                          @RequestParam(name = "street") String street,
+                          @RequestParam(name = "city") String city,
+                          @RequestParam(name = "state") String state,
+                          @RequestParam(name = "zip") int zip){
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usersDao.getOne(principal.getId());  // getting currently signed in user; our Dao gets all info needed
+        job.setUser(user); // assigning currently sing user to newly created post
+        location.setHouseNumber(houseNumber);
+        location.setStreet(street);
+        location.setCity(city);
+        location.setState(state);
+        location.setZipCode(zip);
+        locationsDao.save(location);
+        job.setLocation(location);
         jobsDao.save(job);
         return "redirect:/dashboard";
     }
