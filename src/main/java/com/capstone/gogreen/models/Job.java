@@ -30,8 +30,8 @@ public class Job {
     private String reviewBody;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
-    private Date scheduledDate;
+//    @DateTimeFormat(pattern = "yyyy-MM-DD")
+    private String scheduledDate;
 
     @Column(nullable = false)
     private int scheduledTime;
@@ -54,7 +54,7 @@ public class Job {
     public Job() {
     }
 
-    public Job(long id, String jobTitle, String jobDetails, boolean isCompleted, String reviewTitle, String reviewBody, Date scheduledDate, int scheduledTime) {
+    public Job(long id, String jobTitle, String jobDetails, boolean isCompleted, String reviewTitle, String reviewBody, String scheduledDate, int scheduledTime) {
         this.id = id;
         this.jobTitle = jobTitle;
         this.jobDetails = jobDetails;
@@ -63,6 +63,12 @@ public class Job {
         this.reviewBody = reviewBody;
         this.scheduledDate = scheduledDate;
         this.scheduledTime = scheduledTime;
+    }
+
+    public Job(long id, String reviewTitle, String reviewBody) {
+        this.id = id;
+        this.reviewTitle = reviewTitle;
+        this.reviewBody = reviewBody;
     }
 
     public long getId() {
@@ -113,11 +119,11 @@ public class Job {
         this.reviewBody = reviewBody;
     }
 
-    public Date getScheduledDate() {
+    public String getScheduledDate() {
         return scheduledDate;
     }
 
-    public void setScheduledDate(Date scheduledDate) {
+    public void setScheduledDate(String scheduledDate) {
         this.scheduledDate = scheduledDate;
     }
 
@@ -127,5 +133,13 @@ public class Job {
 
     public void setScheduledTime(int scheduledTime) {
         this.scheduledTime = scheduledTime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
