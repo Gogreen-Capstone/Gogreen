@@ -20,17 +20,29 @@ public class JobController {
     }
 
     @GetMapping("/reviews/{id}/create")
-    public String showUserDashboard(Model model, @PathVariable long id) {
+    public String showCreatePage(Model model, @PathVariable long id) {
         model.addAttribute("job", jobsDao.getOne(id));
         return "reviews/create";
     }
 
-    //Create a job reviews for completed jobs in users dashboard
+    // creating a job review for completed job
     @PostMapping("/reviews/{id}/create")
     public String createJobReview(@ModelAttribute Job job) {
         jobsDao.save(job);
         return "redirect:/dashboard";
     }
 
+    @GetMapping("/reviews/{id}/edit")
+    public String showEditPage(Model model, @PathVariable long id) {
+        model.addAttribute("job", jobsDao.getOne(id));
+        return "reviews/edit";
+    }
+
+    // editing existing job review
+    @PostMapping("/reviews/{id}/edit")
+    public String editJobReview(@ModelAttribute Job job) {
+        jobsDao.save(job);
+        return "redirect:/dashboard";
+    }
 
 }

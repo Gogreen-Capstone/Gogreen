@@ -32,7 +32,8 @@
                 <hr th:if="${job.reviewTitle != null}">
                 <p class="card-title" th:if="${job.reviewTitle != null}"><strong>Review Title: </strong><span name="reviewTitle" th:text="${job.reviewTitle}"></span></p>
                 <p class="card-text" name="reviewBody" th:if="${job.reviewBody != null}" th:text="${job.reviewBody}"></p>
-                <a th:if="${job.isCompleted}" th:href="'/reviews/' + ${job.id} + '/create'" class="btn btn-success" type="button">Create</a>
+                <a th:if="${job.isCompleted == true or job.reviewTitle == null}" th:href="'/reviews/' + ${job.id} + '/create'" class="btn btn-success" type="button">Create</a>
+                <a th:if="${job.reviewTitle != null}" th:href="'/reviews/' + ${job.id} + '/edit'" class="btn btn-primary" type="button">Edit</a>
             </div>
         </div>
         </div>
