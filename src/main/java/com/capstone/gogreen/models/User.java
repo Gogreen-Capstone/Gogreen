@@ -104,4 +104,12 @@ public class User {
     public void setEmployee(boolean employee) {
         isEmployee = employee;
     }
+
+    public List<Job> getJobList() {
+        return jobList;
+    }
+
+    public void setJobList(List<Job> jobList) {
+        this.jobList = jobList;
+    }
 }

@@ -1,6 +1,5 @@
 package com.capstone.gogreen.controllers;
 import com.capstone.gogreen.models.Job;
-import com.capstone.gogreen.models.Location;
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.JobRepository;
 import com.capstone.gogreen.repositories.UserRepository;
@@ -17,10 +16,12 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserRepository usersDao;
+    private final JobRepository jobsDao;
     private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository usersDao, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository usersDao, JobRepository jobsDao, PasswordEncoder passwordEncoder) {
         this.usersDao = usersDao;
+        this.jobsDao = jobsDao;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -28,6 +29,7 @@ public class UserController {
     public String showUserDashboard(Model model, @ModelAttribute Job job) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", loggedInUser);
+        model.addAttribute("jobs", jobsDao.findJobsByUserId(loggedInUser.getId())); //Getting Job according to logged in user
         return "users/dashboard";
     }
 

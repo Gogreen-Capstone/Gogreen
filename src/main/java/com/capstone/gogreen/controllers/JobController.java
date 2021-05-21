@@ -5,10 +5,7 @@ import com.capstone.gogreen.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -32,12 +29,47 @@ public class JobController {
     }
 
     @GetMapping("/jobs/create")
-    public String showCreateForm(Model model){
+    public String showCreateForm(Model model) {
         model.addAttribute("job", new Job());
         model.addAttribute("location", new Location());
         model.addAttribute("services", servicesDao.findAll());
         model.addAttribute("image", new Image());
         return "jobs/create";
+    }
+
+    @GetMapping("/reviews/{id}/create")
+    public String showCreatePage(Model model, @PathVariable long id) {
+        model.addAttribute("job", jobsDao.getOne(id));
+        return "reviews/create";
+    }
+
+    // creating a job review for completed job
+    @PostMapping("/reviews/{id}/create")
+    public String createJobReview(@ModelAttribute Job job) {
+        jobsDao.save(job);
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/reviews/{id}/edit")
+    public String showEditPage(Model model, @PathVariable long id) {
+        model.addAttribute("job", jobsDao.getOne(id));
+        return "reviews/edit";
+    }
+
+    // editing existing job review
+    @PostMapping("/reviews/{id}/edit")
+    public String editJobReview(@ModelAttribute Job job) {
+        jobsDao.save(job);
+        return "redirect:/dashboard";
+    }
+
+    @PostMapping("/reviews/{id}/delete")
+    public String delete(@PathVariable long id) {
+        Job specificJob = jobsDao.getOne(id);
+        specificJob.setReviewTitle(null);
+        specificJob.setReviewBody(null);
+        jobsDao.save(specificJob);
+        return "redirect:/dashboard";
     }
 
     @PostMapping("/jobs/create")

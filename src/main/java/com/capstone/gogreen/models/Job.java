@@ -73,7 +73,8 @@ public class Job {
         this.jobServices = jobServices;
     }
 
-    public Job(String reviewTitle, String reviewBody) {
+    public Job(long id, String reviewTitle, String reviewBody) {
+        this.id = id;
         this.reviewTitle = reviewTitle;
         this.reviewBody = reviewBody;
     }
