@@ -65,7 +65,8 @@ public class Job {
         this.scheduledTime = scheduledTime;
     }
 
-    public Job(String reviewTitle, String reviewBody) {
+    public Job(long id, String reviewTitle, String reviewBody) {
+        this.id = id;
         this.reviewTitle = reviewTitle;
         this.reviewBody = reviewBody;
     }

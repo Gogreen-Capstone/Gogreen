@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="partials/header :: header('Create a Job Review')"/>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<div sec:authorize="isAuthenticated()">
 
+    <div class="container-fluid">
+        <form th:action="@{'/reviews/' + ${job.id} + '/create'}" th:method="POST" th:object="${job}">
+            <div class="form-group">
+                <label for="reviewTitle">Review Title</label>
+                <input type="text" name="reviewTitle" class="form-control" id="reviewTitle" th:field="*{reviewTitle}">
+            </div>
+            <div class="form-group">
+                <label for="reviewBody">Review Body</label>
+                <textarea class="form-control" name="reviewBody" id="reviewBody" rows="3" th:field="*{reviewBody}"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <input th:field="*{isCompleted}" name="isCompleted" hidden>
+            <input th:field="*{jobDetails}" name="jobDetails" hidden>
+            <input th:field="*{jobTitle}" name="jobTitle" hidden>
+            <input th:field="*{scheduledDate}" name="scheduledDate" hidden>
+            <input th:field="*{scheduledTime}" name="scheduledTime" hidden>
+            <input th:field="*{user}" name="user" hidden>
+        </form>
+    </div>
+
+</div>
+<th:block th:replace="partials/scripts :: scripts"/>
 </body>
 </html>

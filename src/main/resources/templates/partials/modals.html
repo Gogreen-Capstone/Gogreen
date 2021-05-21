@@ -11,20 +11,16 @@
             </p>
             <p class="card-text" name="jobDetails" th:text="${job.jobDetails}"></p>
             <hr>
-            <p class="card-text"><strong>Scheduled Date:</strong> <span name="scheduledDate"
-                                                                        th:text="${job.scheduledDate}"></span></p>
-            <p class="card-text"><strong>Scheduled Time:</strong> <span name="scheduledTime"
-                                                                        th:text="${job.scheduledTime}"></span></p>
+            <p class="card-text"><strong>Scheduled Date:</strong> <span name="scheduledDate" th:text="${job.scheduledDate}"></span></p>
+            <p class="card-text"><strong>Scheduled Time:</strong> <span name="scheduledTime" th:text="${job.scheduledTime}"></span></p>
             <hr th:if="${job.reviewTitle != null}">
-            <p class="card-title" th:if="${job.reviewTitle != null}"><strong>Review Title: </strong><span
-                    name="reviewTitle" th:text="${job.reviewTitle}"></span></p>
+            <p class="card-title" th:if="${job.reviewTitle != null}"><strong>Review Title: </strong><span name="reviewTitle" th:text="${job.reviewTitle}"></span></p>
             <p class="card-text" name="reviewBody" th:if="${job.reviewBody != null}" th:text="${job.reviewBody}"></p>
         </div>
         <!--Modal Starts here-->
         <!-- Button for trigger modal -->
         <div class="card-body">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                    th:if="${job.isCompleted}">
+            <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Create a Review
             </button>
         </div>
