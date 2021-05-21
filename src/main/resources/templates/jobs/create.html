@@ -4,7 +4,7 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"/>
 <main class="container">
-    <form th:action="@{/jobs/create}" th:method="POST" th:object="${job}">
+    <form th:action="@{/jobs/create}" th:method="POST" th:object="${job}" enctype="multipart/form-data">
         <h4>New Job:</h4>
         <div class="form-group">
             <label for="jobTitle">Job Title</label>
@@ -13,7 +13,7 @@
         <hr>
         <h5>Upload image of the job:</h5>
         <div class="form-group">
-            <input type="file" class="form-control-file" id="image" name="image">
+            <input type="file" class="form-control-file" id="file" name="file">
         </div>
         <hr>
         <div class="form-row">

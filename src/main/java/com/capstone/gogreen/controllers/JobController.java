@@ -2,6 +2,7 @@ package com.capstone.gogreen.controllers;
 
 import com.capstone.gogreen.models.*;
 import com.capstone.gogreen.repositories.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -27,6 +31,9 @@ public class JobController {
         this.servicesDao = servicesDao;
         this.imagesDao = imagesDao;
     }
+
+    @Value("${file-upload-path}")
+    private String uploadPath;
 
     @GetMapping("/jobs/create")
     public String showCreateForm(Model model) {
@@ -68,6 +75,7 @@ public class JobController {
         Job specificJob = jobsDao.getOne(id);
         specificJob.setReviewTitle(null);
         specificJob.setReviewBody(null);
+        specificJob.setCompleted(true);
         jobsDao.save(specificJob);
         return "redirect:/dashboard";
     }
@@ -80,7 +88,7 @@ public class JobController {
                           @RequestParam(name = "state") String state,
                           @RequestParam(name = "zip") int zip,
                           @RequestParam(name = "services")List<Service> services,
-                          @RequestParam(name = "image") String imageFile){
+                          @RequestParam(name = "file") MultipartFile uploadedFile){
         User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.getOne(principal.getId());  // getting currently signed in user; our Dao gets all info needed
         job.setUser(user); // assigning currently sing user to newly created post
@@ -93,10 +101,21 @@ public class JobController {
         locationsDao.save(location);
         job.setLocation(location);
         jobsDao.save(job);
-        image.setReview(false);
-        image.setJob(job);
-        image.setUrl(imageFile);
-        imagesDao.save(image);
+
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+        try {
+            uploadedFile.transferTo(destinationFile);
+            image.setReview(false);
+            image.setJob(job);
+            image.setUrl("/uploads/" + filename);
+            imagesDao.save(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         return "redirect:/dashboard";
     }
 }
