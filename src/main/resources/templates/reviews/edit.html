@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head th:replace="partials/header :: header('Edit a Job Review')"/>
+<head th:replace="partials/head :: head('Edit a Job Review')"/>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
 <div sec:authorize="isAuthenticated()">
+    <nav th:replace="partials/navbar :: navbar"></nav>
 
     <div class="container-fluid">
         <form th:action="@{'/reviews/' + ${job.id} + '/edit'}" th:method="POST" th:object="${job}">
@@ -13,7 +13,8 @@
             </div>
             <div class="form-group mb-2">
                 <label for="reviewBody">Review Body</label>
-                <textarea class="form-control" name="reviewBody" id="reviewBody" rows="3" th:field="*{reviewBody}"></textarea>
+                <textarea class="form-control" name="reviewBody" id="reviewBody" rows="3"
+                          th:field="*{reviewBody}"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Edit</button>
 

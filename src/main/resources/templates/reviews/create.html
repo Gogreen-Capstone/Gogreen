@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head th:replace="partials/header :: header('Create a Job Review')"/>
+<head th:replace="partials/head :: head('Create a Job Review')"/>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
 <div sec:authorize="isAuthenticated()">
+<nav th:replace="partials/navbar :: navbar"></nav>
+
 
     <div class="container-fluid">
         <form th:action="@{'/reviews/' + ${job.id} + '/create'}" th:method="POST" th:object="${job}">
