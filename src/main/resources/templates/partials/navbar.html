@@ -16,20 +16,20 @@
 <nav th:fragment="navbar" id="navbar" class="navbar navbar-expand-lg">
     <div class="container">
         <a sec:authorize="!isAuthenticated()" class="navbar-gg-icon" th:href="@{/}"><img src="/img/go-green-icon.png" height="70" alt="Go Green Logo"></a>
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+
+        <button sec:authorize="!isAuthenticated()" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <a sec:authorize="isAuthenticated()" class="navbar-gg-icon" th:href="@{/}"><img src="/img/go-green-icon.png" height="70" alt="Go Green Logo"></a>
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+
+        <button sec:authorize="isAuthenticated()" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-
                 <div class="nav-buttons" sec:authorize="!isAuthenticated()">
-                    <ul class="nav">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{how-it-works}">How it Works</a>
                         </li>
@@ -81,7 +81,6 @@
                         </li>
                     </ul>
                 </div>
-            </div>
         </div>
     </div>
 </nav>
