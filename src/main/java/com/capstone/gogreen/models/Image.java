@@ -51,4 +51,12 @@ public class Image {
     public void setReview(boolean review) {
         isReview = review;
     }
+
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
 }

@@ -3,7 +3,7 @@
 <head th:replace="partials/head :: head('Dashboard')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div sec:authorize="isAuthenticated()">
+
     <main class="container">
         <h1><span th:text="${user.username}"></span>'s Dashboard</h1>
 
@@ -17,7 +17,10 @@
 
         <h2>Edit your information</h2>
 
-        <a class="btn btn-primary" type="button" th:href="@{/edit-user}">Edit User Information</a>
+
+        <a class="nav-link" th:href="@{/jobs/create}">New Job Request</a>
+        <a class="btn btn-primary" type="button" href="/edit-user">Edit User Information</a>
+
 
         <div class="row justify-content-evenly">
         <div class="card mb-2 mt-2 d-flex col-4 " style="width: 18rem;"  th:each="job : ${jobs}">
@@ -38,6 +41,7 @@
                     <form class="mt-2" th:action="'/reviews/' + ${job.id} + '/delete'" th:method="POST">
                         <p class="card-title"  name="reviewTitle" th:text="${job.reviewTitle}" hidden></p>
                         <p class="card-title"  name="reviewBody" th:text="${job.reviewBody}" hidden></p>
+                        <h5 th:text="${job.isCompleted}" name="isCompleted" hidden></h5>
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </div>
@@ -45,7 +49,7 @@
         </div>
         </div>
     </main>
-</div>
+
 
 <th:block th:replace="partials/scripts :: scripts"/>
 </body>

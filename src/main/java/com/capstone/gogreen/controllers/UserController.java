@@ -1,10 +1,8 @@
 package com.capstone.gogreen.controllers;
-
 import com.capstone.gogreen.models.Job;
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.JobRepository;
 import com.capstone.gogreen.repositories.UserRepository;
-import com.capstone.gogreen.services.UserDetailsLoader;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -17,14 +15,14 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-    private UserRepository usersDao;
-    private JobRepository jobsDao;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository usersDao;
+    private final JobRepository jobsDao;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository usersDao, PasswordEncoder passwordEncoder, JobRepository jobsDao) {
+    public UserController(UserRepository usersDao, JobRepository jobsDao, PasswordEncoder passwordEncoder) {
         this.usersDao = usersDao;
-        this.passwordEncoder = passwordEncoder;
         this.jobsDao = jobsDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/dashboard")
