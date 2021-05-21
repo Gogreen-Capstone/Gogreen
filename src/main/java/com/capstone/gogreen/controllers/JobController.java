@@ -45,4 +45,14 @@ public class JobController {
         return "redirect:/dashboard";
     }
 
+    @PostMapping("/reviews/{id}/delete")
+    public String delete(@PathVariable long id) {
+        Job specificJob = jobsDao.getOne(id);
+        specificJob.setReviewTitle(null);
+        specificJob.setReviewBody(null);
+        jobsDao.save(specificJob);
+        return "redirect:/dashboard";
+    }
+
+
 }
