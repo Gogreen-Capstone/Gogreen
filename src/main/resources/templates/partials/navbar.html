@@ -69,14 +69,11 @@
                             <a class="nav-link" th:href="@{gallery}">Gallery</a>
                         </li>
                         <li>
+                            <a class="nav-link" th:href="@{dashboard}">Dashboard</a>
+                        </li>
+                        <li>
                             <form th:action="@{logout}" method="post">
                                 <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-                            </form>
-                        </li>
-
-                        <li>
-                            <form th:action="@{dashboard}" method="post">
-                                <button class="btn-link btn" style="margin-top: 8px">Dashboard</button>
                             </form>
                         </li>
                     </ul>

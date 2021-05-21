@@ -17,7 +17,7 @@
 
         <h2>Edit your information</h2>
 
-        <a class="btn btn-primary" type="button" href="/edit-user">Edit User Information</a>
+        <a class="btn btn-primary" type="button" th:href="@{/edit-user}">Edit User Information</a>
 
         <div class="row justify-content-evenly">
         <div class="card mb-2 mt-2 d-flex col-4 " style="width: 18rem;"  th:each="job : ${jobs}">
