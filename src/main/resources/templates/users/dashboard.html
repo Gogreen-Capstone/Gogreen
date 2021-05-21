@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head th:replace="partials/header :: header('Dashboard')"/>
+<head th:replace="partials/head :: head('Dashboard')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div sec:authorize="isAuthenticated()">
+
     <main class="container">
         <h1><span th:text="${user.username}"></span>'s Dashboard</h1>
 
@@ -17,8 +17,10 @@
 
         <h2>Edit your information</h2>
 
+
         <a class="nav-link" th:href="@{/jobs/create}">New Job Request</a>
         <a class="btn btn-primary" type="button" href="/edit-user">Edit User Information</a>
+
 
         <div class="row justify-content-evenly">
         <div class="card mb-2 mt-2 d-flex col-4 " style="width: 18rem;"  th:each="job : ${jobs}">
@@ -47,7 +49,7 @@
         </div>
         </div>
     </main>
-</div>
+
 
 <th:block th:replace="partials/scripts :: scripts"/>
 </body>

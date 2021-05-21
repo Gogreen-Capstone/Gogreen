@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>GoGreen</title>
-    <head th:replace="partials/header :: header('Home')">
+<html id="home.html" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head('Home')">
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-    <h1>GO GREEN HOME PAGE</h1>
+<header th:replace="partials/header :: header('Go Green Home Page')"></header>
 
     <h1>DISPLAY REVIEWS FROM ReviewRepository</h1>
 
-    <h1>FOOTER WITH about_us.html LINK</h1>
+<footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>
