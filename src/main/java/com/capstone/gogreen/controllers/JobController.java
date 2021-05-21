@@ -19,27 +19,38 @@ public class JobController {
         this.usersDao = usersDao;
     }
 
-    //Create a job reviews for completed jobs in users dashboard
-    @PostMapping("/modals")
-    public String createJobReview(@ModelAttribute Job job,
-                                  @RequestParam(name = "reviewTitle") String reviewTitle, //Requesting all info from job
-                                  @RequestParam(name = "reviewBody") String reviewBody,
-                                  @RequestParam(name = "jobTitle") String jobTitle,
-                                  @RequestParam(name = "jobDetails") String jobDetails,
-                                  @RequestParam(name = "scheduledTime") int scheduledTime,
-                                  @RequestParam(name = "scheduledDate") String scheduledDate,
-                                  @RequestParam(name = "jobId") long jobId) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //getting logged in user
-        User user = usersDao.getOne(loggedInUser.getId());
-        job.setUser(user); //setting all new info by user input
-        job.setId(jobId);
-        job.setJobTitle(jobTitle);
-        job.setJobDetails(jobDetails);
-        job.setReviewTitle(reviewTitle);
-        job.setReviewBody(reviewBody);
-        job.setScheduledTime(scheduledTime);
-        job.setScheduledDate(scheduledDate);
-        jobsDao.save(job); // saving it to user
+    @GetMapping("/reviews/{id}/create")
+    public String showCreatePage(Model model, @PathVariable long id) {
+        model.addAttribute("job", jobsDao.getOne(id));
+        return "reviews/create";
+    }
+
+    // creating a job review for completed job
+    @PostMapping("/reviews/{id}/create")
+    public String createJobReview(@ModelAttribute Job job) {
+        jobsDao.save(job);
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/reviews/{id}/edit")
+    public String showEditPage(Model model, @PathVariable long id) {
+        model.addAttribute("job", jobsDao.getOne(id));
+        return "reviews/edit";
+    }
+
+    // editing existing job review
+    @PostMapping("/reviews/{id}/edit")
+    public String editJobReview(@ModelAttribute Job job) {
+        jobsDao.save(job);
+        return "redirect:/dashboard";
+    }
+
+    @PostMapping("/reviews/{id}/delete")
+    public String delete(@PathVariable long id) {
+        Job specificJob = jobsDao.getOne(id);
+        specificJob.setReviewTitle(null);
+        specificJob.setReviewBody(null);
+        jobsDao.save(specificJob);
         return "redirect:/dashboard";
     }
 
