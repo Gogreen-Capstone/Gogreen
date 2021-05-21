@@ -9,8 +9,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface JobRepository extends JpaRepository<Job, Long> {
+    Job findJobByUserId(long userId);
     List<Job> findJobsByUserId(long userId);
-
-//    @Query("DELETE FROM Job j WHERE j.reviewTitle = : review_title AND  j.reviewBody = : review_body")
-//    void deleteReview(@Param("review_title") String review_title,@Param("review_body") String review_body,@Param("id") long id);
 }

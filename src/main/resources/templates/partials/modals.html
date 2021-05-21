@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/header :: header('Dashboard')"/>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
 <body>
+
+<!--        NEW JOB MODAL-->
+
+<th:block th:fragment="newJobModal">
+
+</th:block>
+
+<!--        REVIEW MODAL-->
 
 <thblock th:fragment="reviewModal">
     <!--Card starts Here for Job Review-->
@@ -37,17 +48,17 @@
                 </div>
                 <div class="modal-body">
                     <!--Form starts here for a job review-->
-                    <form th:action="@{/modals}" th:method="POST">
+                    <form th:action="@{/modals-review}" th:method="POST">
                         <div class="form-group">
                             <label for="reviewTitle">Review Title</label>
                             <input id="reviewTitle" class="form-control" name="reviewTitle">
-                            <input type="hidden" name="jobId" th:value="${job.id}">
+                            <input type="hidden" name="jobId" th:value="${jobs.id}">
                         </div>
                         <!--Adding hidden values for all details for a job-->
-                        <input type="hidden" class="card-title" name="jobTitle" th:value="${job.jobTitle}">
-                        <input type="hidden" class="card-text" name="jobDetails" th:value="${job.jobDetails}">
-                        <input type="hidden" class="card-text" name="scheduledDate" th:value="${job.scheduledDate}">
-                        <input type="hidden" class="card-text" name="scheduledTime" th:value="${job.scheduledTime}">
+                        <input type="hidden" class="card-title" name="jobTitle" th:value="${jobs.jobTitle}">
+                        <input type="hidden" class="card-text" name="jobDetails" th:value="${jobs.jobDetails}">
+                        <input type="hidden" class="card-text" name="scheduledDate" th:value="${jobs.scheduledDate}">
+                        <input type="hidden" class="card-text" name="scheduledTime" th:value="${jobs.scheduledTime}">
                         <div class="form-group">
                             <label for="reviewBody">Review Body</label>
                             <textarea id="reviewBody" class="form-control" rows="3" name="reviewBody"></textarea>
