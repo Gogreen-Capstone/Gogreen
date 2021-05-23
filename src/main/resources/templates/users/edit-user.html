@@ -24,7 +24,8 @@
         <div class="form-group">
             <label for="password">Password</label>
             <input id="password" class="form-control" type="password" name="password" th:field="*{password}">
-            <small class="form-text text-muted">Enter your password.</small>
+            <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}"
+                   th:errors="*{password}"></small>
         </div>
         <div class="form-group">
             <label for="confirm">Confirm Password</label>
@@ -34,6 +35,12 @@
         </div>
         <button type="submit" class="btn btn-primary mt-2">Edit</button>
     </form>
+        <!--Delete User-->
+<!--    <form class="mt-2" th:action="'/edit-user/' + ${user.id} + '/delete'" th:method="POST">-->
+<!--        <h5 th:text="${user.id}" name="userId" hidden></h5>-->
+<!--        <h5 th:text="${job.id}" name="jobId" hidden ></h5>-->
+        <button type="button" class="btn btn-danger">Delete</button>
+<!--    </form>-->
 </div>
 
 <th:block th:replace="partials/scripts :: scripts"/>
