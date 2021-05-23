@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html id="gallery-html" lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/header :: header('Gallery')">
-    <meta charset="UTF-8">
-    <title>Gallery</title>
+<html id="gallery.html" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head('Gallery')">
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+<header th:replace="partials/header :: header('Go Green Gallery Page')"></header>
+
 <div>
-    <h1>GALLERY PAGE</h1>
+    <h1>Dis play before and after photos</h1>
 </div>
+
+<footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>

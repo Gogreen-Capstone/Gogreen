@@ -29,6 +29,11 @@ public class AuthenticationController {
         return "users/login";
     }
 
+    @PostMapping("/login")
+    public String login() {
+        return "redirect:/dashboard";
+    }
+
     @GetMapping("/register")
     public String showRegisterPage(Model model){
         model.addAttribute("user", new User());
