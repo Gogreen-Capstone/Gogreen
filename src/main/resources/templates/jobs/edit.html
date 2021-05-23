@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head('Create Job')"/>
+<head th:replace="partials/head :: head('Edit Job')"/>
 <body>
 <nav th:replace="partials/navbar :: navbar"/>
 <main class="container">
-    <form th:action="@{/jobs/create}" th:method="POST" th:object="${job}" enctype="multipart/form-data">
-        <h4>New Job:</h4>
+    <form th:action="@{'/jobs/' + ${job.id} + '/edit'}" th:method="POST" th:object="${job}" enctype="multipart/form-data">
+        <h4>Edit Job:</h4>
         <div class="form-group">
             <label for="jobTitle">Job Title</label>
             <input type="text" id="jobTitle" class="form-control" placeholder="" th:field="*{jobTitle}" required>

@@ -43,43 +43,7 @@ public class JobController {
         model.addAttribute("image", new Image());
         return "jobs/create";
     }
-
-    @GetMapping("/reviews/{id}/create")
-    public String showCreatePage(Model model, @PathVariable long id) {
-        model.addAttribute("job", jobsDao.getOne(id));
-        return "reviews/create";
-    }
-
-    // creating a job review for completed job
-    @PostMapping("/reviews/{id}/create")
-    public String createJobReview(@ModelAttribute Job job) {
-        jobsDao.save(job);
-        return "redirect:/dashboard";
-    }
-
-    @GetMapping("/reviews/{id}/edit")
-    public String showEditPage(Model model, @PathVariable long id) {
-        model.addAttribute("job", jobsDao.getOne(id));
-        return "reviews/edit";
-    }
-
-    // editing existing job review
-    @PostMapping("/reviews/{id}/edit")
-    public String editJobReview(@ModelAttribute Job job) {
-        jobsDao.save(job);
-        return "redirect:/dashboard";
-    }
-
-    @PostMapping("/reviews/{id}/delete")
-    public String delete(@PathVariable long id) {
-        Job specificJob = jobsDao.getOne(id);
-        specificJob.setReviewTitle(null);
-        specificJob.setReviewBody(null);
-        specificJob.setCompleted(true);
-        jobsDao.save(specificJob);
-        return "redirect:/dashboard";
-    }
-
+    // creates new job
     @PostMapping("/jobs/create")
     public String saveJob(@ModelAttribute Job job, @ModelAttribute Location location, @ModelAttribute Image image,
                           @RequestParam(name = "houseNumber") int houseNumber,
@@ -118,4 +82,64 @@ public class JobController {
 
         return "redirect:/dashboard";
     }
+    // shows specific job
+    @GetMapping("/jobs/{id}/show")
+    public String showOneJob(Model model, @PathVariable long id) {
+        Job jobToView = jobsDao.getOne(id);
+        Image jobImage = imagesDao.findByJobId(id);
+        model.addAttribute("job", jobToView);
+        model.addAttribute("image", jobImage);
+        return "jobs/show";
+    }
+    // shows edit form
+    @GetMapping("/jobs/{id}/edit")
+    public String showEditForm(Model model, @PathVariable long id) {
+        Job jobToEdit = jobsDao.getOne(id);
+        model.addAttribute("job", jobToEdit);
+        return "jobs/edit";
+    }
+    // edit job
+    @PostMapping("/jobs/{id}/edit")
+    public String saveEditJob(@PathVariable long id, @ModelAttribute Job jobToEdit) {
+
+        return "";
+    }
+
+    @GetMapping("/reviews/{id}/create")
+    public String showCreatePage(Model model, @PathVariable long id) {
+        model.addAttribute("job", jobsDao.getOne(id));
+        return "reviews/create";
+    }
+
+    // creating a job review for completed job
+    @PostMapping("/reviews/{id}/create")
+    public String createJobReview(@ModelAttribute Job job) {
+        jobsDao.save(job);
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/reviews/{id}/edit")
+    public String showEditPage(Model model, @PathVariable long id) {
+        model.addAttribute("job", jobsDao.getOne(id));
+        return "reviews/edit";
+    }
+
+    // editing existing job review
+    @PostMapping("/reviews/{id}/edit")
+    public String editJobReview(@ModelAttribute Job job) {
+        jobsDao.save(job);
+        return "redirect:/dashboard";
+    }
+
+    @PostMapping("/reviews/{id}/delete")
+    public String delete(@PathVariable long id) {
+        Job specificJob = jobsDao.getOne(id);
+        specificJob.setReviewTitle(null);
+        specificJob.setReviewBody(null);
+        specificJob.setCompleted(true);
+        jobsDao.save(specificJob);
+        return "redirect:/dashboard";
+    }
+
+
 }

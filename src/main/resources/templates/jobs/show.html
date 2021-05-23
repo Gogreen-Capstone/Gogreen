@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head('Specific Job')"></head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<header th:replace="partials/header :: header('Job Full Details')"></header>
+
+<main class="container">
+    <div class="row d-flex justify-content-center">
+    <div class="card" style="width: 100vh; padding: 0">
+        <th:block th:if="${image.url != null}">
+        <img th:src="${image.url}" class="card-img-top" alt="job-image">
+        </th:block>
+        <div class="card-body">
+            <h4 class="card-title" th:text="${job.jobTitle}">Card title</h4>
+            <p class="card-text"><strong>Details:</strong> <span th:text="${job.jobDetails}"></span></p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" ><strong>Date: </strong><span th:text="${job.scheduledDate}"></span></li>
+            <li class="list-group-item" th:if="${job.scheduledTime == 1}"><strong>Time: </strong><span>Morning(8am - 12pm)</span></li>
+            <li class="list-group-item" th:if="${job.scheduledTime == 2}"><strong>Time: </strong><span>Afternoon(1pm - 5pm)</span></li>
+            <li class="list-group-item"><strong>Location: </strong><span th:text="${job.location.houseNumber + ' ' + job.location.street + ' ' + job.location.city + ' ' + job.location.state + ' ' + job.location.zipCode}"></span></li>
+            <li class="list-group-item"><strong>Service type: </strong><span th:text="${job.toString()}"></span></li>
+        </ul>
+        <div class="card-body">
+            <a th:href="@{/dashboard}" class="btn btn-secondary">Back</a>
+            <a th:href="@{'/jobs/' + ${job.id} + '/edit'}" class="btn btn-success">Edit Job</a>
+            <form th:action="">
+                <button type="submit" class="btn btn-danger">Delete Job</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</main>
+
+</body>
+</html>

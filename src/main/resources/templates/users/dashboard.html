@@ -5,20 +5,12 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
     <main class="container">
-        <h1><span th:text="${user.username}"></span>'s Dashboard</h1>
-
-        <h2>
-            shows pending jobs in bootstrap cards
-        </h2>
-
-        <h2>
-            shows completed jobs in bootstrap cards
-        </h2>
+        <header th:replace="partials/header :: header(${user.username} + '\'s Dashboard')"></header>
 
         <h2>Edit your information</h2>
 
 
-        <a class="nav-link" th:href="@{/jobs/create}">New Job Request</a>
+        <a class="btn btn-success" th:href="@{/jobs/create}">New Job Request</a>
         <a class="btn btn-primary" type="button" href="/edit-user">Edit User Information</a>
 
 
@@ -32,6 +24,7 @@
                 <hr>
                 <p class="card-text"><strong>Scheduled Date:</strong> <span name="scheduledDate" th:text="${job.scheduledDate}"></span></p>
                 <p class="card-text"><strong>Scheduled Time:</strong> <span name="scheduledTime" th:text="${job.scheduledTime}"></span></p>
+                <a th:href="'/jobs/' + ${job.id} + '/show'" class="btn btn-warning">More options</a>
                 <hr th:if="${job.reviewTitle != null}">
                 <p class="card-title" th:if="${job.reviewTitle != null}"><strong>Review Title: </strong><span name="reviewTitle" th:text="${job.reviewTitle}"></span></p>
                 <p class="card-text" name="reviewBody" th:if="${job.reviewBody != null}" th:text="${job.reviewBody}"></p>
