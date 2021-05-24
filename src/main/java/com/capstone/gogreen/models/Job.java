@@ -166,4 +166,11 @@ public class Job {
     public void setJobServices(List<Service> jobServices) {
         this.jobServices = jobServices;
     }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "jobServices=" + jobServices +
+                '}';
+    }
 }
