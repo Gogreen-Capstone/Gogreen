@@ -1,7 +1,11 @@
 package com.capstone.gogreen.controllers;
 
 import com.capstone.gogreen.models.User;
+//import com.capstone.gogreen.models.Review;
+import com.capstone.gogreen.models.UserWithRoles;
 import com.capstone.gogreen.repositories.UserRepository;
+import com.capstone.gogreen.repositories.JobRepository;
+import com.capstone.gogreen.repositories.ReviewRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,15 +17,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
+
+
+import com.capstone.gogreen.repositories.UserRepository;
+
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import javax.validation.Valid;
+
 @Controller
 public class AuthenticationController {
 
     private UserRepository usersDao;
     private PasswordEncoder passwordEncoder;
+    private ReviewRepository reviewsDao;
 
-    public AuthenticationController(UserRepository usersDao, PasswordEncoder passwordEncoder) {
+    public AuthenticationController(UserRepository usersDao, PasswordEncoder passwordEncoder, ReviewRepository reviewsDao) {
         this.usersDao = usersDao;
         this.passwordEncoder = passwordEncoder;
+        this.reviewsDao = reviewsDao;
     }
 
     @GetMapping("/login")
@@ -34,10 +57,16 @@ public class AuthenticationController {
         return "redirect:/dashboard";
     }
 
+//        if (usersDao.(user.getIsAdmin()) = true {
+//        return "redirect:/admin/dashboard";
+//    }
+//
+//    { return "redirect:/dashboard"; }
+
     @GetMapping("/register")
     public String showRegisterPage(Model model){
         model.addAttribute("user", new User());
-        return "users/register";
+            return "users/register";
     }
 
     @PostMapping("/register")
