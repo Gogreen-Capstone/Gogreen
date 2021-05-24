@@ -1,53 +1,35 @@
 package com.capstone.gogreen.controllers;
-
 import com.capstone.gogreen.models.Job;
 import com.capstone.gogreen.models.User;
-import com.capstone.gogreen.models.UserWithRoles;
-import com.capstone.gogreen.repositories.JobRepository;
-import com.capstone.gogreen.repositories.ReviewRepository;
-import com.capstone.gogreen.repositories.UserRepository;
-import com.capstone.gogreen.services.UserDetailsLoader;
-
-import org.springframework.http.HttpStatus;
+import com.capstone.gogreen.repositories.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.View;
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
 
 import javax.validation.Valid;
 
 @Controller
-@ControllerAdvice
 public class UserController {
+
+    @Value("${mapbox.api.key}")
+    private String mapBoxKey;
 
     private final UserRepository usersDao;
     private final JobRepository jobsDao;
-    private final ReviewRepository reviewsDao;
     private final PasswordEncoder passwordEncoder;
+    private final LocationRepository locationsDao;
+    private final ImageRepository imagesDao;
 
-    public UserController(UserRepository usersDao, JobRepository jobsDao, ReviewRepository reviewsDao, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository usersDao, JobRepository jobsDao, PasswordEncoder passwordEncoder, LocationRepository locationsDao, ImageRepository imagesDao) {
         this.usersDao = usersDao;
         this.jobsDao = jobsDao;
-        this.reviewsDao = reviewsDao;
         this.passwordEncoder = passwordEncoder;
+        this.locationsDao = locationsDao;
+        this.imagesDao = imagesDao;
     }
 
     @GetMapping("/dashboard")
@@ -56,14 +38,6 @@ public class UserController {
         model.addAttribute("user", loggedInUser);
         model.addAttribute("jobs", jobsDao.findJobsByUserId(loggedInUser.getId())); //Getting Job according to logged in user
         return "users/dashboard";
-    }
-
-    @GetMapping("/admin/dashboard")
-    public String showAdminDashboard(Model model, @ModelAttribute Job job) {
-        User loggedInAdmin = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", loggedInAdmin);
-        model.addAttribute("jobs", jobsDao.findJobsByUserId(loggedInAdmin.getId())); //Getting Job according to logged in admin
-        return "admin/dashboard";
     }
 
     //Edit user information getMapping
@@ -105,13 +79,13 @@ public class UserController {
         } else if (usersDao.findByUsername(user.getUsername()) != null && usersDao.findByEmail(user.getEmail()) != null) {
             model.addAttribute("username", user.getUsername());
             model.addAttribute("email", user.getEmail());
-            return "users/edit-user";
+            return "users/dashboard";
         } else if (usersDao.findByUsername(user.getUsername()) != null) {
             model.addAttribute("username", user.getUsername());
-            return "users/edit-user";
+            return "users/dashboard";
         } else if (usersDao.findByEmail(user.getEmail()) != null) {
             model.addAttribute("email", user.getEmail());
-            return "users/edit-user";
+            return "users/dashboard";
         }
 
         //setting the username email and password
@@ -123,5 +97,13 @@ public class UserController {
         usersDao.save(userId);
         return "redirect:/dashboard";
     }
+
+
+    @GetMapping("/mapbox")
+    public String mapBox(Model model) {
+        model.addAttribute("mapBoxKey", mapBoxKey);
+        return "reviews/index";
+    }
+
 
 }
