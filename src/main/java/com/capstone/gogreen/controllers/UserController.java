@@ -2,6 +2,7 @@ package com.capstone.gogreen.controllers;
 import com.capstone.gogreen.models.Job;
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,9 @@ import javax.validation.Valid;
 
 @Controller
 public class UserController {
+
+    @Value("${mapbox.api.key}")
+    private String mapBoxKey;
 
     private final UserRepository usersDao;
     private final JobRepository jobsDao;
@@ -94,12 +98,12 @@ public class UserController {
         return "redirect:/dashboard";
     }
 
-    @DeleteMapping("/edit-user/{id}/delete")
-    public String deleteUser (@PathVariable long id){
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //Getting logged in user
-        User userId = usersDao.getOne(loggedInUser.getId());
-        usersDao.delete(userId);
-        return "redirect:/home";
+
+    @GetMapping("/mapbox")
+    public String mapBox(Model model) {
+        model.addAttribute("mapBoxKey", mapBoxKey);
+        return "reviews/index";
     }
+
 
 }
