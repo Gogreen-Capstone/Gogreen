@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head('Create Job')"/>
+<head th:replace="partials/head :: head('Edit Job')"/>
 <body>
 <nav th:replace="partials/navbar :: navbar"/>
-<main class="container">
-    <form th:action="@{/jobs/create}" th:method="POST" th:object="${job}" enctype="multipart/form-data">
-        <h4>New Job:</h4>
+<main class="container mb-1">
+    <form th:action="@{'/jobs/edit/' + ${job.id}}" th:method="POST" th:object="${job}" enctype="multipart/form-data">
+        <h4>Edit Job:</h4>
         <div class="form-group">
             <label for="jobTitle">Job Title</label>
             <input type="text" id="jobTitle" class="form-control" placeholder="" th:field="*{jobTitle}" required>
         </div>
         <hr>
-        <h5>Upload image of the job:</h5>
-        <div class="form-group">
+        <h5>Update your image:</h5>
+        <div class="form-group" th:if="${images.isEmpty()}">
+            <input type="file" class="form-control-file" id="file" name="file">
+        </div>
+        <div class="form-group" th:each="image : ${images}">
             <input type="file" class="form-control-file" id="file" name="file">
         </div>
         <hr>
@@ -37,7 +40,7 @@
         <h5>Service Type:</h5>
         <small></small>
         <div class="form-group">
-            <select multiple class="form-control" name="services">
+            <select multiple class="form-control" name="services" required>
                 <option th:each="service : ${services}" th:value="${service.id}" th:text="${service.title}"></option>
             </select>
         </div>
@@ -50,6 +53,7 @@
         <hr>
         <h5>Location:</h5>
         <div>
+            <input type="hidden" th:value="${job.location.id}" name="locationId">
             <label for="houseNumber">House number</label>
             <input type="text" class="form-control" id="houseNumber" name="houseNumber"
                    placeholder="1234" required>
@@ -71,8 +75,8 @@
             <label for="zip">Zip</label>
             <input type="text" class="form-control" id="zip" name="zip" placeholder="78250" required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a type="submit" class="btn btn-secondary" th:href="@{/dashboard}">Cancel</a>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a type="submit" class="btn btn-secondary" th:href="@{'/jobs/show/' + ${job.id}}">Cancel</a>
     </form>
 </main>
 <footer th:replace="partials/footer :: footer"></footer>
