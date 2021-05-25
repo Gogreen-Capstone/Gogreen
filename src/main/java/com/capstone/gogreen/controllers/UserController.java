@@ -4,6 +4,7 @@ import com.capstone.gogreen.models.Location;
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,6 @@ import java.util.List;
 
 @Controller
 public class UserController {
-
-    @Value("${mapbox.api.key}")
-    private String mapBoxKey;
 
     private final UserRepository usersDao;
     private final JobRepository jobsDao;
@@ -98,20 +96,6 @@ public class UserController {
         //saving those changes to the user
         usersDao.save(userId);
         return "redirect:/dashboard";
-    }
-
-
-    @GetMapping("/mapbox")
-    public String mapBox(Model model) {
-       List<Location> listAddresses = locationsDao.findAll(); //finding all address to loop through them
-        model.addAttribute("mapBoxKey", mapBoxKey);
-
-        for (Location listAddress : listAddresses) {
-            String address = listAddress.addressToString();
-            model.addAttribute("address", address); //adding address to our page
-        }
-
-        return "reviews/index";
     }
 
 

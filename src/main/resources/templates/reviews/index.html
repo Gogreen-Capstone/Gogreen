@@ -45,20 +45,18 @@
     //Getting all address from our locations table
     var address =  [[${address}]];
     var array1 = []; // better to define using [] instead of new Array();
-    var array2 = [];
+    console.log(address);
 
+    var array2 = [];
     for (var i = 0; i < address.length; i++) {
-        var split = address[i].split(" .");  // just split once
+        var split = address[i].split(".");  // just split once
         array1.push(split[0]); // before the dot
         array2.push(split[1]); // after the dot
     }
 
-    console.log(array1)
-    console.log(array2)
-
     var jobAddress = [
         {
-            address: address,
+            address: split[i],
         },
         {
             address: '15900 La Cantera Pkwy Suite 100, San Antonio, TX 78256',
