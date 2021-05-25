@@ -98,7 +98,6 @@ public class UserController {
         return "redirect:/dashboard";
     }
 
-
     @GetMapping("/mapbox")
     public String mapBox(Model model) {
         model.addAttribute("mapBoxKey", mapBoxKey);
