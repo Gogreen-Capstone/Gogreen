@@ -45,7 +45,6 @@ public class Job {
             joinColumns = {@JoinColumn(name = "job_id")},
             inverseJoinColumns = {@JoinColumn(name = "service_id")}
     )
-
     private List<Service> jobServices;
 
     public Job() {
