@@ -3,7 +3,7 @@
 <head th:replace="partials/head :: head('Create Job')"/>
 <body>
 <nav th:replace="partials/navbar :: navbar"/>
-<main class="container">
+<main class="container mb-1">
     <form th:action="@{/jobs/create}" th:method="POST" th:object="${job}" enctype="multipart/form-data">
         <h4>New Job:</h4>
         <div class="form-group">
