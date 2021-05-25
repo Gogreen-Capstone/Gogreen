@@ -84,7 +84,7 @@ public class JobController {
     @GetMapping("/jobs/show/{id}")
     public String showOneJob(Model model, @PathVariable long id) {
         Job jobToView = jobsDao.getOne(id);
-        List<Image> images = imagesDao.findByJobId(id);
+        List<Image> images = imagesDao.findAllByJobId(id);
         model.addAttribute("job", jobToView);
         model.addAttribute("images", images);
         model.addAttribute("services", jobToView.getJobServices());
@@ -94,7 +94,7 @@ public class JobController {
     @GetMapping("/jobs/edit/{id}")
     public String showEditForm(Model model, @PathVariable long id) {
         Job jobToEdit = jobsDao.getOne(id);
-        List<Image> imagesToEdit = imagesDao.findByJobId(id);
+        List<Image> imagesToEdit = imagesDao.findAllByJobId(id);
         Location locationToEdit = jobToEdit.getLocation();
         model.addAttribute("job", jobToEdit);
         model.addAttribute("images", imagesToEdit);
@@ -149,6 +149,11 @@ public class JobController {
     // delete job
     @PostMapping("/jobs/delete/{id}")
     public String deleteJob(@PathVariable long id) {
+        Job jobToDelete = jobsDao.getOne(id);
+        List<Service> services = jobToDelete.getJobServices();
+        List<Image> images = imagesDao.findAllByJobId(jobToDelete.getId());
+        services.clear();
+        imagesDao.deleteAll(images);
         jobsDao.deleteById(id);
         return "redirect:/dashboard";
     }

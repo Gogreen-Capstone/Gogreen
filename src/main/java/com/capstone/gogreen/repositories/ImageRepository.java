@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface ImageRepository extends JpaRepository<Image, Long> {
-    List<Image> findByJobId(long id);
+    List<Image> findAllByJobId(long id);
 
     // custom method to delete all images by job_id
     @Modifying
