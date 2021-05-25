@@ -1,11 +1,7 @@
 package com.capstone.gogreen.controllers;
 
 import com.capstone.gogreen.models.User;
-//import com.capstone.gogreen.models.Review;
-import com.capstone.gogreen.models.UserWithRoles;
 import com.capstone.gogreen.repositories.UserRepository;
-import com.capstone.gogreen.repositories.JobRepository;
-//import com.capstone.gogreen.repositories.ReviewRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,23 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.validation.Valid;
-
-
-
-import com.capstone.gogreen.repositories.UserRepository;
-
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.validation.Valid;
 
@@ -55,11 +34,6 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public String login() {
-
-
-
-
-
         return "redirect:/dashboard";
     }
 

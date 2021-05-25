@@ -37,7 +37,13 @@ public class UserController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", loggedInUser);
         model.addAttribute("jobs", jobsDao.findJobsByUserId(loggedInUser.getId())); //Getting Job according to logged in user
-        return "users/dashboard";
+        boolean isAdmin = loggedInUser.getIsAdmin();
+        System.out.println(isAdmin);
+        if (true) {
+            return "admin/dashboard";
+        } else {
+            return "users/dashboard";
+        }
     }
 
     //Edit user information getMapping
@@ -97,6 +103,7 @@ public class UserController {
         usersDao.save(userId);
         return "redirect:/dashboard";
     }
+
 
     @GetMapping("/mapbox")
     public String mapBox(Model model) {
