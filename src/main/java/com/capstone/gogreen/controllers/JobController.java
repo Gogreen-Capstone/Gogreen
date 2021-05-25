@@ -166,7 +166,8 @@ public class JobController {
 
     // creating a job review for completed job
     @PostMapping("/reviews/{id}/create")
-    public String createJobReview(@ModelAttribute Job job) {
+    public String createJobReview(@ModelAttribute Job job,@RequestParam(name = "isCompleted") boolean isCompleted) {
+        job.setCompleted(isCompleted);
         jobsDao.save(job);
         return "redirect:/dashboard";
     }
