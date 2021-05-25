@@ -12,8 +12,24 @@
 </head>
 <body>
 
+<!-- The HTML element that serves as the Mapbox container -->
 <div id="map" style='width: 400px; height: 300px; border: 5px solid black; width: 120vh; height: 70vh; margin: 7em auto'></div>
+
 <script th:inline="javascript">
+    "use strict";
+
+    function geocode(search, token) {
+        var baseUrl = 'https://api.mapbox.com';
+        var endPoint = '/geocoding/v5/mapbox.places/';
+        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+            .then(function(res) {
+                return res.json();
+                // to get all the data from the request, comment out the following three lines...
+            }).then(function(data) {
+                return data.features[0].center;
+            });
+    }
+
     var mapBoxKey = [[${mapBoxKey}]]
     mapboxgl.accessToken = mapBoxKey;
     var map = new mapboxgl.Map({
@@ -21,6 +37,51 @@
         style: 'mapbox://styles/mapbox/streets-v11', // style URL
         center: [-98.598600, 29.609500], // starting position [lng, lat]
         zoom: 9 // starting zoom
+    });
+
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl());
+
+    //Getting all address from our locations table
+    var address =  [[${address}]];
+    var array1 = []; // better to define using [] instead of new Array();
+    var array2 = [];
+
+    for (var i = 0; i < address.length; i++) {
+        var split = address[i].split(" .");  // just split once
+        array1.push(split[0]); // before the dot
+        array2.push(split[1]); // after the dot
+    }
+
+    console.log(array1)
+    console.log(array2)
+
+    var jobAddress = [
+        {
+            address: address,
+        },
+        {
+            address: '15900 La Cantera Pkwy Suite 100, San Antonio, TX 78256',
+        },
+        {
+            address: '18203 W I-10, San Antonio, TX 78257',
+        }
+    ]
+
+
+
+    jobAddress.forEach(function(jobAddresses){
+        geocode(jobAddresses.address, mapBoxKey).then(function(result){
+            map.setZoom(12);
+
+            var restaurantPopup = new mapboxgl.Popup()
+                .setHTML(jobAddresses.name + jobAddresses.description);
+
+            new mapboxgl.Marker()
+                .setLngLat(result)
+                .setPopup(restaurantPopup)
+                .addTo(map);
+        });
     });
 </script>
 

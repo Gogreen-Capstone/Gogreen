@@ -1,5 +1,6 @@
 package com.capstone.gogreen.controllers;
 import com.capstone.gogreen.models.Job;
+import com.capstone.gogreen.models.Location;
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -101,7 +103,14 @@ public class UserController {
 
     @GetMapping("/mapbox")
     public String mapBox(Model model) {
+       List<Location> listAddresses = locationsDao.findAll(); //finding all address to loop through them
         model.addAttribute("mapBoxKey", mapBoxKey);
+
+        for (Location listAddress : listAddresses) {
+            String address = listAddress.addressToString();
+            model.addAttribute("address", address); //adding address to our page
+        }
+
         return "reviews/index";
     }
 
