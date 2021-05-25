@@ -14,9 +14,15 @@
 
 <!-- The HTML element that serves as the Mapbox container -->
 <div id="map" style='width: 400px; height: 300px; border: 5px solid black; width: 120vh; height: 70vh; margin: 7em auto'></div>
-
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script th:inline="javascript">
     "use strict";
+
+    const URL = "/mapbox.json"
+    const getLocations = fetch(URL)
+        .then(response => response.json())
+        .catch(console.error);
+
 
     function geocode(search, token) {
         var baseUrl = 'https://api.mapbox.com';
@@ -42,45 +48,35 @@
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl());
 
-    //Getting all address from our locations table
-    var address =  [[${address}]];
-    var array1 = []; // better to define using [] instead of new Array();
-    console.log(address);
-
-    var array2 = [];
-    for (var i = 0; i < address.length; i++) {
-        var split = address[i].split(".");  // just split once
-        array1.push(split[0]); // before the dot
-        array2.push(split[1]); // after the dot
-    }
-
-    var jobAddress = [
-        {
-            address: split[i],
-        },
-        {
-            address: '15900 La Cantera Pkwy Suite 100, San Antonio, TX 78256',
-        },
-        {
-            address: '18203 W I-10, San Antonio, TX 78257',
+    //.then is looping our locations and returning readable address and .foreach adding pop up and marker for each address
+    getLocations.then(data => {
+        let arr = [];
+        for (const location of data) {
+            let userLocation =  location.houseNumber + " " + location.street + " " + location.city + " " + location.state + " " + location.zipCode;
+            let obj = {
+                address:userLocation ,
+            };
+            arr.push(obj);
         }
-    ]
+
+        arr.forEach(function(jobAddresses){
+            geocode(jobAddresses.address, mapBoxKey).then(function(result){
+                map.setZoom(12);
+
+                var restaurantPopup = new mapboxgl.Popup()
+                    .setHTML(jobAddresses.address);
 
 
-
-    jobAddress.forEach(function(jobAddresses){
-        geocode(jobAddresses.address, mapBoxKey).then(function(result){
-            map.setZoom(12);
-
-            var restaurantPopup = new mapboxgl.Popup()
-                .setHTML(jobAddresses.name + jobAddresses.description);
-
-            new mapboxgl.Marker()
-                .setLngLat(result)
-                .setPopup(restaurantPopup)
-                .addTo(map);
+                new mapboxgl.Marker()
+                    .setLngLat(result)
+                    .setPopup(restaurantPopup)
+                    .addTo(map);
+            });
         });
+
     });
+
+
 </script>
 
 </body>
