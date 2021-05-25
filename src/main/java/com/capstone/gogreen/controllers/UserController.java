@@ -37,9 +37,9 @@ public class UserController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", loggedInUser);
         model.addAttribute("jobs", jobsDao.findJobsByUserId(loggedInUser.getId())); //Getting Job according to logged in user
-        boolean isAdmin = loggedInUser.getIsAdmin();
+        boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin();
         System.out.println(isAdmin);
-        if (true) {
+        if (isAdmin) {
             return "admin/dashboard";
         } else {
             return "users/dashboard";
