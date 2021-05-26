@@ -4,8 +4,8 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"/>
 <main class="container mb-1">
+    <header th:replace="partials/header :: header('New Job Request')"></header>
     <form th:action="@{/jobs/create}" th:method="POST" th:object="${job}" enctype="multipart/form-data">
-        <h4>New Job:</h4>
         <div class="form-group">
             <label for="jobTitle">Job Title</label>
             <input type="text" id="jobTitle" class="form-control" placeholder="" th:field="*{jobTitle}" required>
@@ -76,5 +76,6 @@
     </form>
 </main>
 <footer th:replace="partials/footer :: footer"></footer>
+<script th:replace="partials/scripts :: scripts"></script>
 </body>
 </html>
