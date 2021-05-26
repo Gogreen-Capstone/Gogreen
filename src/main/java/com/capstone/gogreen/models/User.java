@@ -49,12 +49,14 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
+        isAdmin = copy.isAdmin;
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, boolean isAdmin) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
 
     public long getId() {
@@ -93,8 +95,8 @@ public class User {
         return isAdmin;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public boolean getIsEmployee() {
