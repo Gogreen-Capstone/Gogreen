@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html id="about_us.html" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head('About Us')">
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<header th:replace="partials/header :: header('About the Creators')"></header>
 
   <h1>CARLOS</h1>
 
   <h1>YASIN</h1>
 
   <h1>COLIN</h1>
-
+<footer th:replace="partials/footer :: footer"></footer>
+<script th:replace="partials/scripts :: scripts"></script>
 </body>
 </html>

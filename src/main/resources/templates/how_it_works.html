@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html id="how_it_works.html" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head('How It Works')">
+</head>
+<body id="how-it-works-body">
+<!--HEADER WITH NAVBAR-->
+<div class="jumbotron home-jumbotron header">
+    <nav th:replace="partials/navbar :: navbar"></nav>
+    <header th:replace="partials/header :: header('Go Green How it Works Page')"></header>
+
+    <div class="container">
+        <h1>GoGreen.works</h1>
+        <p>We Work for You!</p>
+        <div>
+            <h1>Description of user CRUD to arrange yard work from services, schedule date/time, and review work.</h1>
+        </div>
+        <div>
+            <h1>If you like this, AND YOU DO MORTAL, then register below</h1>
+            <a th:href="@{/register}" role="button">Register</a>
+        </div>
+    </div>
+
+</div>
+<footer th:replace="partials/footer :: footer"></footer>
+<script th:replace="partials/scripts :: scripts"></script>
+</body>
+</html>

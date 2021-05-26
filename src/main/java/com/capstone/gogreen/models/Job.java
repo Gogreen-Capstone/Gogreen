@@ -1,9 +1,7 @@
 package com.capstone.gogreen.models;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -30,8 +28,7 @@ public class Job {
     private String reviewBody;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
-    private Date scheduledDate;
+    private String scheduledDate;
 
     @Column(nullable = false)
     private int scheduledTime;
@@ -48,13 +45,20 @@ public class Job {
             joinColumns = {@JoinColumn(name = "job_id")},
             inverseJoinColumns = {@JoinColumn(name = "service_id")}
     )
-
     private List<Service> jobServices;
 
     public Job() {
     }
 
-    public Job(long id, String jobTitle, String jobDetails, boolean isCompleted, String reviewTitle, String reviewBody, Date scheduledDate, int scheduledTime) {
+    public Job(String jobTitle, String jobDetails, String scheduledDate, int scheduledTime, User user) {
+        this.jobTitle = jobTitle;
+        this.jobDetails = jobDetails;
+        this.scheduledDate = scheduledDate;
+        this.scheduledTime = scheduledTime;
+        this.user = user;
+    }
+
+    public Job(long id, String jobTitle, String jobDetails, boolean isCompleted, String reviewTitle, String reviewBody, String scheduledDate, int scheduledTime, User user, Location location, List<Service> jobServices){
         this.id = id;
         this.jobTitle = jobTitle;
         this.jobDetails = jobDetails;
@@ -63,6 +67,15 @@ public class Job {
         this.reviewBody = reviewBody;
         this.scheduledDate = scheduledDate;
         this.scheduledTime = scheduledTime;
+        this.user = user;
+        this.location = location;
+        this.jobServices = jobServices;
+    }
+
+    public Job(long id, String reviewTitle, String reviewBody) {
+        this.id = id;
+        this.reviewTitle = reviewTitle;
+        this.reviewBody = reviewBody;
     }
 
     public long getId() {
@@ -113,11 +126,11 @@ public class Job {
         this.reviewBody = reviewBody;
     }
 
-    public Date getScheduledDate() {
+    public String getScheduledDate() {
         return scheduledDate;
     }
 
-    public void setScheduledDate(Date scheduledDate) {
+    public void setScheduledDate(String scheduledDate) {
         this.scheduledDate = scheduledDate;
     }
 
@@ -127,5 +140,36 @@ public class Job {
 
     public void setScheduledTime(int scheduledTime) {
         this.scheduledTime = scheduledTime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public List<Service> getJobServices() {
+        return jobServices;
+    }
+
+    public void setJobServices(List<Service> jobServices) {
+        this.jobServices = jobServices;
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "jobServices=" + jobServices +
+                '}';
     }
 }

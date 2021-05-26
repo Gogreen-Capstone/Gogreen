@@ -51,6 +51,12 @@ public class User {
         password = copy.password;
     }
 
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
     public long getId() {
         return id;
     }
@@ -97,5 +103,13 @@ public class User {
 
     public void setEmployee(boolean employee) {
         isEmployee = employee;
+    }
+
+    public List<Job> getJobList() {
+        return jobList;
+    }
+
+    public void setJobList(List<Job> jobList) {
+        this.jobList = jobList;
     }
 }

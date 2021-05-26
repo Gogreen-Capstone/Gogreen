@@ -86,4 +86,9 @@ public class Location {
         this.zipCode = zipCode;
     }
 
+    //Creating a address format
+    public String addressToString() {
+        return  houseNumber + " " + street + " " + city + " " + state + " " + zipCode + ".";
+    }
+
 }
