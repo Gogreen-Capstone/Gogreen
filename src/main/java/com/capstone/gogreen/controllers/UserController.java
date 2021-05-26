@@ -1,9 +1,11 @@
 package com.capstone.gogreen.controllers;
 
 import com.capstone.gogreen.models.Job;
+import com.capstone.gogreen.models.Location;
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,12 +14,10 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class UserController {
-
-    @Value("${mapbox.api.key}")
-    private String mapBoxKey;
 
     private final UserRepository usersDao;
     private final JobRepository jobsDao;
@@ -123,63 +123,55 @@ public class UserController {
         return "redirect:/dashboard";
     }
 
-///////////////////////////////////////////////////////
-@PostMapping("/admin/users")
-public String adminEditUser(@Valid @ModelAttribute User user,//Valid attribute is for validation
-                       @RequestParam(name = "password") String password,
-                       @RequestParam(name = "username") String username,
-                       @RequestParam(name = "email") String email,
-                       @RequestParam(name = "confirm") String confirm,
+    ///////////////////////////////////////////////////////
+    @PostMapping("/admin/users")
+    public String adminEditUser(@Valid @ModelAttribute User user,//Valid attribute is for validation
+                                @RequestParam(name = "password") String password,
+                                @RequestParam(name = "username") String username,
+                                @RequestParam(name = "email") String email,
+                                @RequestParam(name = "confirm") String confirm,
 //                       @RequestParam(name = "is_admin") Boolean isAdmin,
-                       Errors validation,
-                       Model model) { //errors validation also needed for validation
-    User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //Getting logged in user
-    User userId = usersDao.getOne(loggedInUser.getId());
-    boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin();
-    String hash = passwordEncoder.encode(password);
+                                Errors validation,
+                                Model model) { //errors validation also needed for validation
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //Getting logged in user
+        User userId = usersDao.getOne(loggedInUser.getId());
+        boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin();
+        String hash = passwordEncoder.encode(password);
 
-    // checking to make sure password and confirm password match
-    if (!user.getPassword().equals(confirm)) {
-        validation.rejectValue(
-                "password",
-                "user.password",
-                "Passwords do not match"
-        );
+        // checking to make sure password and confirm password match
+        if (!user.getPassword().equals(confirm)) {
+            validation.rejectValue(
+                    "password",
+                    "user.password",
+                    "Passwords do not match"
+            );
+        }
+
+        //Check if username and email is match with some other records from our database
+        if (validation.hasErrors()) {
+            model.addAttribute("errors", validation);
+            model.addAttribute("user", user);
+            return "admin/users";
+        } else if (usersDao.findByUsername(user.getUsername()) != null && usersDao.findByEmail(user.getEmail()) != null) {
+            model.addAttribute("username", user.getUsername());
+            model.addAttribute("email", user.getEmail());
+            return "admin/dashboard";
+        } else if (usersDao.findByUsername(user.getUsername()) != null) {
+            model.addAttribute("username", user.getUsername());
+            return "admin/dashboard";
+        } else if (usersDao.findByEmail(user.getEmail()) != null) {
+            model.addAttribute("email", user.getEmail());
+            return "admin/dashboard";
+        }
+
+        //setting the username email and password
+        userId.setPassword(hash);
+        userId.setUsername(username);
+        userId.setEmail(email);
+
+        //saving those changes to the user
+        usersDao.save(userId);
+        return "redirect:/admin/dashboard";
     }
-
-    //Check if username and email is match with some other records from our database
-    if (validation.hasErrors()) {
-        model.addAttribute("errors", validation);
-        model.addAttribute("user", user);
-        return "admin/users";
-    } else if (usersDao.findByUsername(user.getUsername()) != null && usersDao.findByEmail(user.getEmail()) != null) {
-        model.addAttribute("username", user.getUsername());
-        model.addAttribute("email", user.getEmail());
-        return "admin/dashboard";
-    } else if (usersDao.findByUsername(user.getUsername()) != null) {
-        model.addAttribute("username", user.getUsername());
-        return "admin/dashboard";
-    } else if (usersDao.findByEmail(user.getEmail()) != null) {
-        model.addAttribute("email", user.getEmail());
-        return "admin/dashboard";
-    }
-
-    //setting the username email and password
-    userId.setPassword(hash);
-    userId.setUsername(username);
-    userId.setEmail(email);
-
-    //saving those changes to the user
-    usersDao.save(userId);
-    return "redirect:/admin/dashboard";
 }
-//////////////////////////////////////////////////////
 
-    @GetMapping("/mapbox")
-    public String mapBox(Model model) {
-        model.addAttribute("mapBoxKey", mapBoxKey);
-        return "reviews/index";
-    }
-
-
-}

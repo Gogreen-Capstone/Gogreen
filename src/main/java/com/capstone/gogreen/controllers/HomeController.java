@@ -1,6 +1,7 @@
 package com.capstone.gogreen.controllers;
 
 //import com.capstone.gogreen.repositories.ReviewRepository;
+import com.capstone.gogreen.repositories.JobRepository;
 import com.capstone.gogreen.repositories.UserRepository;
 
 import org.springframework.stereotype.Controller;
@@ -10,14 +11,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
     private final UserRepository userDao;
+    private final JobRepository jobsDao;
 
-    public HomeController(UserRepository userDao) {
+    public HomeController(UserRepository userDao, JobRepository jobsDao) {
         this.userDao = userDao;
+        this.jobsDao = jobsDao;
     }
 
     @GetMapping("/")
     public String home(Model model){
         model.addAttribute("title", "GoGreen.works We work for you!");
+        model.addAttribute("jobs", jobsDao.findAll());
         return "home";
     }
 
