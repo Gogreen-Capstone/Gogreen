@@ -19,7 +19,7 @@ public class LocationController {
         this.locationsDao = locationsDao;
     }
 
-    @Value("${mapbox.api.key}")
+    @Value("${mapbox_api_key}")
     private String mapBoxKey;
 
     @GetMapping("/mapbox")
