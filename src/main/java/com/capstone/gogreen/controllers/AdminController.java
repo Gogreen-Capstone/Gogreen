@@ -99,7 +99,7 @@ public class AdminController {
 
         //saving those changes to the user
         usersDao.save(userId);
-        return "redirect:/dashboard";
+        return "redirect:admin/dashboard";
     }
 
 ////////////////// JOBS ////////////////////////
@@ -108,18 +108,18 @@ public class AdminController {
     private String uploadPath;
 
     // shows specific job
-    @GetMapping("/admin/jobs/show/{id}")
+    @GetMapping("/admin/jobsShow/{id}")
         public String showOneJob(Model model, @PathVariable long id) {
         Job jobToView = jobsDao.getOne(id);
         List<Image> images = imagesDao.findAllByJobId(id);
         model.addAttribute("job", jobToView);
         model.addAttribute("images", images);
         model.addAttribute("services", jobToView.getJobServices());
-        return "admin/jobs/show";
+        return "admin/jobsShow";
     }
 
     // shows edit form
-    @GetMapping("/admin/jobs/edit/{id}")
+    @GetMapping("/admin/jobsEdit/{id}")
     public String adminShowEditForm(Model model, @PathVariable long id) {
         Job jobToEdit = jobsDao.getOne(id);
         List<Image> imagesToEdit = imagesDao.findAllByJobId(id);
@@ -128,11 +128,11 @@ public class AdminController {
         model.addAttribute("images", imagesToEdit);
         model.addAttribute("services", servicesDao.findAll());
         model.addAttribute("location", locationToEdit.getId());
-        return "admin/jobs/edit";
+        return "admin/jobsEdit";
     }
 
     // Admin save edit job
-    @PostMapping("/admin/jobs/edit/{id}")
+    @PostMapping("/admin/jobsEdit/{id}")
     @PreAuthorize("hasAuthority('isAdmin')")
     public String adminSaveEditJob(@PathVariable long id, @ModelAttribute Job jobToEdit, @ModelAttribute Location locationToEdit, @ModelAttribute Image imageToEdit,
                                @RequestParam(name = "services") List<Service> services,
@@ -173,11 +173,11 @@ public class AdminController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "redirect:/admin/jobs/show/" + id;
+        return "redirect:/admin/jobsShow/" + id;
     }
 
     // Admin delete job
-    @PostMapping("/admin/jobs/delete/{id}")
+    @PostMapping("/admin/jobsDelete/{id}")
     @PreAuthorize("hasAuthority('isAdmin')")
     public String adminDeleteJob(@PathVariable long id) {
         Job jobToDelete = jobsDao.getOne(id);
@@ -189,21 +189,21 @@ public class AdminController {
         return "redirect:admin/dashboard";
     }
 
-    @GetMapping("/admin/reviews/{id}/edit")
+    @GetMapping("/admin/reviewsEdit/{id}")
     public String adminShowEditPage(Model model, @PathVariable long id) {
         model.addAttribute("job", jobsDao.getOne(id));
-        return "admin/reviews/edit";
+        return "admin/reviewsEdit";
     }
 
     // editing existing job review
-    @PostMapping("/admin/reviews/{id}/edit")
+    @PostMapping("/admin/reviewsEdit/{id}")
     @PreAuthorize("hasAuthority('isAdmin')")
     public String adminEditJobReview(@ModelAttribute Job job) {
         jobsDao.save(job);
         return "redirect:admin/dashboard";
     }
 
-    @PostMapping("/reviews/{id}/delete")
+    @PostMapping("/reviewsDelete/{id}")
     @PreAuthorize("hasAuthority('isAdmin')")
     public String adminDeleteReview(@PathVariable long id) {
         Job specificJob = jobsDao.getOne(id);
