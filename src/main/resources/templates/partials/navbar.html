@@ -5,73 +5,48 @@
 </head>
 <body>
 
-<nav th:fragment="navbar" id="navbar" class="navbar navbar-expand-lg">
-    <div class="container">
-        <a sec:authorize="!isAuthenticated()" class="navbar-gg-icon" th:href="@{/}"><img src="/img/go-green-icon.png" height="70" alt="Go Green Logo"></a>
-
-        <button sec:authorize="!isAuthenticated()" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-warning">
+    <div class="container-fluid">
+        <a class="navbar-gg-icon" th:href="@{/}"><img src="/img/go-green-icon.png" height="70" alt="Go Green Logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <a sec:authorize="isAuthenticated()" class="navbar-gg-icon" th:href="@{/}"><img src="/img/go-green-icon.png" height="70" alt="Go Green Logo"></a>
-
-        <button sec:authorize="isAuthenticated()" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="nav-buttons" sec:authorize="!isAuthenticated()">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{how-it-works}">How it Works</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a class="nav-link" th:href="@{services}">Services</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a class="nav-link" th:href="@{reviews}">Reviews</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a class="nav-link" th:href="@{gallery}">Gallery</a>
-                        </li>
-                        <li>
-                            <form th:action="@{login}" th:method="get">
-                                <button class="btn-link btn" style="margin-top: 8px">Login</button>
-                            </form>
-                        </li>
-                        <li>
-                            <form th:action="@{register}" method="get">
-                                <button class="btn-link btn" style="margin-top: 8px">Register</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-                <div class="nav-buttons" sec:authorize="isAuthenticated()">
-                    <ul>
-                        <li class="navbar-list-item">
-                            <a class="nav-link" th:href="@{how-it-works}">How it Works</a>
-                        </li>
-                        <li class="navbar-list-item">
-                            <a class="nav-link" th:href="@{services}">Services</a>
-                        </li>
-                        <li class="navbar-list-item">
-                            <a class="nav-link" th:href="@{reviews}">Reviews</a>
-                        </li>
-                        <li class="navbar-list-item">
-                            <a class="nav-link" th:href="@{gallery}">Gallery</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" th:href="@{dashboard}">Dashboard</a>
-                        </li>
-                        <li>
-                            <form th:action="@{logout}" method="post">
-                                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link" th:href="@{/how-it-works}">How it Works</a>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link" th:href="@{/services}">Services</a>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="navbar-item">
+                    <a class="nav-link" th:href="@{/gallery}">Gallery</a>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="navbar-item">
+                    <a class="nav-link" th:href="@{/about-us}">About Us</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="navbar-item">
+                    <a class="nav-link" th:href="@{/jobs/create}">Job Request</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="navbar-item">
+                    <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link" th:href="@{/login}">Login</a>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link" th:href="@{/register}">Register</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item ml-auto">
+                    <form th:action="@{/logout}" th:method="post">
+                        <button class="btn-link btn nav-link">Logout</button>
+                    </form>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
+
 </body>
 </html>

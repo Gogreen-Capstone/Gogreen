@@ -3,7 +3,7 @@
 <head th:replace="partials/head :: head('Login')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<main class="container">
+<main class="container mb-1">
     <form th:action="@{/login}" method="POST">
         <div th:if="${param.error}">
             Invalid Username and Password.
@@ -25,5 +25,7 @@
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
 </main>
+<footer th:replace="partials/footer :: footer"></footer>
+<script th:replace="partials/scripts :: scripts"></script>
 </body>
 </html>

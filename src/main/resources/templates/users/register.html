@@ -3,7 +3,7 @@
 <head th:replace="partials/head :: head('Register')"/>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<main class="container">
+<main class="container mb-1">
     <form th:action="@{/register}" method="POST" th:object="${user}">
         <h1>Register</h1>
         <h6>Already registered?</h6>
@@ -29,5 +29,7 @@
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </main>
+<footer th:replace="partials/footer :: footer"></footer>
+<script th:replace="partials/scripts :: scripts"></script>
 </body>
 </html>
