@@ -5,7 +5,6 @@ import com.capstone.gogreen.repositories.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -40,21 +39,16 @@ public class AdminController {
 //////////////// USERS ////////////////////////
 
     //Admin edit user information getMapping
-    @GetMapping("/admin/users")
+    @GetMapping("/admin/users/edit")
     public String adminEditUser(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //Getting logged in user
         usersDao.getOne(loggedInUser.getId()); //getting that user by id of logged in user
         model.addAttribute("user", usersDao.getOne(loggedInUser.getId())); //adding that user object
-        boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin(); //Getting User according to logged in user and checking isAdmin row
-        if (isAdmin) {
-            return "admin/users";
-        } else {
-            return "error/permissions";
-        }
+//        boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin(); //Getting User according to logged in user and checking isAdmin row
+        return "admin/users/edit";
     }
 
-    @PostMapping("/admin/users")
-    @PreAuthorize("hasAuthority('isAdmin')")
+    @PostMapping("/admin/users/edit")
     public String adminEditUser(@Valid @ModelAttribute User user, //Valid attribute is for validation
                                 @RequestParam(name = "password") String password,
                                 @RequestParam(name = "username") String username,
@@ -67,7 +61,7 @@ public class AdminController {
         String hash = passwordEncoder.encode(password);
 
         // checking to make sure password and confirm password match
-        if (!user.getPassword().equals(confirm)) {
+        if (!user.getPassword().equals(confirm) && user.getIsAdmin()) {
             validation.rejectValue(
                     "password",
                     "user.password",
@@ -79,7 +73,7 @@ public class AdminController {
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
             model.addAttribute("user", user);
-            return "admin/users";
+            return "admin/users/edit";
         } else if (usersDao.findByUsername(user.getUsername()) != null && usersDao.findByEmail(user.getEmail()) != null) {
             model.addAttribute("username", user.getUsername());
             model.addAttribute("email", user.getEmail());
@@ -108,18 +102,18 @@ public class AdminController {
     private String uploadPath;
 
     // shows specific job
-    @GetMapping("/admin/jobsShow/{id}")
+    @GetMapping("/admin/jobs/show/{id}")
         public String showOneJob(Model model, @PathVariable long id) {
         Job jobToView = jobsDao.getOne(id);
         List<Image> images = imagesDao.findAllByJobId(id);
         model.addAttribute("job", jobToView);
         model.addAttribute("images", images);
         model.addAttribute("services", jobToView.getJobServices());
-        return "admin/jobsShow";
+        return "admin/jobs/show";
     }
 
     // shows edit form
-    @GetMapping("/admin/jobsEdit/{id}")
+    @GetMapping("/admin/jobs/edit/{id}")
     public String adminShowEditForm(Model model, @PathVariable long id) {
         Job jobToEdit = jobsDao.getOne(id);
         List<Image> imagesToEdit = imagesDao.findAllByJobId(id);
@@ -128,12 +122,11 @@ public class AdminController {
         model.addAttribute("images", imagesToEdit);
         model.addAttribute("services", servicesDao.findAll());
         model.addAttribute("location", locationToEdit.getId());
-        return "admin/jobsEdit";
+        return "admin/jobs/edit";
     }
 
     // Admin save edit job
-    @PostMapping("/admin/jobsEdit/{id}")
-    @PreAuthorize("hasAuthority('isAdmin')")
+    @PostMapping("/admin/jobs/edit/{id}")
     public String adminSaveEditJob(@PathVariable long id, @ModelAttribute Job jobToEdit, @ModelAttribute Location locationToEdit, @ModelAttribute Image imageToEdit,
                                @RequestParam(name = "services") List<Service> services,
                                @RequestParam(name = "file") MultipartFile uploadedFile,
@@ -173,12 +166,11 @@ public class AdminController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "redirect:/admin/jobsShow/" + id;
+        return "redirect:/admin/jobs/show" + id;
     }
 
     // Admin delete job
-    @PostMapping("/admin/jobsDelete/{id}")
-    @PreAuthorize("hasAuthority('isAdmin')")
+    @PostMapping("/admin/jobs/{id}")
     public String adminDeleteJob(@PathVariable long id) {
         Job jobToDelete = jobsDao.getOne(id);
         List<Service> services = jobToDelete.getJobServices();
@@ -189,22 +181,20 @@ public class AdminController {
         return "redirect:admin/dashboard";
     }
 
-    @GetMapping("/admin/reviewsEdit/{id}")
+    @GetMapping("/admin/reviews/edit/{id}")
     public String adminShowEditPage(Model model, @PathVariable long id) {
         model.addAttribute("job", jobsDao.getOne(id));
-        return "admin/reviewsEdit";
+        return "admin/reviews/edit";
     }
 
     // editing existing job review
-    @PostMapping("/admin/reviewsEdit/{id}")
-    @PreAuthorize("hasAuthority('isAdmin')")
+    @PostMapping("/admin/reviews/edit/{id}")
     public String adminEditJobReview(@ModelAttribute Job job) {
         jobsDao.save(job);
         return "redirect:admin/dashboard";
     }
 
-    @PostMapping("/reviewsDelete/{id}")
-    @PreAuthorize("hasAuthority('isAdmin')")
+    @PostMapping("/admin/reviews/delete/{id}")
     public String adminDeleteReview(@PathVariable long id) {
         Job specificJob = jobsDao.getOne(id);
         specificJob.setReviewTitle(null);
