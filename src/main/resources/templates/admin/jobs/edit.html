@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head :: head('Admin Edit Job View')"/>
 <body>
-<nav th:replace="partials/navbar :: navbar"/>
+<nav th:replace="partials/navbar :: admin-navbar"/>
 <main class="container mb-1">
     <form th:action="@{'/admin/jobs/edit/' + ${job.id}}" th:method="POST" th:object="${job}" enctype="multipart/form-data">
         <h4>Edit Job:</h4>
