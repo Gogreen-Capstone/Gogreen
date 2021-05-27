@@ -18,10 +18,13 @@ public class AuthenticationController {
 
     private UserRepository usersDao;
     private PasswordEncoder passwordEncoder;
+//    private ReviewRepository reviewsDao;
 
     public AuthenticationController(UserRepository usersDao, PasswordEncoder passwordEncoder) {
+//    public AuthenticationController(UserRepository usersDao, PasswordEncoder passwordEncoder, ReviewRepository reviewsDao) {
         this.usersDao = usersDao;
         this.passwordEncoder = passwordEncoder;
+//        this.reviewsDao = reviewsDao;
     }
 
     @GetMapping("/login")
@@ -37,7 +40,7 @@ public class AuthenticationController {
     @GetMapping("/register")
     public String showRegisterPage(Model model){
         model.addAttribute("user", new User());
-        return "users/register";
+            return "users/register";
     }
 
     @PostMapping("/register")

@@ -1,8 +1,12 @@
 package com.capstone.gogreen.controllers;
+
 import com.capstone.gogreen.models.Job;
 import com.capstone.gogreen.models.Location;
 import com.capstone.gogreen.models.User;
-import com.capstone.gogreen.repositories.*;
+import com.capstone.gogreen.repositories.ImageRepository;
+import com.capstone.gogreen.repositories.JobRepository;
+import com.capstone.gogreen.repositories.LocationRepository;
+import com.capstone.gogreen.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,12 +36,31 @@ public class UserController {
         this.imagesDao = imagesDao;
     }
 
+    //API key for mapbox
+    @Value("${mapbox_api_key}")
+    private String mapBoxKey;
+
+    // Adding json object to JS
+    @RequestMapping(value = "/dashboard.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<Location> userLocations() {
+        return locationsDao.findAll();
+    }
+
     @GetMapping("/dashboard")
     public String showUserDashboard(Model model, @ModelAttribute Job job) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("mapBoxKey", mapBoxKey);
         model.addAttribute("user", loggedInUser);
         model.addAttribute("jobs", jobsDao.findJobsByUserId(loggedInUser.getId())); //Getting Job according to logged in user
-        return "users/dashboard";
+        boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin(); //Getting User according to logged in user and checking isAdmin row
+        System.out.println(isAdmin); // Testing hibernate return in stack trace
+        // Logic to redirect based off of isAdmin row from User table in db
+        if (isAdmin) {
+            return "admin/dashboard";
+        } else {
+            return "users/dashboard";
+        }
     }
 
     //Edit user information getMapping
@@ -100,3 +123,4 @@ public class UserController {
 
 
 }
+

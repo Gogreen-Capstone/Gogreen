@@ -31,7 +31,7 @@ public class JobController {
         this.imagesDao = imagesDao;
     }
 
-    @Value("${file-upload-path}")
+    @Value("${file_upload_path}")
     private String uploadPath;
 
     @GetMapping("/jobs/create")
