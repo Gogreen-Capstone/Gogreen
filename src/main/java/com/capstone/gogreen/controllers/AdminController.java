@@ -36,21 +36,43 @@ public class AdminController {
         this.imagesDao = imagesDao;
     }
 
-
 //////////////// USERS ////////////////////////
 
+    // shows specific user
+    @GetMapping("/admin/users/show/{id}")
+    public String showOneUser(Model model, @PathVariable long id) {
+        User userToView = usersDao.getOne(id);
+        model.addAttribute("user", userToView);
+        model.addAttribute("admin", userToView.getIsAdmin());
+        return "admin/users/show";
+    }
+
+    // delete user
+    @PostMapping("/admin/users/delete/{id}")
+    public String deleteUser(@PathVariable long id) {
+        User userToDelete = usersDao.getOne(id);
+        usersDao.deleteById(id);
+        return "redirect:/admin/users";
+    }
+
+    @GetMapping("/admin/users")
+    public String adminShowUsers(Model model, @ModelAttribute User user) {
+        model.addAttribute("users", usersDao.findAll()); //getting all users to admin view
+        return "admin/users/index";
+    }
+
     //Admin edit user information getMapping
-    @GetMapping("/admin/users/edit")
-    public String adminEditUser(Model model) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //Getting logged in user
-        usersDao.getOne(loggedInUser.getId()); //getting that user by id of logged in user
-        model.addAttribute("user", usersDao.getOne(loggedInUser.getId())); //adding that user object
+    @GetMapping("/admin/users/edit/{id}")
+    public String adminEditUser(Model model, @PathVariable long id) {
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //Getting logged in user
+//        usersDao.getOne(loggedInUser.getId()); //getting that user by id of logged in user
+        model.addAttribute("user", usersDao.getOne(id)); //adding that user object
 //        boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin(); //Getting User according to logged in user and checking isAdmin row
         return "admin/users/edit";
     }
 
-    @PostMapping("/admin/users/edit")
-    public String adminEditUser(@Valid @ModelAttribute User user, //Valid attribute is for validation
+    @PostMapping("/admin/users/edit/{id}")
+    public String adminEditUser(@PathVariable long id, @Valid @ModelAttribute User user, //Valid attribute is for validation
                                 @RequestParam(name = "password") String password,
                                 @RequestParam(name = "username") String username,
                                 @RequestParam(name = "email") String email,
@@ -58,7 +80,7 @@ public class AdminController {
                                 Errors validation,
                                 Model model) { //errors validation also needed for validation
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //Getting logged in user
-        User userId = usersDao.getOne(loggedInUser.getId());
+        User userId = usersDao.getOne(id);
         String hash = passwordEncoder.encode(password);
 
         // checking to make sure password and confirm password match
@@ -78,13 +100,13 @@ public class AdminController {
         } else if (usersDao.findByUsername(user.getUsername()) != null && usersDao.findByEmail(user.getEmail()) != null) {
             model.addAttribute("username", user.getUsername());
             model.addAttribute("email", user.getEmail());
-            return "admin/dashboard";
+            return "admin/users";
         } else if (usersDao.findByUsername(user.getUsername()) != null) {
             model.addAttribute("username", user.getUsername());
-            return "admin/dashboard";
+            return "admin/users";
         } else if (usersDao.findByEmail(user.getEmail()) != null) {
             model.addAttribute("email", user.getEmail());
-            return "admin/dashboard";
+            return "admin/users";
         }
 
         //setting the username email and password
@@ -94,7 +116,7 @@ public class AdminController {
 
         //saving those changes to the user
         usersDao.save(userId);
-        return "redirect:admin/dashboard";
+        return "redirect:/admin/users";
     }
 
 ////////////////// JOBS ////////////////////////
@@ -111,7 +133,7 @@ public class AdminController {
 
     // shows specific job
     @GetMapping("/admin/jobs/show/{id}")
-        public String showOneJob(Model model, @PathVariable long id) {
+    public String showOneJob(Model model, @PathVariable long id) {
         Job jobToView = jobsDao.getOne(id);
         List<Image> images = imagesDao.findAllByJobId(id);
         model.addAttribute("job", jobToView);
@@ -136,14 +158,14 @@ public class AdminController {
     // Admin save edit job
     @PostMapping("/admin/jobs/edit/{id}")
     public String adminSaveEditJob(@PathVariable long id, @ModelAttribute Job jobToEdit, @ModelAttribute Location locationToEdit, @ModelAttribute Image imageToEdit,
-                               @RequestParam(name = "services") List<Service> services,
-                               @RequestParam(name = "file") MultipartFile uploadedFile,
-                               @RequestParam(name = "houseNumber") int houseNumber,
-                               @RequestParam(name = "street") String street,
-                               @RequestParam(name = "city") String city,
-                               @RequestParam(name = "state") String state,
-                               @RequestParam(name = "zip") int zip,
-                               @RequestParam(name = "locationId") long locationId,
+                                   @RequestParam(name = "services") List<Service> services,
+                                   @RequestParam(name = "file") MultipartFile uploadedFile,
+                                   @RequestParam(name = "houseNumber") int houseNumber,
+                                   @RequestParam(name = "street") String street,
+                                   @RequestParam(name = "city") String city,
+                                   @RequestParam(name = "state") String state,
+                                   @RequestParam(name = "zip") int zip,
+                                   @RequestParam(name = "locationId") long locationId,
                                    @RequestParam(name = "user") User user) {
 //        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        User user = usersDao.getOne(principal.getId());  // getting currently signed in user; our Dao gets all info needed
