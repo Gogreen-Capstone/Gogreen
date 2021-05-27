@@ -1,19 +1,22 @@
 package com.capstone.gogreen.controllers;
+
 import com.capstone.gogreen.models.Job;
-import com.capstone.gogreen.models.Location;
 import com.capstone.gogreen.models.User;
-import com.capstone.gogreen.repositories.*;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
+import com.capstone.gogreen.repositories.ImageRepository;
+import com.capstone.gogreen.repositories.JobRepository;
+import com.capstone.gogreen.repositories.LocationRepository;
+import com.capstone.gogreen.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -37,7 +40,14 @@ public class UserController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", loggedInUser);
         model.addAttribute("jobs", jobsDao.findJobsByUserId(loggedInUser.getId())); //Getting Job according to logged in user
-        return "users/dashboard";
+        boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin(); //Getting User according to logged in user and checking isAdmin row
+        System.out.println(isAdmin); // Testing hibernate return in stack trace
+        // Logic to redirect based off of isAdmin row from User table in db
+        if (isAdmin) {
+            return "admin/dashboard";
+        } else {
+            return "users/dashboard";
+        }
     }
 
     //Edit user information getMapping
@@ -100,3 +110,4 @@ public class UserController {
 
 
 }
+
