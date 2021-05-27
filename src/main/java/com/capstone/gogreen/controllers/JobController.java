@@ -168,7 +168,7 @@ public class JobController {
     // creating a job review for completed job
     @PostMapping("/reviews/{id}/create")
     public String createJobReview(@ModelAttribute Job job, @ModelAttribute Image image, @RequestParam(name = "isCompleted") boolean isCompleted, @RequestParam(name = "file") MultipartFile uploadedFile) {
-        job.setCompleted(isCompleted);
+        job.setIsCompleted(isCompleted);
         jobsDao.save(job);
 
         String filename = uploadedFile.getOriginalFilename();
@@ -223,7 +223,7 @@ public class JobController {
         Job specificJob = jobsDao.getOne(id);
         specificJob.setReviewTitle(null);
         specificJob.setReviewBody(null);
-        specificJob.setCompleted(true);
+        specificJob.setIsCompleted(true);
         jobsDao.save(specificJob);
         return "redirect:/dashboard";
     }
