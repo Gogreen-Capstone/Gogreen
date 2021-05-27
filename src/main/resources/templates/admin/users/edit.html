@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:replace="partials/head :: head('Admin Edit User')"></head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar :: admin-navbar"></nav>
 <div sec:authorize="isAuthenticated()">
     <!--Edit Form where user can edit their information--> <!--To access user have used th:object${user}-->
     <!--and we are using th:if's to show error messages if those entities are not unique-->

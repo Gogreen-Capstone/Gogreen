@@ -48,12 +48,18 @@ public class AdminController {
     }
 
     // delete user
-    @PostMapping("/admin/users/delete/{id}")
-    public String deleteUser(@PathVariable long id) {
-        User userToDelete = usersDao.getOne(id);
-        usersDao.deleteById(id);
-        return "redirect:/admin/users";
-    }
+//    @PostMapping("/admin/users/delete/{id}")
+//    public String deleteUser(@PathVariable long id) {
+//        User userToDelete = usersDao.getOne(id);
+//        List<Job> jobs = jobsDao.findJobsByUserId(id);
+//        List<Service> services = jobs.getJobServices();
+//        List<Image> images = imagesDao.findAllByJobId(jobToDelete.getId());
+//        services.clear();
+//        imagesDao.deleteAll(images);
+//        jobsDao.deleteAll(jobs);
+//        usersDao.deleteById(id);
+//        return "redirect:/admin/users";
+//    }
 
     @GetMapping("/admin/users")
     public String adminShowUsers(Model model, @ModelAttribute User user) {

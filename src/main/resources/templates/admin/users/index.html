@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head :: head('Admin Show All Users')"></head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar :: admin-navbar"></nav>
 
 <table class="table table-striped table-hover">
     <thead>
@@ -23,7 +23,7 @@
         <td>
             <a th:href="'/admin/users/edit/' + ${user.id}" class="btn btn-primary"
                type="button">Edit</a>
-            <form class="mt-2" th:action="'/admin/users/' + ${user.id} + '/delete'" th:method="POST">
+            <form class="mt-2" th:action="'/admin/users/delete/' + ${user.id}" th:method="POST">
                 <p class="card-title"  name="username" th:text="${user.username}" hidden></p>
                 <p class="card-title"  name="email" th:text="${user.email}" hidden></p>
                 <h5 th:text="${user.isAdmin}" name="isAdmin" hidden></h5>
