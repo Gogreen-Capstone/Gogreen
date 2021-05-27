@@ -1,6 +1,7 @@
 package com.capstone.gogreen.controllers;
 
 //import com.capstone.gogreen.repositories.ReviewRepository;
+import com.capstone.gogreen.repositories.ImageRepository;
 import com.capstone.gogreen.repositories.JobRepository;
 import com.capstone.gogreen.repositories.UserRepository;
 
@@ -12,16 +13,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
     private final UserRepository userDao;
     private final JobRepository jobsDao;
+    private final ImageRepository imagesDao;
 
-    public HomeController(UserRepository userDao, JobRepository jobsDao) {
+    public HomeController(UserRepository userDao, JobRepository jobsDao, ImageRepository imagesDao) {
         this.userDao = userDao;
         this.jobsDao = jobsDao;
+        this.imagesDao = imagesDao;
     }
 
     @GetMapping("/")
     public String home(Model model){
         model.addAttribute("title", "GoGreen.works We work for you!");
         model.addAttribute("jobs", jobsDao.findAll());
+        model.addAttribute("images", imagesDao.findAll());
         return "home";
     }
 

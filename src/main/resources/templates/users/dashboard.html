@@ -24,7 +24,7 @@
                 <hr>
                 <p class="card-text"><strong>Scheduled Date:</strong> <span name="scheduledDate" th:text="${job.scheduledDate}"></span></p>
                 <p class="card-text"><strong>Scheduled Time:</strong> <span name="scheduledTime" th:text="${job.scheduledTime}"></span></p>
-                <a th:href="'/jobs/show/' + ${job.id}" class="btn btn-warning">See full details</a>
+                <a th:href="'/jobs/show/' + ${job.id}" class="btn btn-warning">View Job</a>
                 <hr th:if="${job.reviewTitle != null}">
                 <p class="card-title" th:if="${job.reviewTitle != null}"><strong>Review Title: </strong><span name="reviewTitle" th:text="${job.reviewTitle}"></span></p>
                 <p class="card-text" name="reviewBody" th:if="${job.reviewBody != null}" th:text="${job.reviewBody}"></p>
