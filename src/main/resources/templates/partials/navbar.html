@@ -68,7 +68,7 @@
                     <a class="nav-link" th:href="@{/admin/jobs}">Jobs</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="navbar-item">
-                    <a class="nav-link" th:href="@{/admin/users/edit}">Users</a>
+                    <a class="nav-link" th:href="@{/admin/users}">Users</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item ml-auto">
                     <form th:action="@{/logout}" th:method="post">

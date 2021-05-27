@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="partials/head :: head('Admin Edit User')"></head>
 <body>
-
+<nav th:replace="partials/navbar :: admin-navbar"></nav>
+<div sec:authorize="isAuthenticated()">
+    <!--Edit Form where user can edit their information--> <!--To access user have used th:object${user}-->
+    <!--and we are using th:if's to show error messages if those entities are not unique-->
+    <div class="container-fluid">
+        <h2>Edit User Information</h2>
+        <form th:action="@{'/admin/users/edit/' + ${user.id}}" th:method="POST" th:object="${user}">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input id="username" class="form-control" name="username" th:field="*{username}">
+                <p class="error-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+                <small class="error-msg form-text text-muted" th:if="${username != null}"
+                       th:text="'Username already exists'"></small>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" class="form-control" name="email" th:field="*{email}">
+                <p class="error-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                <small class="error-msg form-text text-muted" th:if="${email != null}"
+                       th:text="'Email already exists'"></small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" class="form-control" type="password" name="password" th:field="*{password}">
+                <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}"
+                       th:errors="*{password}"></small>
+            </div>
+            <div class="form-group">
+                <label for="confirm">Confirm Password</label>
+                <input class="form-control" id="confirm" name="confirm" type="password">
+                <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}"
+                       th:errors="*{password}"></small>
+            </div>
+            <button type="submit" class="btn btn-success">Save Updated Information</button>
+            <button type="submit" class="btn btn-danger">Delete this User</button>
+            <a type="submit" class="btn btn-secondary" th:href="@{'admin/users/show/' + ${user.id}}">Cancel</a>
+        </form>
+    </div>
+</div>
+<footer th:replace="partials/footer :: footer"></footer>
+<th:block th:replace="partials/scripts :: scripts"/>
 </body>
 </html>

@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head('Admin Show All Users')"></head>
 <body>
+<nav th:replace="partials/navbar :: admin-navbar"></nav>
 
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th scope="col">User ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Administrator</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody th:each="user : ${users}">
+    <tr>
+        <th th:text="${user.id}"></th>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.isAdmin}"></td>
+        <td>
+            <a th:href="'/admin/users/edit/' + ${user.id}" class="btn btn-primary"
+               type="button">Edit</a>
+            <form class="mt-2" th:action="'/admin/users/delete/' + ${user.id}" th:method="POST">
+                <p class="card-title"  name="username" th:text="${user.username}" hidden></p>
+                <p class="card-title"  name="email" th:text="${user.email}" hidden></p>
+                <h5 th:text="${user.isAdmin}" name="isAdmin" hidden></h5>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<footer th:replace="partials/footer :: footer"></footer>
+<th:block th:replace="partials/scripts :: scripts"/>
 </body>
 </html>
