@@ -3,7 +3,7 @@
 <head th:replace="partials/head :: head('Admin Edit a Job Review')"/>
 <body>
 
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar :: admin-navbar"></nav>
 
 <div class="container-fluid">
     <form th:action="@{'/admin/reviews/edit/'+ ${job.id}}" th:method="POST" th:object="${job}">

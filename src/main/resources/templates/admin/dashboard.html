@@ -2,9 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:replace="partials/head :: head('Admin Dashboard')"></head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar :: admin-navbar"></nav>
 
 <main class="container">
+
     <header th:replace="partials/header :: header(${user.username} + '\'s Admin Dashboard')"></header>
 
 

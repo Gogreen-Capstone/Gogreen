@@ -54,7 +54,6 @@ public class UserController {
         model.addAttribute("user", loggedInUser);
         model.addAttribute("jobs", jobsDao.findJobsByUserId(loggedInUser.getId())); //Getting Job according to logged in user
         boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin(); //Getting User according to logged in user and checking isAdmin row
-        System.out.println(isAdmin); // Testing hibernate return in stack trace
         // Logic to redirect based off of isAdmin row from User table in db
         if (isAdmin) {
             return "admin/dashboard";
