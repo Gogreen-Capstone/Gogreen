@@ -181,6 +181,16 @@ public class AdminController {
         return "redirect:admin/dashboard";
     }
 
+    ////////////////// REVIEWS ////////////////////////
+
+    // show admin index page
+    @GetMapping("/admin/reviews")
+    public String adminShowReviews(Model model, @ModelAttribute Job job) {
+        model.addAttribute("jobs", jobsDao.findAll()); //getting all jobs to admin view
+        return "admin/reviews/index";
+    }
+
+    // show edit review page
     @GetMapping("/admin/reviews/edit/{id}")
     public String adminShowEditPage(Model model, @PathVariable long id) {
         model.addAttribute("job", jobsDao.getOne(id));
@@ -191,9 +201,9 @@ public class AdminController {
     @PostMapping("/admin/reviews/edit/{id}")
     public String adminEditJobReview(@ModelAttribute Job job) {
         jobsDao.save(job);
-        return "redirect:admin/dashboard";
+        return "redirect:/admin/reviews";
     }
-
+    // delete review by admin
     @PostMapping("/admin/reviews/delete/{id}")
     public String adminDeleteReview(@PathVariable long id) {
         Job specificJob = jobsDao.getOne(id);
@@ -201,7 +211,7 @@ public class AdminController {
         specificJob.setReviewBody(null);
         specificJob.setCompleted(true);
         jobsDao.save(specificJob);
-        return "redirect:admin/dashboard";
+        return "redirect:/admin/reviews";
     }
 
 }

@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:replace="partials/head :: head('Admin Dashboard')"></head>
-    <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
-</head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <main class="container">
     <header th:replace="partials/header :: header(${user.username} + '\'s Dashboard')"></header>
 
-    <h2>Edit your information</h2>
+    <h2>Edit your information ADMIN</h2>
 
 
     <a class="btn btn-success" th:href="@{/jobs/create}">New Job Request</a>
