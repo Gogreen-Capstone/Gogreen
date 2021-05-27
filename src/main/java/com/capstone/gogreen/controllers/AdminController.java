@@ -102,6 +102,13 @@ public class AdminController {
     @Value("${file-upload-path}")
     private String uploadPath;
 
+    // show all jobs
+    @GetMapping("/admin/jobs")
+    public String showJobsIndex(Model model) {
+        model.addAttribute("jobs", jobsDao.findAll());
+        return "admin/jobs/index";
+    }
+
     // shows specific job
     @GetMapping("/admin/jobs/show/{id}")
         public String showOneJob(Model model, @PathVariable long id) {
@@ -136,10 +143,11 @@ public class AdminController {
                                @RequestParam(name = "city") String city,
                                @RequestParam(name = "state") String state,
                                @RequestParam(name = "zip") int zip,
-                               @RequestParam(name = "locationId") long locationId) {
-        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = usersDao.getOne(principal.getId());  // getting currently signed in user; our Dao gets all info needed
-        jobToEdit.setUser(user); // assigning currently signed in user to newly created post
+                               @RequestParam(name = "locationId") long locationId,
+                                   @RequestParam(name = "user") User user) {
+//        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user = usersDao.getOne(principal.getId());  // getting currently signed in user; our Dao gets all info needed
+//        jobToEdit.setUser(usersDao.getOne(jobToEdit.getUser().getId())); // assigning currently signed in user to newly created post
         jobToEdit.setJobServices(services);
         locationToEdit.setHouseNumber(houseNumber);
         locationToEdit.setStreet(street);
@@ -167,11 +175,11 @@ public class AdminController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "redirect:/admin/jobs/show" + id;
+        return "redirect:/admin/jobs/show/" + id;
     }
 
     // Admin delete job
-    @PostMapping("/admin/jobs/{id}")
+    @PostMapping("/admin/jobs/delete/{id}")
     public String adminDeleteJob(@PathVariable long id) {
         Job jobToDelete = jobsDao.getOne(id);
         List<Service> services = jobToDelete.getJobServices();
@@ -179,7 +187,17 @@ public class AdminController {
         services.clear();
         imagesDao.deleteAll(images);
         jobsDao.deleteById(id);
-        return "redirect:admin/dashboard";
+        return "redirect:/admin/jobs";
+    }
+
+    // Admin complete job
+    @PostMapping("/admin/jobs/complete/{id}")
+    public String adminCompleteJob(@PathVariable long id) {
+        Job jobToComplete = jobsDao.getOne(id);
+        jobToComplete.setIsCompleted(true);
+        jobsDao.save(jobToComplete);
+        return "redirect:/admin/jobs";
+
     }
 
     ////////////////// REVIEWS ////////////////////////
@@ -210,7 +228,7 @@ public class AdminController {
         Job specificJob = jobsDao.getOne(id);
         specificJob.setReviewTitle(null);
         specificJob.setReviewBody(null);
-        specificJob.setCompleted(true);
+        specificJob.setIsCompleted(true);
         jobsDao.save(specificJob);
         return "redirect:/admin/reviews";
     }
