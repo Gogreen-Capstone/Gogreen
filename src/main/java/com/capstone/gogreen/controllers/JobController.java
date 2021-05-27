@@ -161,27 +161,60 @@ public class JobController {
     @GetMapping("/reviews/{id}/create")
     public String showCreatePage(Model model, @PathVariable long id) {
         model.addAttribute("job", jobsDao.getOne(id));
+        model.addAttribute("image", new Image());
         return "reviews/create";
     }
 
     // creating a job review for completed job
     @PostMapping("/reviews/{id}/create")
-    public String createJobReview(@ModelAttribute Job job,@RequestParam(name = "isCompleted") boolean isCompleted) {
+    public String createJobReview(@ModelAttribute Job job, @ModelAttribute Image image, @RequestParam(name = "isCompleted") boolean isCompleted, @RequestParam(name = "file") MultipartFile uploadedFile) {
         job.setCompleted(isCompleted);
         jobsDao.save(job);
+
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+        try {
+            uploadedFile.transferTo(destinationFile);
+            image.setReview(true);
+            image.setJob(job);
+            image.setUrl("/uploads/" + filename);
+            imagesDao.save(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "redirect:/dashboard";
     }
 
     @GetMapping("/reviews/{id}/edit")
     public String showEditPage(Model model, @PathVariable long id) {
+        List<Image> imagesToEdit = imagesDao.findAllByJobId(id);
         model.addAttribute("job", jobsDao.getOne(id));
+        model.addAttribute("images", imagesToEdit);
         return "reviews/edit";
     }
 
     // editing existing job review
     @PostMapping("/reviews/{id}/edit")
-    public String editJobReview(@ModelAttribute Job job) {
+    public String editJobReview(@ModelAttribute Job job, @ModelAttribute Image imageToEdit, @RequestParam(name = "file") MultipartFile uploadedFile) {
         jobsDao.save(job);
+
+        if (!uploadedFile.isEmpty()) {                          // if user is not uploading a different image on the file type input, then this if will not delete their previous uploaded image
+            imagesDao.deleteAllByJobId(job.getId());      // this is a custom query in our imagesDao that deletes all images by job_id
+        }
+
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+        try {
+            uploadedFile.transferTo(destinationFile);
+            imageToEdit.setReview(true);
+            imageToEdit.setJob(job);
+            imageToEdit.setUrl("/uploads/" + filename);
+            imagesDao.save(imageToEdit);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "redirect:/dashboard";
     }
 
