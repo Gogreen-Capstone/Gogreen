@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head :: head('Specific Job')"></head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar :: admin-navbar"></nav>
 <header th:replace="partials/header :: header('Job Full Details')"></header>
 
 <main class="container mb-1">
@@ -29,11 +29,16 @@
                 </li>
             </ul>
             <div class="card-body">
-                <a th:href="@{/dashboard}" class="btn btn-secondary">Back</a>
-                <a th:href="@{'/jobs/edit/' + ${job.id}}" class="btn btn-success">Edit Job</a>
-                <form th:action="@{'/jobs/delete/' + ${job.id}}" th:method="POST">
-                    <button type="submit" class="btn btn-danger mt-1">Delete Job</button>
+                <a th:href="@{/admin/jobs}" class="btn btn-secondary">Back</a>
+                <a th:href="@{'/admin/jobs/edit/' + ${job.id}}" class="btn btn-success">Edit Job</a>
+                <form th:action="@{'/admin/jobs/delete/' + ${job.id}}" th:method="POST">
+                    <button class="btn btn-danger">Delete Job</button>
                 </form>
+                <th:block th:if="${job.isCompleted == false}">
+                <form th:action="@{'/admin/jobs/complete/' + ${job.id}}" th:method="POST">
+                    <button class="btn btn-success">Complete Job</button>
+                </form>
+                </th:block>
             </div>
         </div>
     </div>

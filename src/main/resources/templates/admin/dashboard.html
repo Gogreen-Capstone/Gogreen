@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="partials/head :: head('Admin Dashboard')"></head>
+<body>
+<nav th:replace="partials/navbar :: admin-navbar"></nav>
+
+<main class="container">
+
+    <header th:replace="partials/header :: header(${user.username} + '\'s Admin Dashboard')"></header>
+
+
+    <!-- The HTML element that serves as the Mapbox container -->
+    <div id="map" style='width: 400px; height: 300px; border: 5px solid black; width: 120vh; height: 70vh; margin: 7em auto'></div>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script th:inline="javascript">
+        "use strict";
+
+        const URL = "/dashboard.json"
+        const getLocations = fetch(URL)
+            .then(response => response.json())
+            .catch(console.error);
+
+
+        function geocode(search, token) {
+            var baseUrl = 'https://api.mapbox.com';
+            var endPoint = '/geocoding/v5/mapbox.places/';
+            return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+                .then(function(res) {
+                    return res.json();
+                    // to get all the data from the request, comment out the following three lines...
+                }).then(function(data) {
+                    return data.features[0].center;
+                });
+        }
+
+        //adding mapbox key from user controller @Value for mapbox api
+        var mapBoxKey = [[${mapBoxKey}]]
+
+        mapboxgl.accessToken = mapBoxKey;
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+            center: [-98.598600, 29.609500], // starting position [lng, lat]
+            zoom: 9 // starting zoom
+        });
+
+        // Add zoom and rotation controls to the map.
+        map.addControl(new mapboxgl.NavigationControl());
+
+        //.then is looping our locations and returning readable address and .foreach adding pop up and marker for each address
+        getLocations.then(data => {
+            let arr = [];
+            for (const location of data) {
+                let userLocation =  location.houseNumber + " " + location.street + " " + location.city + " " + location.state + " " + location.zipCode;
+                let obj = {
+                    address:userLocation ,
+                };
+                arr.push(obj);
+            }
+
+            arr.forEach(function(jobAddresses){
+                geocode(jobAddresses.address, mapBoxKey).then(function(result){
+                    map.setZoom(9);
+
+                    var locationPopup = new mapboxgl.Popup()
+                        .setHTML(jobAddresses.address);
+
+
+                    new mapboxgl.Marker()
+                        .setLngLat(result)
+                        .setPopup(locationPopup)
+                        .addTo(map);
+                });
+            });
+
+        });
+
+
+    </script>
+
+</main>
+
+<footer th:replace="partials/footer :: footer"></footer>
+<th:block th:replace="partials/scripts :: scripts"/>
+</body>
+</html>
+
+

@@ -6,7 +6,7 @@
     <nav th:replace="partials/navbar :: navbar"></nav>
 
     <div class="container-fluid">
-        <form th:action="@{'/reviews/' + ${job.id} + '/edit'}" th:method="POST" th:object="${job}">
+        <form th:action="@{'/reviews/' + ${job.id} + '/edit'}" th:method="POST" th:object="${job}" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="reviewTitle">Review Title</label>
                 <input type="text" name="reviewTitle" class="form-control" id="reviewTitle" th:field="*{reviewTitle}">
@@ -16,7 +16,11 @@
                 <textarea class="form-control" name="reviewBody" id="reviewBody" rows="3"
                           th:field="*{reviewBody}"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Edit</button>
+            <h5>Update image of the completed job:</h5>
+            <div class="form-group">
+                <input type="file" class="form-control-file" id="file" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
 
             <input th:field="*{isCompleted}" name="isCompleted" hidden>
             <input th:field="*{jobDetails}" name="jobDetails" hidden>
@@ -24,6 +28,7 @@
             <input th:field="*{scheduledDate}" name="scheduledDate" hidden>
             <input th:field="*{scheduledTime}" name="scheduledTime" hidden>
             <input th:field="*{user}" name="user" hidden>
+            <input type="hidden" th:field="*{location}">
         </form>
     </div>
 
