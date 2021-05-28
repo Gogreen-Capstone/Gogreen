@@ -47,20 +47,6 @@ public class AdminController {
         return "admin/users/show";
     }
 
-    // delete user
-//    @PostMapping("/admin/users/delete/{id}")
-//    public String deleteUser(@PathVariable long id) {
-//        User userToDelete = usersDao.getOne(id);
-//        List<Job> jobs = jobsDao.findJobsByUserId(id);
-//        List<Service> services = jobs.getJobServices();
-//        List<Image> images = imagesDao.findAllByJobId(jobToDelete.getId());
-//        services.clear();
-//        imagesDao.deleteAll(images);
-//        jobsDao.deleteAll(jobs);
-//        usersDao.deleteById(id);
-//        return "redirect:/admin/users";
-//    }
-
     @GetMapping("/admin/users")
     public String adminShowUsers(Model model, @ModelAttribute User user) {
         model.addAttribute("users", usersDao.findAll()); //getting all users to admin view
@@ -259,6 +245,15 @@ public class AdminController {
         specificJob.setIsCompleted(true);
         jobsDao.save(specificJob);
         return "redirect:/admin/reviews";
+    }
+
+    ///// admin home page////
+    @GetMapping("/home")
+    public String home(Model model){
+        model.addAttribute("title", "GoGreen.works We work for you!");
+        model.addAttribute("jobs", jobsDao.findAll());
+        model.addAttribute("images", imagesDao.findAll());
+        return "admin/home";
     }
 
 }
