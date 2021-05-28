@@ -1,6 +1,8 @@
 package com.capstone.gogreen.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "locations")
@@ -10,6 +12,7 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Digits(integer = 8, fraction = 0, message = "Value must be a number")
     @Column(nullable = false)
     private int houseNumber;
 
@@ -19,9 +22,12 @@ public class Location {
     @Column(nullable = false, length = 100)
     private String city;
 
+    @Size(min = 2, max = 2, message = "Please enter your 2 letter state abbreviation")
     @Column(nullable = false, length = 2)
     private String state;
 
+    @Digits(integer = 5, fraction = 0, message = "Please enter your 5 digit postal zip code")
+    @Size(min = 5, max = 5)
     @Column(nullable = false)
     private int zipCode;
 
@@ -88,7 +94,7 @@ public class Location {
 
     //Creating a address format
     public String addressToString() {
-        return  houseNumber + " " + street + " " + city + " " + state + " " + zipCode + ".";
+        return houseNumber + " " + street + " " + city + " " + state + " " + zipCode + ".";
     }
 
 }
