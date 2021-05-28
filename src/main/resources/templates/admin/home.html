@@ -1,38 +1,38 @@
-<!DOCTYPE html>
-<html id="home.html" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head th:replace="partials/head :: head('Home')">
-</head>
-<body>
-<nav th:replace="partials/navbar :: admin-navbar"></nav>
-<header th:replace="partials/header :: header('GoGreen Home Page')"></header>
+<!--<!DOCTYPE html>-->
+<!--<html id="home.html" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">-->
+<!--<head th:replace="partials/head :: head('Home')">-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav th:replace="partials/navbar :: admin-navbar"></nav>-->
+<!--<header th:replace="partials/header :: header('GoGreen Home Page')"></header>-->
 
-<main class="container mb-1">
-    <div class="row">
-        <th:block th:each="job : ${jobs}">
-            <th:block th:if="${job.reviewTitle != null}">
-                <div class="col-4 d-flex justify-content-between align-items-middle">
-                    <div class="card" style="width: 18rem;">
-                        <th:block th:each="image : ${images}">
-                            <img th:if="${image.isReview == true && image.job.id == job.id}" th:src="${image.url}" class="card-img-top" alt="job-image" width="80" height="200">
-                        </th:block>
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${job.reviewTitle}">Card title</h5>
-                            <p class="card-text" th:text="${job.reviewBody}">Some quick example text to build on the
-                                card
-                                title and make up the bulk of
-                                the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>Posted by: </strong><span th:text="${job.user.username}"></span></li>
-                        </ul>
-                    </div>
-                </div>
-            </th:block>
-        </th:block>
-    </div>
-</main>
+<!--<main class="container mb-1">-->
+<!--    <div class="row">-->
+<!--        <th:block th:each="job : ${jobs}">-->
+<!--            <th:block th:if="${job.reviewTitle != null}">-->
+<!--                <div class="col-4 d-flex justify-content-between align-items-middle">-->
+<!--                    <div class="card" style="width: 18rem;">-->
+<!--                        <th:block th:each="image : ${images}">-->
+<!--                            <img th:if="${image.isReview == true && image.job.id == job.id}" th:src="${image.url}" class="card-img-top" alt="job-image" width="80" height="200">-->
+<!--                        </th:block>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title" th:text="${job.reviewTitle}">Card title</h5>-->
+<!--                            <p class="card-text" th:text="${job.reviewBody}">Some quick example text to build on the-->
+<!--                                card-->
+<!--                                title and make up the bulk of-->
+<!--                                the card's content.</p>-->
+<!--                        </div>-->
+<!--                        <ul class="list-group list-group-flush">-->
+<!--                            <li class="list-group-item"><strong>Posted by: </strong><span th:text="${job.user.username}"></span></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </th:block>-->
+<!--        </th:block>-->
+<!--    </div>-->
+<!--</main>-->
 
-<footer th:replace="partials/footer :: footer"></footer>
-<script th:replace="partials/scripts :: scripts"></script>
-</body>
-</html>
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
+<!--<script th:replace="partials/scripts :: scripts"></script>-->
+<!--</body>-->
+<!--</html>-->
