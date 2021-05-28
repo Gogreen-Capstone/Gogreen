@@ -248,12 +248,12 @@ public class AdminController {
     }
 
     ///// admin home page////
-    @GetMapping("/home")
-    public String home(Model model){
-        model.addAttribute("title", "GoGreen.works We work for you!");
-        model.addAttribute("jobs", jobsDao.findAll());
-        model.addAttribute("images", imagesDao.findAll());
-        return "admin/home";
-    }
+//    @GetMapping("/home")
+//    public String home(Model model){
+//        model.addAttribute("title", "GoGreen.works We work for you!");
+//        model.addAttribute("jobs", jobsDao.findAll());
+//        model.addAttribute("images", imagesDao.findAll());
+//        return "admin/home";
+//    }
 
 }
