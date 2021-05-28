@@ -53,8 +53,6 @@
             <label for="houseNumber">House number</label>
             <input type="text" class="form-control" id="houseNumber" name="houseNumber"
                    placeholder="1234" required>
-            <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('houseNumber')}"
-                   th:errors="*{location}"></small>
         </div>
         <div class="form-group">
             <label for="street">Street name</label>
@@ -68,14 +66,10 @@
             <label for="state">State</label>
             <input type="text" id="state" class="form-control" name="state" maxlength="2"
                    placeholder="TX" required>
-            <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('state')}"
-                   th:errors="*{location}"></small>
         </div>
         <div class="form-group col-md-2 mb-1">
             <label for="zip">Zip</label>
             <input type="text" class="form-control" id="zip" name="zip" placeholder="78250" required>
-            <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('zipCode')}"
-                   th:errors="*{location}"></small>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         <a type="submit" class="btn btn-secondary" th:href="@{/dashboard}">Cancel</a>

@@ -8,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.validation.Errors;
 
-import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -46,16 +44,14 @@ public class JobController {
     }
     // creates new job
     @PostMapping("/jobs/create")
-    public String saveJob(@ModelAttribute Job job,@Valid @ModelAttribute Location location, @ModelAttribute Image image,
+    public String saveJob(@ModelAttribute Job job, @ModelAttribute Location location, @ModelAttribute Image image,
                           @RequestParam(name = "houseNumber") int houseNumber,
                           @RequestParam(name = "street") String street,
                           @RequestParam(name = "city") String city,
                           @RequestParam(name = "state") String state,
                           @RequestParam(name = "zip") int zip,
                           @RequestParam(name = "services")List<Service> services,
-                          @RequestParam(name = "file") MultipartFile uploadedFile,
-                          Errors validation,
-                          Model model){
+                          @RequestParam(name = "file") MultipartFile uploadedFile){
         User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.getOne(principal.getId());  // getting currently signed in user; our Dao gets all info needed
         job.setUser(user); // assigning currently signed in user to newly created post
@@ -81,14 +77,9 @@ public class JobController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (validation.hasErrors()) {
-            model.addAttribute("errors", validation);
-            model.addAttribute("location", location);
-            return "jobs/create";
-        }
+
         return "redirect:/dashboard";
     }
-
     // shows specific job
     @GetMapping("/jobs/show/{id}")
     public String showOneJob(Model model, @PathVariable long id) {
