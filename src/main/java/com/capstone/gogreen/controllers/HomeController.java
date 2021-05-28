@@ -1,6 +1,6 @@
 package com.capstone.gogreen.controllers;
 
-//import com.capstone.gogreen.repositories.ReviewRepository;
+import com.capstone.gogreen.models.Job;
 import com.capstone.gogreen.repositories.ImageRepository;
 import com.capstone.gogreen.repositories.JobRepository;
 import com.capstone.gogreen.repositories.UserRepository;
@@ -8,6 +8,10 @@ import com.capstone.gogreen.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -35,27 +39,10 @@ public class HomeController {
         return "about_us";
     }
 
-    @GetMapping("/how-it-works")
-    public String howItWorks(Model model) {
-        model.addAttribute("title", "How it Works");
-        return "how_it_works";
-    }
-
     @GetMapping("/services")
     public String services(Model model) {
         model.addAttribute("title", "Services");
         return "services";
     }
 
-    @GetMapping("/reviews")
-    public String reviews(Model model) {
-        model.addAttribute("title", "Reviews");
-        return "reviews";
-    }
-
-    @GetMapping("/gallery")
-    public String gallery(Model model) {
-        model.addAttribute("title", "Gallery");
-        return "gallery";
-    }
 }
