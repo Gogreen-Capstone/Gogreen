@@ -2,19 +2,19 @@
 <html id="services.html" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head :: head('Services')">
 </head>
-<div>
     <nav th:replace="partials/navbar :: navbar"></nav>
-    <header th:replace="partials/header :: header('Go Green Services Page')"></header>
-</div>
-    <ol>
-        <li>Mowing and Edging</li>
-        <li>Trimming and Branch Removal</li>
-        <li>Dethatching and Aeration Services</li>
-        <li>Weed Control and Removal</li>
-        <li>Reseeding and Sod Install</li>
-        <li>Ancient Magic to Summon the Tree Spirits to Reap Vengance Upon Your Foes</li>
-        <li>Junk Removal</li>
+    <header th:replace="partials/header :: header('Our Services')"></header>
+
+<main class="container">
+    <ol class="list-group list-group-numbered">
+        <li class="list-group-item">Mowing and Edging</li>
+        <li class="list-group-item">Trimming and Branch Removal</li>
+        <li class="list-group-item">Dethatching and Aeration Services</li>
+        <li class="list-group-item">Weed Control and Removal</li>
+        <li class="list-group-item">Reseeding and Sod Install</li>
+        <li class="list-group-item">Junk Removal</li>
     </ol>
+</main>
 <footer th:replace="partials/footer :: footer"></footer>
 <script th:replace="partials/scripts :: scripts"></script>
 </body>

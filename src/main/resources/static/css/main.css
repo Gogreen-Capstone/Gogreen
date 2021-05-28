@@ -1,5 +1,22 @@
+/*VARIABLES*/
+/*------------------------------------------*/
+
+:root{
+    --font-family: 'Merriweather', serif;
+
+
+    /*APP COLORS*/
+    --dark-green: #1B4001;
+    --md-green: #467302;
+    --green: #72A603;
+    --bright-green: #84BF04;
+    --yellow-green: #D2D911
+}
+
+
 body {
     background-color: lightblue;
+    font-family: var(--font-family);
 }
 
 .card-styling {
@@ -7,7 +24,7 @@ body {
 }
 
 header {
-    background-color: darkgreen;
+    background-color: var(--md-green);
 }
 
 
