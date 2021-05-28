@@ -1,6 +1,8 @@
 package com.capstone.gogreen.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -11,12 +13,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank(message ="*Required")
     @Column(nullable = false, unique = true)
     private String username;
 
+    @NotBlank(message ="*Required")
     @Column(nullable = false, unique = true)
     private String email;
 
+    @NotBlank(message ="*Required")
+    @Size(min = 6, max = 20, message = "Password must be between 6 and 20 characters")
     @Column(nullable = false)
     private String password;
 
