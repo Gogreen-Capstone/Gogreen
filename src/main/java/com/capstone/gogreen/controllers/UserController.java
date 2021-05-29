@@ -7,7 +7,6 @@ import com.capstone.gogreen.repositories.ImageRepository;
 import com.capstone.gogreen.repositories.JobRepository;
 import com.capstone.gogreen.repositories.LocationRepository;
 import com.capstone.gogreen.repositories.UserRepository;
-import com.capstone.gogreen.services.UserDetailsLoader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,15 +27,13 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final LocationRepository locationsDao;
     private final ImageRepository imagesDao;
-    private final UserDetailsLoader userDetailsLoader;
 
-    public UserController(UserRepository usersDao, JobRepository jobsDao, PasswordEncoder passwordEncoder, LocationRepository locationsDao, ImageRepository imagesDao, UserDetailsLoader userDetailsLoader) {
+    public UserController(UserRepository usersDao, JobRepository jobsDao, PasswordEncoder passwordEncoder, LocationRepository locationsDao, ImageRepository imagesDao) {
         this.usersDao = usersDao;
         this.jobsDao = jobsDao;
         this.passwordEncoder = passwordEncoder;
         this.locationsDao = locationsDao;
         this.imagesDao = imagesDao;
-        this.userDetailsLoader = userDetailsLoader;
     }
 
     //API key for mapbox
@@ -125,4 +122,3 @@ public class UserController {
 
 
 }
-

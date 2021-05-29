@@ -2,7 +2,6 @@ package com.capstone.gogreen.controllers;
 
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.UserRepository;
-import com.capstone.gogreen.services.UserDetailsLoader;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,14 +18,12 @@ public class AuthenticationController {
 
     private UserRepository usersDao;
     private PasswordEncoder passwordEncoder;
-    private UserDetailsLoader userDetailsLoader;
 //    private ReviewRepository reviewsDao;
 
-    public AuthenticationController(UserRepository usersDao, PasswordEncoder passwordEncoder, UserDetailsLoader userDetailsLoader) {
+    public AuthenticationController(UserRepository usersDao, PasswordEncoder passwordEncoder) {
 //    public AuthenticationController(UserRepository usersDao, PasswordEncoder passwordEncoder, ReviewRepository reviewsDao) {
         this.usersDao = usersDao;
         this.passwordEncoder = passwordEncoder;
-        this.userDetailsLoader = userDetailsLoader;
 //        this.reviewsDao = reviewsDao;
     }
 
@@ -43,7 +40,7 @@ public class AuthenticationController {
     @GetMapping("/register")
     public String showRegisterPage(Model model){
         model.addAttribute("user", new User());
-            return "users/register";
+        return "users/register";
     }
 
     @PostMapping("/register")
@@ -78,7 +75,6 @@ public class AuthenticationController {
 
         user.setPassword(hash);
         usersDao.save(user);
-        return "redirect:/users/login";
+        return "redirect:/login";
     }
 }
-

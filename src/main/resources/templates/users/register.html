@@ -21,11 +21,10 @@
         </div>
         <div class="mb-3">
             <input type="password" class="form-control" id="password" name="password" th:field="*{password}" placeholder="Password">
-            <small class="error-msg" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
         </div>
         <div class="mb-3">
             <input type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirm Password">
-            <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+<!--            <p class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>-->
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
