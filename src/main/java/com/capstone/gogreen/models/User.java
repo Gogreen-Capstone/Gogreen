@@ -44,6 +44,7 @@ public class User {
         this.isEmployee = isEmployee;
     }
 
+    @SuppressWarnings("CopyConstructorMissesField")
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
         email = copy.email;

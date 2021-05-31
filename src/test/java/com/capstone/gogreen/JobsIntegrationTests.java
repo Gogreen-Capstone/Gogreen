@@ -9,17 +9,18 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.http.HttpStatus;
 
 import javax.servlet.http.HttpSession;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @RunWith(SpringRunner.class)
@@ -30,25 +31,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //This is an annotation that can be applied to a test class to enable and configure auto-configuration of MockMvc
 public class JobsIntegrationTests {
 
-    private User testUser;
-    private HttpSession httpSession;
-
-    @Autowired
-    private MockMvc mvc;
-
     @Autowired
     UserRepository usersDao;
-
     @Autowired
     JobRepository jobsDao;
-
+    private HttpSession httpSession;
+    @Autowired
+    private MockMvc mvc;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Before
     public void setup() throws Exception {
 
-        testUser = usersDao.findByUsername("testUser");
+        User testUser = usersDao.findByUsername("testUser");
 
         // Creates the test user if not exists
         if (testUser == null) {
@@ -56,7 +52,7 @@ public class JobsIntegrationTests {
             newUser.setUsername("testUser");
             newUser.setPassword(passwordEncoder.encode("pass"));
             newUser.setEmail("testUser@codeup.com");
-            testUser = usersDao.save(newUser);
+            usersDao.save(newUser);
         }
 
         // Throws a post request to /login and expect a redirection to the gogreen index page after being logged in

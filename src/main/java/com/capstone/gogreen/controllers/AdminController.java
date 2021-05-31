@@ -106,13 +106,13 @@ public class AdminController {
         } else if (usersDao.findByUsername(user.getUsername()) != null && usersDao.findByEmail(user.getEmail()) != null) {
             model.addAttribute("username", user.getUsername());
             model.addAttribute("email", user.getEmail());
-            return "admin/users";
+            return "admin/users/index";
         } else if (usersDao.findByUsername(user.getUsername()) != null) {
             model.addAttribute("username", user.getUsername());
-            return "admin/users";
+            return "admin/users/index";
         } else if (usersDao.findByEmail(user.getEmail()) != null) {
             model.addAttribute("email", user.getEmail());
-            return "admin/users";
+            return "admin/users/index";
         }
 
         //setting the username email and password

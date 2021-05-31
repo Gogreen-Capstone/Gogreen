@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head('Register')"/>
+<head th:replace="partials/head :: head('Register')">
+    <title></title>
+</head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <main class="container mb-1">
@@ -10,21 +12,21 @@
         <br>
         <a th:href="@{/login}">Login</a>
         <div class="mb-3">
-            <input type="text" class="form-control" id="username" name="username" th:field="*{username}" placeholder="Username">
+            <label for="username"></label><input type="text" class="form-control" id="username" name="username" th:field="*{username}" placeholder="Username">
             <p class="error-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
             <small class="error-msg form-text text-muted" th:if="${username != null}" th:text="'Username already exists'"></small>
         </div>
         <div class="mb-3">
-            <input type="email" class="form-control" id="email" name="email" th:field="*{email}" placeholder="Email">
+            <label for="email"></label><input type="email" class="form-control" id="email" name="email" th:field="*{email}" placeholder="Email">
             <p class="error-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
             <small class="error-msg form-text text-muted" th:if="${email != null}" th:text="'Email already exists'"></small>
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control" id="password" name="password" th:field="*{password}" placeholder="Password">
+            <label for="password"></label><input type="password" class="form-control" id="password" name="password" th:field="*{password}" placeholder="Password">
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirm Password">
-            <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+            <label for="confirm"></label><input type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirm Password">
+            <small class="error-msg form-text text-muted"></small>
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
     </form>

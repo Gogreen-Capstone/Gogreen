@@ -16,8 +16,8 @@ import javax.validation.Valid;
 @Controller
 public class AuthenticationController {
 
-    private UserRepository usersDao;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository usersDao;
+    private final PasswordEncoder passwordEncoder;
 //    private ReviewRepository reviewsDao;
 
     public AuthenticationController(UserRepository usersDao, PasswordEncoder passwordEncoder) {
@@ -75,7 +75,7 @@ public class AuthenticationController {
 
         user.setPassword(hash);
         usersDao.save(user);
-        return "redirect:/login";
+        return "redirect:/users/login";
     }
 }
 
