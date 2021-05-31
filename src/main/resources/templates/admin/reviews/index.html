@@ -14,10 +14,10 @@
         <th scope="col">Actions</th>
     </tr>
     </thead>
-    <tbody th:each="job : ${jobs}">
+    <tbody th:each="job : ${jobs}" >
     <tr th:if="${job.reviewTitle != null}">
         <th th:text="${job.id}"></th>
-        <th th:text="${job.user}"></th>
+        <th th:text="${job.user.getUsername()}"></th>
         <td th:text="${job.reviewTitle}"></td>
         <td th:text="${job.reviewBody}"></td>
         <td>
@@ -33,7 +33,6 @@
     </tr>
     </tbody>
 </table>
-
 
 <footer th:replace="partials/footer :: footer"></footer>
 <th:block th:replace="partials/scripts :: scripts"/>
