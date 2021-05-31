@@ -16,8 +16,8 @@ import javax.validation.Valid;
 @Controller
 public class AuthenticationController {
 
-    private final UserRepository usersDao;
-    private final PasswordEncoder passwordEncoder;
+    private UserRepository usersDao;
+    private PasswordEncoder passwordEncoder;
 //    private ReviewRepository reviewsDao;
 
     public AuthenticationController(UserRepository usersDao, PasswordEncoder passwordEncoder) {
@@ -40,7 +40,7 @@ public class AuthenticationController {
     @GetMapping("/register")
     public String showRegisterPage(Model model){
         model.addAttribute("user", new User());
-            return "users/register";
+        return "users/register";
     }
 
     @PostMapping("/register")
@@ -75,7 +75,6 @@ public class AuthenticationController {
 
         user.setPassword(hash);
         usersDao.save(user);
-        return "redirect:/users/login";
+        return "redirect:/login";
     }
 }
-
