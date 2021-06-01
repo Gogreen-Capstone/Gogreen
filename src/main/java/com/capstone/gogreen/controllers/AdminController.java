@@ -228,4 +228,13 @@ public class AdminController {
         return "redirect:/admin/reviews";
     }
 
+    ///// admin home page////
+//    @GetMapping("/home")
+//    public String home(Model model){
+//        model.addAttribute("title", "GoGreen.works We work for you!");
+//        model.addAttribute("jobs", jobsDao.findAll());
+//        model.addAttribute("images", imagesDao.findAll());
+//        return "admin/home";
+//    }
+
 }

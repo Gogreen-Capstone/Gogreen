@@ -21,6 +21,12 @@
         <td th:text="${job.reviewTitle}"></td>
         <td th:text="${job.reviewBody}"></td>
         <td>
+        <th th:text="${job.user}"></th>
+        <td th:text="${job.reviewTitle}"></td>
+        <td th:text="${job.reviewBody}"></td>
+        <td>
+<!--            <a th:href="'/admin/reviews/edit/'+ ${job.id}" class="btn btn-primary"-->
+<!--               type="button">Edit</a>-->
             <form class="mt-2" th:action="'/admin/reviews/delete/'+ ${job.id}" th:method="POST">
                 <p class="card-title" name="reviewTitle" th:text="${job.reviewTitle}" hidden></p>
                 <p class="card-title" name="reviewBody" th:text="${job.reviewBody}" hidden></p>
