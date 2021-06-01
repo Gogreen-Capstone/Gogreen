@@ -6,11 +6,12 @@
 
 <main class="container">
 
+
     <header th:replace="partials/header :: header(${user.username} + '\'s Admin Dashboard')"></header>
 
 
     <!-- The HTML element that serves as the Mapbox container -->
-    <div id="map" style='width: 400px; height: 300px; border: 5px solid black; width: 120vh; height: 70vh; margin: 7em auto'></div>
+    <div id="map" style='width: 400px; height: 300px; border: 1px solid black; width: 120vh; height: 70vh; margin: 7em auto'></div>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script th:inline="javascript">
         "use strict";
@@ -63,8 +64,7 @@
                     map.setZoom(9);
 
                     var locationPopup = new mapboxgl.Popup()
-                        .setHTML(jobAddresses.address);
-
+                        .setHTML(jobAddresses.address + "<br>" + "<a href=\"/admin/jobs/show/1\">Link to a Job</a>");
 
                     new mapboxgl.Marker()
                         .setLngLat(result)
@@ -72,12 +72,8 @@
                         .addTo(map);
                 });
             });
-
         });
-
-
     </script>
-
 </main>
 
 <footer th:replace="partials/footer :: footer"></footer>

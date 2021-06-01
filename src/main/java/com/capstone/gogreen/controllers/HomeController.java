@@ -33,6 +33,14 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/home")
+    public String adminHome(Model model){
+        model.addAttribute("title", "GoGreen.works We work for you!");
+        model.addAttribute("jobs", jobsDao.findAll());
+        model.addAttribute("images", imagesDao.findAll());
+        return "admin/home";
+    }
+
     @GetMapping("/about-us")
     public String aboutUs(Model model) {
         model.addAttribute("title", "About Us");
