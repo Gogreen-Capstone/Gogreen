@@ -4,12 +4,83 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <header th:replace="partials/header :: header('About the Creators')"></header>
+<main class="container justify-content-center text-center flex-fill">
+  <div class="mt-3 mb-3 mt-md-2 mb-md-4 mt-lg-2 mb-lg-4 mt-xl-2 tb-xl-5">
+    <div class="col text-center">
+      <h1 id="meet-the-team-header" class="mb-2">Meet the Team</h1>
+    </div>
+  </div>
 
-  <h1>CARLOS </h1>
+  <!-- Card Container -->
+  <div class="container about-us-card-container">
+    <!-- Card Deck 1 -->
+    <div class="card-deck about-us-card-deck mb-3">
+      <div class="card about-us-card mb-4">
+        <img src="/img/Carlos-Padilla.jpeg" alt="Carlos Padilla" class="card-img-top about-us-img mx-auto">
+        <div class="card-body about-us-card-body">
+          <h5 class="card-title developer-names">Carlos Padilla</h5>
 
-  <h1>YASIN </h1>
+          <hr class="mx-auto about-us-hr">
 
-  <h1>COLIN</h1>
+          <p class="about-us-quote">
+            <em>“Quote.”
+              <br><br>– Kobe Bryant
+            </em>
+          </p>
+        </div>
+
+        <div class="card-footer about-us-card-footer">
+          <a href="https://github.com/carlospadilla91" target="_blank" class="about-us-pg-icons"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/carlospadilla91/" target="_blank" class="about-us-pg-icons"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+
+      <div class="card about-us-card mb-4">
+        <img src="/img/Yasin-Mogultay.jpeg" alt="Yasin Mogultay" class="card-img-top about-us-img mx-auto">
+        <div class="card-body">
+          <h5 class="card-title developer-names">Yasin Mogultay</h5>
+
+          <hr class="mx-auto about-us-hr">
+
+          <p class="about-us-quote">
+            <em>"WIZARD."
+              <br><br>- Kobe Bryant
+            </em>
+          </p>
+        </div>
+
+        <div class="card-footer about-us-card-footer">
+          <a href="https://github.com/YasinMogultay" target="_blank" class="about-us-pg-icons"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/yasinmogultay/" target="_blank" class="about-us-pg-icons"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Deck 2 -->
+    <div class="card-deck about-us-card-deck pb-5">
+      <div class="card about-us-card mb-4">
+        <img src="/img/Colin-Warner.jpeg" alt="Colin Warner" class="card-img-top about-us-img mx-auto">
+        <div class="card-body">
+          <h5 class="card-title developer-names">Colin Warner</h5>
+
+          <hr class="mx-auto about-us-hr">
+
+          <p class="about-us-quote">
+            <em>"Do the best you can until you know better. Then when you know better, do better."
+              <br><br>- Maya Angelou
+            </em>
+          </p>
+        </div>
+
+        <div class="card-footer about-us-card-footer">
+          <a href="https://github.com/colinxwarner" target="_blank" class="about-us-pg-icons"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/colinxwarner" target="_blank" class="about-us-pg-icons"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
 <footer th:replace="partials/footer :: footer"></footer>
 <script th:replace="partials/scripts :: scripts"></script>
 </body>
