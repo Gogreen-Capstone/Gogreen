@@ -38,7 +38,6 @@
         </div>
         <hr>
         <h5>Service Type:</h5>
-        <small></small>
         <div class="form-group">
             <select multiple class="form-control" name="services" required>
                 <option th:each="service : ${services}" th:value="${service.id}" th:text="${service.title}"></option>
@@ -76,7 +75,7 @@
             <input type="text" class="form-control" id="zip" name="zip" placeholder="78250" required>
         </div>
         <button type="submit" class="btn btn-success">Save</button>
-        <a type="submit" class="btn btn-secondary" th:href="@{'/jobs/show/' + ${job.id}}">Cancel</a>
+        <a type="submit" class="btn btn-secondary" th:href="@{/dashboard}">Cancel</a>
     </form>
 </main>
 <footer th:replace="partials/footer :: footer"></footer>

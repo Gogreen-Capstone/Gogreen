@@ -30,10 +30,6 @@
             </ul>
             <div class="card-body">
                 <a th:href="@{/admin/jobs}" class="btn btn-secondary">Back</a>
-                <a th:href="@{'/admin/jobs/edit/' + ${job.id}}" class="btn btn-success">Edit Job</a>
-                <form th:action="@{'/admin/jobs/delete/' + ${job.id}}" th:method="POST">
-                    <button class="btn btn-danger">Delete Job</button>
-                </form>
                 <th:block th:if="${job.isCompleted == false}">
                 <form th:action="@{'/admin/jobs/complete/' + ${job.id}}" th:method="POST">
                     <button class="btn btn-success">Complete Job</button>

@@ -2,6 +2,9 @@ package com.capstone.gogreen.models;
 
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -171,5 +174,18 @@ public class Job {
         return "Job{" +
                 "jobServices=" + jobServices +
                 '}';
+    }
+
+    public void toDate(String scheduledDate) {
+//        Date date = new SimpleDateFormat("dd/MMM/yyyy").parse(scheduledDate);
+//        new SimpleDateFormat(scheduledDate);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        String dateInString = scheduledDate;
+
+        try{
+            formatter.parse(dateInString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
