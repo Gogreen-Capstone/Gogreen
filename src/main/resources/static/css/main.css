@@ -2,7 +2,7 @@
 /*------------------------------------------*/
 
 :root{
-    --font-family: 'Merriweather', serif;
+    --font-family: 'Karla', sans-serif;
 
 
     /*APP COLORS*/
@@ -99,6 +99,37 @@ jumbotron {
     border: none;
 }
 
+/* FOOTER STYLING */
+/*------------------------------------------------------------------------------------*/
+.footer-style {
+    width: 100vw;
+    background: #ffc107;
+}
+
+.footer-link a {
+    color: green;
+    padding-bottom: 10px;
+    font-size: 2em;
+}
+
+.footer-links {
+    padding: 0;
+    margin: 0;
+}
+
+.footer-label {
+    text-align: center;
+    align-content: center;
+    height: 2rem;
+}
+
+.text-center{
+    padding: 10px;
+}
+
+.img-container {
+    text-align: center;
+}
 /*MEDIA QUERIES*/
 
 /* Breakpoints
