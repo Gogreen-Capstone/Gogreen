@@ -5,15 +5,15 @@
 </head>
 <body>
 
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-warning">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
         <a class="navbar-gg-icon" th:href="@{/}"><img src="/img/go-green-icon.png" height="70" alt="Go Green Logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav ">
                 <li sec:authorize="!isAuthenticated()" class="nav-item">
                     <a class="nav-link" th:href="@{/services}">Services</a>
                 </li>
@@ -32,7 +32,7 @@
                 <li sec:authorize="!isAuthenticated()" class="nav-item">
                     <a class="nav-link" th:href="@{/register}">Register</a>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item ml-auto">
+                <li sec:authorize="isAuthenticated()" class="nav-item">
                     <form th:action="@{/logout}" th:method="post">
                         <button class="btn-link btn nav-link">Logout</button>
                     </form>

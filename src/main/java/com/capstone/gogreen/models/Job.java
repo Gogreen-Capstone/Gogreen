@@ -187,16 +187,15 @@ public class Job {
                 '}';
     }
 
-    public void toDate(String scheduledDate) {
-//        Date date = new SimpleDateFormat("dd/MMM/yyyy").parse(scheduledDate);
-//        new SimpleDateFormat(scheduledDate);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        String dateInString = scheduledDate;
-
-        try{
-            formatter.parse(dateInString);
+    public String stringToDate(String scheduledDate){
+        try {
+            scheduledDate = scheduledDate.replace(" UTC", "");
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(scheduledDate);
+            return new SimpleDateFormat("EE  MMM-dd, yyyy").format(date);
         } catch (ParseException e) {
             e.printStackTrace();
+            return "15.01.2010";
         }
     }
+
 }

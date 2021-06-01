@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<head th:fragment="head(title)">
     <meta charset="UTF-8">
-    <title>GOGREEN</title>
+    <!--    MOBILE VIEW ON LINES 6 & 7-->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--    https://stackoverflow.com/questions/6771258/what-does-meta-http-equiv-x-ua-compatible-content-ie-edge-do-->
+    <title th:text="${'GoGreen | ' + title}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/5eae995560.js" crossorigin="anonymous"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link  rel="stylesheet" href="/css/main.css"/>
 </head>
 <body>
 
-<footer th:fragment="footer" class="footer mt-auto py-3 bg-dark text-light">
-    <div class=" fixed-bottom container">
-        <span>Place sticky footer content here.</span>
+<footer th:fragment="footer" class="text-center footer-style">
+    <hr class="inline-block mx-auto" style="width: 100%;">
+    <div class="container mx-auto">
+        <ul style="list-style-type: none" class="footer-links row justify-content-center p-0">
+            <li class="footer-link col text-center">
+                <a class="fas fa-toolbox" th:href="@{/services}"></a>
+            </li>
+            <li class="footer-link col text-center">
+                <a class="fas fa-leaf" th:href="@{/gopher}"></a>
+            </li>
+            <li class="footer-link col text-center">
+                <a class="fab fa-github" href="https://github.com/Gogreen-Capstone/Gogreen" target="_blank"></a>
+            </li>
+            <li class="footer-link col text-center">
+                <a class="fas fa-heart" th:href="@{/about-us}"></a>
+            </li>
+        </ul>
     </div>
 </footer>
 
