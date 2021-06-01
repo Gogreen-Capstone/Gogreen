@@ -35,6 +35,7 @@ header {
 /*    text-align: center;*/
 /*}*/
 
+
 /*.navbar-logo-font {*/
 /*    font-family: 'Satisfy', cursive;*/
 /*    color: #3d3e40;*/
@@ -46,7 +47,6 @@ header {
 /*}*/
 
 
-
 jumbotron {
 
 }
@@ -54,6 +54,50 @@ jumbotron {
 .nav-container {
 
 }
+
+/* ABOUT US PAGE */
+.about-us-img {
+    margin-top: 20px;
+    border-radius: 50%;
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.about-us-pg-icons {
+    font-size: 2em;
+    margin: 10px;
+    color: black;
+}
+
+.about-us-card {
+    max-width: 320px;
+
+    background: rgba( 255, 255, 255, 0.90 );
+    backdrop-filter: blur( 20.0px );
+    -webkit-backdrop-filter: blur( 20.0px );
+    border-radius: 20px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+    /*Mobile Responsive Centering of the cards in the card deck*/
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+
+.about-us-hr {
+    width: 30%;
+}
+
+.about-us-quote {
+    font-weight: 300;
+}
+
+.about-us-card-footer {
+    background: none;
+    border: none;
+}
+
 /*MEDIA QUERIES*/
 
 /* Breakpoints
