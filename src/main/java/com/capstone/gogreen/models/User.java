@@ -1,6 +1,8 @@
 package com.capstone.gogreen.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -17,6 +19,8 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Size(min = 8, message = "Password must be at least 8 characters in length")
+    @NotBlank(message = "*Required")
     @Column(nullable = false)
     private String password;
 
