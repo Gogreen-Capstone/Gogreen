@@ -8,7 +8,8 @@
     <form th:action="@{/jobs/create}" th:method="POST" th:object="${job}" enctype="multipart/form-data">
         <div class="form-group">
             <label for="jobTitle">Job Title</label>
-            <input type="text" id="jobTitle" class="form-control" placeholder="" th:field="*{jobTitle}" required>
+            <input type="text" id="jobTitle" class="form-control" placeholder="e.g. Tree trimming"
+                   th:field="*{jobTitle}" required>
         </div>
         <hr>
         <h5>Upload image of the job:</h5>

@@ -40,7 +40,7 @@ public class AuthenticationController {
     @GetMapping("/register")
     public String showRegisterPage(Model model){
         model.addAttribute("user", new User());
-            return "users/register";
+        return "users/register";
     }
 
     @PostMapping("/register")
@@ -78,4 +78,3 @@ public class AuthenticationController {
         return "redirect:/login";
     }
 }
-

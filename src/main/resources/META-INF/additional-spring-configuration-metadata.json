@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "file-upload-path",
+      "type": "java.lang.String",
+      "description": "Description for file-upload-path."
+  }
+] }

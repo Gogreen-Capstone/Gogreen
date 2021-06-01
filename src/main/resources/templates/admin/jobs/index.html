@@ -25,6 +25,10 @@
         <td>
             <a th:href="'/admin/jobs/show/'+ ${job.id}" class="btn btn-warning"
                type="button">View Job</a>
+            <a th:href="@{'/admin/jobs/edit/' + ${job.id}}" class="btn btn-success">Edit Job</a>
+            <form th:action="@{'/admin/jobs/delete/' + ${job.id}}" th:method="POST">
+                <button class="btn btn-danger">Delete Job</button>
+            </form>
         </td>
     </tr>
     </tbody>

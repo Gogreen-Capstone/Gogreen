@@ -1,7 +1,12 @@
 package com.capstone.gogreen.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,33 +18,42 @@ public class Job {
     private long id;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String jobTitle;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String jobDetails;
 
     @Column
     private boolean isCompleted;
 
     @Column
+    @JsonIgnore
     private String reviewTitle;
 
     @Column
+    @JsonIgnore
     private String reviewBody;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String scheduledDate;
 
     @Column(nullable = false)
+    @JsonIgnore
     private int scheduledTime;
 
+
     @ManyToOne()
+    @JsonIgnore
     private User user;
 
     @OneToOne
     private Location location;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinTable(
             name = "job_services",
             joinColumns = {@JoinColumn(name = "job_id")},
@@ -171,5 +185,18 @@ public class Job {
         return "Job{" +
                 "jobServices=" + jobServices +
                 '}';
+    }
+
+    public void toDate(String scheduledDate) {
+//        Date date = new SimpleDateFormat("dd/MMM/yyyy").parse(scheduledDate);
+//        new SimpleDateFormat(scheduledDate);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        String dateInString = scheduledDate;
+
+        try{
+            formatter.parse(dateInString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
