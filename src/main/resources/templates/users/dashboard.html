@@ -7,14 +7,13 @@
 <main class="container">
     <header th:replace="partials/header :: header(${user.username} + '\'s Dashboard')"></header>
 
-    <h2>Edit your information</h2>
 
     <a class="btn btn-success" th:href="@{/jobs/create}">New Job Request</a>
-    <a class="btn btn-primary" type="button" href="/edit-user">Edit User Information</a>
+<!--    <a class="btn btn-primary" type="button" href="/edit-user">Edit User Information</a>-->
 
 <h2>Pending Jobs</h2>
-    <div class="row justify-content-evenly text-center">
-        <div class="card mb-3" style="max-width: 18rem;" th:if="${job.isCompleted == false}" th:each="job : ${jobs}">
+    <div class="row justify-content-between text-center">
+        <div class="card mb-3" id="pending-job-card" style="max-width: 18rem;" th:if="${job.isCompleted == false}" th:each="job : ${jobs}">
             <div class="card-header bg-transparent" th:text="${job.stringToDate(job.scheduledDate)}">Date</div>
             <div class="card-body">
                 <h5 class="card-title" th:text="${job.jobTitle}">Job title</h5>
@@ -30,8 +29,8 @@
     </div>
     <hr>
     <h2>Completed Jobs</h2>
-    <div class="row justify-content-evenly text-center">
-        <div class="card mb-3" style="max-width: 18rem;" th:if="${job.isCompleted == true}" th:each="job : ${jobs}">
+    <div class="row justify-content-between text-center">
+        <div class="card mb-3" id="completed-job-card" style="max-width: 18rem;" th:if="${job.isCompleted == true}" th:each="job : ${jobs}">
             <div class="card-header bg-transparent" th:text="${job.stringToDate(job.scheduledDate)}">Date</div>
             <div class="card-body">
                 <h5 class="card-title" th:text="${job.jobTitle}">Job title</h5>

@@ -27,6 +27,25 @@ header {
     background-color: var(--md-green);
 }
 
+/* DASHBOARD JOB CARDS */
+#pending-job-card, #completed-job-card {
+    max-width: 320px;
+    background: rgba( 255, 255, 255, 0.90 );
+    backdrop-filter: blur( 20.0px );
+    -webkit-backdrop-filter: blur( 20.0px );
+    border-radius: 20px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+    /*Mobile Responsive Centering of the cards in the card deck*/
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+#pending-job-card:hover, #completed-job-card:hover {
+    background-color: var(--md-green);
+}
+
 
 /*#navbar {*/
 /*    display: flex;*/

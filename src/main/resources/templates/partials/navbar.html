@@ -21,7 +21,7 @@
                     <a class="nav-link" th:href="@{/about-us}">About Us</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="navbar-item">
-                    <a class="nav-link" th:href="@{/jobs/create}">Job Request</a>
+                    <a class="nav-link" th:href="@{/edit-user}">Profile-Settings</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="navbar-item">
                     <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
