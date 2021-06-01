@@ -17,6 +17,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -50,9 +51,10 @@ public class UserController {
     @GetMapping("/dashboard")
     public String showUserDashboard(Model model, @ModelAttribute Job job) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Job> jobs = jobsDao.findJobsByUserId(loggedInUser.getId());
         model.addAttribute("mapBoxKey", mapBoxKey);
         model.addAttribute("user", loggedInUser);
-        model.addAttribute("jobs", jobsDao.findJobsByUserId(loggedInUser.getId())); //Getting Job according to logged in user
+        model.addAttribute("jobs", jobs); //Getting Job according to logged in user
         boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin(); //Getting User according to logged in user and checking isAdmin row
         // Logic to redirect based off of isAdmin row from User table in db
         if (isAdmin) {
