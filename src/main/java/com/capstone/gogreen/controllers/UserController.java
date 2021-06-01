@@ -44,8 +44,8 @@ public class UserController {
     // Adding json object to JS
     @RequestMapping(value = "/dashboard.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Location> userLocations() {
-        return locationsDao.findAll();
+    public List<Job> userLocations() {
+        return jobsDao.findAll();
     }
 
 
