@@ -54,7 +54,7 @@
         getLocations.then(data => {
             let arr = [];
             for (const job of data) {
-                let userLocation = job.location.houseNumber + " " + job.location.street + " " + job.location.city + " " + job.location.state + " " + job.location.zipCode;
+                let userLocation = job.location.houseNumber + " " + job.location.street + " <br> " + job.location.city + ", " + job.location.state + " " + job.location.zipCode;
                 let obj = {
                     address: userLocation,
                     id: job.id,
@@ -69,7 +69,7 @@
 
                     //Linking to job that is according with addres inside of the popup
                     var locationPopup = new mapboxgl.Popup()
-                        .setHTML(jobAddresses.address + "<br>" + "<a href=\"/admin/jobs/show/" + jobAddresses.id + "\">Link to a Job</a>");
+                        .setHTML(jobAddresses.address + "<br>" + "<a href=\"/admin/jobs/show/" + jobAddresses.id + "\">View Job</a>");
 
                     // Checking if job is completed according to that adding marker or removing it
                     if (!jobAddresses.completion) {
