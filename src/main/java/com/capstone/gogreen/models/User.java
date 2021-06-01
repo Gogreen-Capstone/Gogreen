@@ -13,11 +13,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank(message ="*Required")
     @Column(nullable = false, unique = true)
     private String username;
 
+    @NotBlank(message ="*Required")
     @Column(nullable = false, unique = true)
     private String email;
+
 
     @Size(min = 8, message = "Password must be at least 8 characters in length")
     @NotBlank(message = "*Required")
