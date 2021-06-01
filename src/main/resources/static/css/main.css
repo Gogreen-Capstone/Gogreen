@@ -15,7 +15,7 @@
 
 
 body {
-    background-color: lightblue;
+    /*background-color: lightblue;*/
     font-family: var(--font-family);
 }
 
@@ -24,7 +24,7 @@ body {
 }
 
 header {
-    background-color: var(--md-green);
+    /*background-color: var(--md-green);*/
 }
 
 
