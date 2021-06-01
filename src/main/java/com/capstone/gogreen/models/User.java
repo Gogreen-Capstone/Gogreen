@@ -21,8 +21,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @NotBlank(message ="*Required")
-    @Size(min = 6, max = 20, message = "Password must be between 6 and 20 characters")
+
+    @Size(min = 8, message = "Password must be at least 8 characters in length")
+    @NotBlank(message = "*Required")
     @Column(nullable = false)
     private String password;
 
