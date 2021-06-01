@@ -51,10 +51,11 @@
         //.then is looping our locations and returning readable address and .foreach adding pop up and marker for each address
         getLocations.then(data => {
             let arr = [];
-            for (const location of data) {
-                let userLocation =  location.houseNumber + " " + location.street + " " + location.city + " " + location.state + " " + location.zipCode;
+            for (const job of data) {
+                let userLocation =  job.location.houseNumber + " " + job.location.street + " " + job.location.city + " " + job.location.state + " " + job.location.zipCode;
                 let obj = {
                     address:userLocation ,
+                    id:job.id,
                 };
                 arr.push(obj);
             }
@@ -64,7 +65,7 @@
                     map.setZoom(9);
 
                     var locationPopup = new mapboxgl.Popup()
-                        .setHTML(jobAddresses.address + "<br>" + "<a href=\"/admin/jobs/show/1\">Link to a Job</a>");
+                        .setHTML(jobAddresses.address + "<br>" + "<a href=\"/admin/jobs/show/" + jobAddresses.id + "\">Link to a Job</a>");
 
                     new mapboxgl.Marker()
                         .setLngLat(result)
