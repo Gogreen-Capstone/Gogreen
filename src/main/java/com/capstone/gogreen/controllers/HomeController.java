@@ -56,4 +56,10 @@ public class HomeController {
         return "services";
     }
 
+    @GetMapping("/gopher")
+    public String gopher(Model model) {
+        model.addAttribute("title", "Go Green");
+        return "gopher";
+    }
+
 }
