@@ -17,15 +17,13 @@
     <tbody th:each="job : ${jobs}">
     <tr th:if="${job.reviewTitle != null}">
         <th th:text="${job.id}"></th>
-        <th th:text="${job.user}"></th>
+        <th th:text="${job.user.getUsername()}"></th>
         <td th:text="${job.reviewTitle}"></td>
         <td th:text="${job.reviewBody}"></td>
         <td>
-<!--            <a th:href="'/admin/reviews/edit/'+ ${job.id}" class="btn btn-primary"-->
-<!--               type="button">Edit</a>-->
             <form class="mt-2" th:action="'/admin/reviews/delete/'+ ${job.id}" th:method="POST">
-                <p class="card-title"  name="reviewTitle" th:text="${job.reviewTitle}" hidden></p>
-                <p class="card-title"  name="reviewBody" th:text="${job.reviewBody}" hidden></p>
+                <p class="card-title" name="reviewTitle" th:text="${job.reviewTitle}" hidden></p>
+                <p class="card-title" name="reviewBody" th:text="${job.reviewBody}" hidden></p>
                 <h5 th:text="${job.isCompleted}" name="isCompleted" hidden></h5>
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
@@ -33,7 +31,6 @@
     </tr>
     </tbody>
 </table>
-
 
 <footer th:replace="partials/footer :: footer"></footer>
 <th:block th:replace="partials/scripts :: scripts"/>

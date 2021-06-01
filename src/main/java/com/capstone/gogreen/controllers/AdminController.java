@@ -47,20 +47,6 @@ public class AdminController {
         return "admin/users/show";
     }
 
-    // delete user
-//    @PostMapping("/admin/users/delete/{id}")
-//    public String deleteUser(@PathVariable long id) {
-//        User userToDelete = usersDao.getOne(id);
-//        List<Job> jobs = jobsDao.findJobsByUserId(id);
-//        List<Service> services = jobs.getJobServices();
-//        List<Image> images = imagesDao.findAllByJobId(jobToDelete.getId());
-//        services.clear();
-//        imagesDao.deleteAll(images);
-//        jobsDao.deleteAll(jobs);
-//        usersDao.deleteById(id);
-//        return "redirect:/admin/users";
-//    }
-
     @GetMapping("/admin/users")
     public String adminShowUsers(Model model, @ModelAttribute User user) {
         model.addAttribute("users", usersDao.findAll()); //getting all users to admin view
@@ -70,10 +56,7 @@ public class AdminController {
     //Admin edit user information getMapping
     @GetMapping("/admin/users/edit/{id}")
     public String adminEditUser(Model model, @PathVariable long id) {
-//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //Getting logged in user
-//        usersDao.getOne(loggedInUser.getId()); //getting that user by id of logged in user
         model.addAttribute("user", usersDao.getOne(id)); //adding that user object
-//        boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin(); //Getting User according to logged in user and checking isAdmin row
         return "admin/users/edit";
     }
 
@@ -173,9 +156,6 @@ public class AdminController {
                                    @RequestParam(name = "zip") int zip,
                                    @RequestParam(name = "locationId") long locationId,
                                    @RequestParam(name = "user") User user) {
-//        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        User user = usersDao.getOne(principal.getId());  // getting currently signed in user; our Dao gets all info needed
-//        jobToEdit.setUser(usersDao.getOne(jobToEdit.getUser().getId())); // assigning currently signed in user to newly created post
         jobToEdit.setJobServices(services);
         locationToEdit.setHouseNumber(houseNumber);
         locationToEdit.setStreet(street);
@@ -237,19 +217,6 @@ public class AdminController {
         return "admin/reviews/index";
     }
 
-    // show edit review page
-    @GetMapping("/admin/reviews/edit/{id}")
-    public String adminShowEditPage(Model model, @PathVariable long id) {
-        model.addAttribute("job", jobsDao.getOne(id));
-        return "admin/reviews/edit";
-    }
-
-    // editing existing job review
-    @PostMapping("/admin/reviews/edit/{id}")
-    public String adminEditJobReview(@ModelAttribute Job job) {
-        jobsDao.save(job);
-        return "redirect:/admin/reviews";
-    }
     // delete review by admin
     @PostMapping("/admin/reviews/delete/{id}")
     public String adminDeleteReview(@PathVariable long id) {
@@ -260,5 +227,14 @@ public class AdminController {
         jobsDao.save(specificJob);
         return "redirect:/admin/reviews";
     }
+
+    ///// admin home page////
+//    @GetMapping("/home")
+//    public String home(Model model){
+//        model.addAttribute("title", "GoGreen.works We work for you!");
+//        model.addAttribute("jobs", jobsDao.findAll());
+//        model.addAttribute("images", imagesDao.findAll());
+//        return "admin/home";
+//    }
 
 }

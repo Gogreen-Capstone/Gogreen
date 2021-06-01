@@ -48,6 +48,8 @@ public class UserController {
         return locationsDao.findAll();
     }
 
+
+
     @GetMapping("/dashboard")
     public String showUserDashboard(Model model, @ModelAttribute Job job) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

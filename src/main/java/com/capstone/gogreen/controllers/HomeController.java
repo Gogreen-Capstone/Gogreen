@@ -1,13 +1,16 @@
 package com.capstone.gogreen.controllers;
 
 import com.capstone.gogreen.models.Job;
+import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.ImageRepository;
 import com.capstone.gogreen.repositories.JobRepository;
 import com.capstone.gogreen.repositories.UserRepository;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,6 +34,14 @@ public class HomeController {
         model.addAttribute("jobs", jobsDao.findAll());
         model.addAttribute("images", imagesDao.findAll());
         return "home";
+    }
+
+    @GetMapping("/home")
+    public String adminHome(Model model){
+        model.addAttribute("title", "GoGreen.works We work for you!");
+        model.addAttribute("jobs", jobsDao.findAll());
+        model.addAttribute("images", imagesDao.findAll());
+        return "admin/home";
     }
 
     @GetMapping("/about-us")
