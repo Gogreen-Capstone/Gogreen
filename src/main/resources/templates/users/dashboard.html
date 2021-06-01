@@ -15,7 +15,7 @@
 <h2>Pending Jobs</h2>
     <div class="row justify-content-evenly text-center">
         <div class="card mb-3" style="max-width: 18rem;" th:if="${job.isCompleted == false}" th:each="job : ${jobs}">
-            <div class="card-header bg-transparent" th:text="${job.scheduledDate}">Date</div>
+            <div class="card-header bg-transparent" th:text="${job.stringToDate(job.scheduledDate)}">Date</div>
             <div class="card-body">
                 <h5 class="card-title" th:text="${job.jobTitle}">Job title</h5>
                 <p class="card-text" th:text="${job.jobDetails}">Job details</p>
@@ -32,7 +32,7 @@
     <h2>Completed Jobs</h2>
     <div class="row justify-content-evenly text-center">
         <div class="card mb-3" style="max-width: 18rem;" th:if="${job.isCompleted == true}" th:each="job : ${jobs}">
-            <div class="card-header bg-transparent" th:text="${job.scheduledDate}">Date</div>
+            <div class="card-header bg-transparent" th:text="${job.stringToDate(job.scheduledDate)}">Date</div>
             <div class="card-body">
                 <h5 class="card-title" th:text="${job.jobTitle}">Job title</h5>
                 <p class="card-text" th:text="${job.jobDetails}">Job details</p>
