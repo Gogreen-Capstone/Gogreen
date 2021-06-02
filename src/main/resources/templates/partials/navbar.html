@@ -5,18 +5,17 @@
 </head>
 <body>
 
-<nav th:fragment="navbar" class="navbar navbar-expand-lg  ">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
-                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="gogreen-logo" href="/">
+            <i class="fab fa-pagelines fa-sm" style="color: var(--md-green)"></i>
+            GoGreen
+        </a>&nbsp&nbsp
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
-            <a class="gogreen-logo" href="/">
-                <i class="fab fa-pagelines fa-sm" style="color: var(--md-green)"></i>
-                GoGreen
-            </a>&nbsp&nbsp
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li sec:authorize="!isAuthenticated()" class="nav-item">
                     <a class="nav-link" th:href="@{/}">Home</a>
@@ -45,18 +44,19 @@
     </div>
 </nav>
 
-<nav th:fragment="admin-navbar" class="navbar navbar-expand-lg  ">
+
+<nav th:fragment="admin-navbar" class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
+        <a class="gogreen-logo" href="/">
+            <i class="fab fa-pagelines fa-sm" style="color: var(--md-green)"></i>
+            GoGreen
+        </a>&nbsp&nbsp
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo"
                 aria-controls="navbarTogglerDemo" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo">
 
-            <a class="gogreen-logo" href="/">
-                <i class="fab fa-pagelines fa-sm" style="color: var(--md-green)"></i>
-                GoGreen
-            </a>&nbsp&nbsp
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="navbar-item">
                     <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
@@ -72,48 +72,17 @@
                 </li>
             </ul>
             <div class="d-flex ">
-                <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" type="button" th:href="@{/login}">Login</a> &nbsp
-                <a sec:authorize="!isAuthenticated()" class="btn btn-outline-success" type="button" th:href="@{/register}">Register</a>
-                <form sec:authorize="isAuthenticated()"  th:action="@{/logout}" th:method="post">
-                    <button  class="btn btn-outline-success" type="submit">Logout</button>
+                <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" type="button" th:href="@{/login}">Login</a>
+                &nbsp
+                <a sec:authorize="!isAuthenticated()" class="btn btn-outline-success" type="button"
+                   th:href="@{/register}">Register</a>
+                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
+                    <button class="btn btn-outline-success" type="submit">Logout</button>
                 </form>
             </div>
         </div>
     </div>
 </nav>
-
-<!--<nav th:fragment="admin-navbar" class="navbar navbar-expand-lg navbar-light bg-warning">-->
-<!--    <div class="container-fluid">-->
-<!--        <a class="navbar-gg-icon" th:href="@{/home}"><img src="/img/go-green-icon.png" height="70" alt="Go Green Logo"></a>-->
-<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"-->
-<!--                data-bs-target="#adminNavbarSupportedContent"-->
-<!--                aria-controls="adminNavbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
-<!--        <div class="collapse navbar-collapse" id="adminNavbarSupportedContent">-->
-<!--            <ul class="navbar-nav">-->
-<!--                <li class="navbar-item">-->
-<!--                    <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>-->
-<!--                </li>-->
-<!--                <li sec:authorize="isAuthenticated()" class="navbar-item">-->
-<!--                    <a class="nav-link" th:href="@{/admin/users}">Users</a>-->
-<!--                </li>-->
-<!--                <li sec:authorize="isAuthenticated()" class="navbar-item">-->
-<!--                    <a class="nav-link" th:href="@{/admin/jobs}">Jobs</a>-->
-<!--                </li>-->
-<!--                <li sec:authorize="isAuthenticated()" class="navbar-item">-->
-<!--                    <a class="nav-link" th:href="@{/admin/reviews}">Reviews</a>-->
-<!--                </li>-->
-<!--                <li sec:authorize="isAuthenticated()" class="nav-item ml-auto">-->
-<!--                    <form th:action="@{/logout}" th:method="post">-->
-<!--                        <button class="btn-link btn nav-link">Logout</button>-->
-<!--                    </form>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-
 
 </body>
 </html>
