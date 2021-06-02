@@ -14,18 +14,26 @@
 }
 
 body {
-    background-image: url("static/img/background-grass.jpg"); /*Image used*/
+    font-family: var(--font-family);
+    background-image: url("../img/background-grass.jpg"); /*Image used*/
+    width: 3600px;
     background-color: #cccccc; /* Used if the image is unavailable */
-    height: 500px; /* You must set a specified height */
+    height: 2400px; /* You must set a specified height */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
-    font-family: var(--font-family);
+    /*opacity: 0.5;*/
 }
 
-.background-img {
-    opacity: 0.5;
-}
+/*.background-img {*/
+/*    background-image: url("/static/img/background-grass.jpg"); !*Image used*!*/
+/*    background-color: #cccccc; !* Used if the image is unavailable *!*/
+/*    height: 500px; !* You must set a specified height *!*/
+/*    background-position: center; !* Center the image *!*/
+/*    background-repeat: no-repeat; !* Do not repeat the image *!*/
+/*    background-size: cover; !* Resize the background image to cover the entire container *!*/
+/*    opacity: 0.5;*/
+/*}*/
 
 .card-styling {
     min-height: 150px;
