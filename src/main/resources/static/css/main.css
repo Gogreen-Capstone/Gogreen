@@ -93,8 +93,52 @@ header {
     border-radius: 5px;
     opacity: 1;
 }
+.service-divider {
+    width: 60%;
+    border: 5px solid var(--md-green);
+    border-radius: 5px;
+    opacity: 1;
+    margin: auto auto 1rem;
+}
 /* ------------------------------------------------- */
 /* END OF DASHBOARD STYLING */
+
+
+/* REGISTER/LOGIN PAGE STYLE */
+/* ------------------------------------------------- */
+
+.register-card, .login-card {
+    border: 1px solid var(--md-green);
+    border-radius: 20px;
+    background: rgba( 255, 255, 255, 0.90 );
+    backdrop-filter: blur( 20.0px );
+    -webkit-backdrop-filter: blur( 20.0px );
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+    float: none;
+    margin: 2rem auto 10px;
+}
+.login-link, .register-link {
+    color: var(--md-green);
+}
+.login-link:hover, .register-link:hover {
+    color: var(--yellow-green);
+}
+.error-msg {
+    color: firebrick;
+}
+.login-div, .register-div {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+}
+.logout-msg {
+    color: var(--md-green);
+}
+
+
+/* END OF REGISTER/LOGIN PAGE STYLE */
+/* ------------------------------------------------- */
 
 
 /*#navbar {*/

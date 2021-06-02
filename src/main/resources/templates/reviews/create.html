@@ -3,36 +3,46 @@
 <head th:replace="partials/head :: head('Post Job Review')"/>
 <body>
 <div sec:authorize="isAuthenticated()">
-<nav th:replace="partials/navbar :: navbar"></nav>
+    <nav th:replace="partials/navbar :: navbar"></nav>
 
     <div class="container">
-        <header th:replace="partials/header :: header('Post Job Review')"></header>
-        <form th:action="@{'/reviews/' + ${job.id} + '/create'}" th:method="POST" th:object="${job}" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="reviewTitle">Review Title</label>
-                <input type="text" name="reviewTitle" class="form-control" id="reviewTitle" th:field="*{reviewTitle}">
+        <div class="card register-card mb-3" style="height: 100%; width: 80%;">
+            <div class="row d-flex">
+                <div class="col">
+                    <div class="card-body">
+                        <header th:replace="partials/header :: header('Post Job Review')"></header>
+                        <form th:action="@{'/reviews/' + ${job.id} + '/create'}" th:method="POST" th:object="${job}"
+                              enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="reviewTitle">Review Title</label>
+                                <input type="text" name="reviewTitle" class="form-control" id="reviewTitle"
+                                       th:field="*{reviewTitle}">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="reviewBody">Review Body</label>
+                                <textarea class="form-control" name="reviewBody" id="reviewBody" rows="3"
+                                          th:field="*{reviewBody}"></textarea>
+                            </div>
+                            <h5>Upload image of the completed job:</h5>
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="file" name="file">
+                            </div>
+                            <button type="submit" class="btn btn-primary edit-btn mt-2 mb-2">Submit</button>
+                            <a th:href="@{/dashboard}" class="btn btn-secondary">Cancel</a>
+                            <input th:field="*{isCompleted}" name="isCompleted" hidden>
+                            <input th:field="*{jobDetails}" name="jobDetails" hidden>
+                            <input th:field="*{jobTitle}" name="jobTitle" hidden>
+                            <input th:field="*{scheduledDate}" name="scheduledDate" hidden>
+                            <input th:field="*{scheduledTime}" name="scheduledTime" hidden>
+                            <input th:field="*{user}" name="user" hidden>
+                            <input type="hidden" th:field="*{location}">
+                            <input th:field="*{jobServices}" name="jobServices" hidden>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group mb-2">
-                <label for="reviewBody">Review Body</label>
-                <textarea class="form-control" name="reviewBody" id="reviewBody" rows="3" th:field="*{reviewBody}"></textarea>
-            </div>
-            <h5>Upload image of the completed job:</h5>
-            <div class="form-group">
-                <input type="file" class="form-control-file" id="file" name="file">
-            </div>
-            <button type="submit" class="btn btn-primary edit-btn mt-2 mb-2">Submit</button>
-            <a th:href="@{/dashboard}" class="btn btn-secondary">Cancel</a>
-            <input th:field="*{isCompleted}" name="isCompleted" hidden>
-            <input th:field="*{jobDetails}" name="jobDetails" hidden>
-            <input th:field="*{jobTitle}" name="jobTitle" hidden>
-            <input th:field="*{scheduledDate}" name="scheduledDate" hidden>
-            <input th:field="*{scheduledTime}" name="scheduledTime" hidden>
-            <input th:field="*{user}" name="user" hidden>
-            <input type="hidden" th:field="*{location}">
-            <input th:field="*{jobServices}" name="jobServices" hidden>
-        </form>
+        </div>
     </div>
-
 </div>
 <footer th:replace="partials/footer :: footer"></footer>
 <th:block th:replace="partials/scripts :: scripts"/>
