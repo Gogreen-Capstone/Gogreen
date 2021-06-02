@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head th:replace="partials/head :: head('Edit User Information')"></head>
+<head th:replace="partials/head :: head('Edit Personal Information')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div sec:authorize="isAuthenticated()">
     <!--Edit Form where user can edit their information--> <!--To access user have used th:object${user}-->
     <!--and we are using th:if's to show error messages if those entities are not unique-->
-    <div class="container-fluid">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
         <h2>Edit personal information</h2>
         <form th:action="@{/edit-user}" th:method="POST" th:object="${user}">
             <div class="form-group">
@@ -35,8 +36,10 @@
                 <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}"
                        th:errors="*{password}"></small>
             </div>
-            <button type="submit" class="btn btn-primary mt-2">Edit</button>
+            <button type="submit" class="btn btn-primary mt-2 mb-2 edit-btn">Save</button>
+            <a th:href="@{/dashboard}" class="btn btn-secondary">Cancel</a>
         </form>
+    </div>
     </div>
 </div>
 <footer th:replace="partials/footer :: footer"></footer>
