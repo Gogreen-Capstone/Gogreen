@@ -3,32 +3,48 @@
 <head th:replace="partials/head :: head('Register')"/>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<main class="container mb-1">
-    <form th:action="@{/register}" method="POST" th:object="${user}">
-        <h1>Register</h1>
-        <h6>Already registered?</h6>
-        <br>
-        <a th:href="@{/login}">Login</a>
-        <div class="mb-3">
-            <input type="text" class="form-control" id="username" name="username" th:field="*{username}" placeholder="Username">
-            <p class="error-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
-            <small class="error-msg form-text text-muted" th:if="${username != null}" th:text="'Username already exists'"></small>
-        </div>
-        <div class="mb-3">
-            <input type="email" class="form-control" id="email" name="email" th:field="*{email}" placeholder="Email">
-            <p class="error-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-            <small class="error-msg form-text text-muted" th:if="${email != null}" th:text="'Email already exists'"></small>
-        </div>
-        <div class="mb-3">
-            <input type="password" class="form-control" id="password" name="password" th:field="*{password}" placeholder="Password">
-            <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
-        </div>
-        <div class="mb-3">
-            <input type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirm Password">
+<main class="container mb-1 pb-5">
+    <div class="card register-card mb-3" style="height: 100%; width: 80%;">
+        <div class="row d-flex">
+            <div class="col">
+                <div class="card-body">
+                    <h1 class="text-center"><strong>Register</strong></h1>
 
+                    <h6 class="text-center">Already a member?<br><a class="login-link" th:href="@{/login}">Login</a></h6>
+
+                    <form class="container p-1" th:action="@{/register}" method="POST" th:object="${user}">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="username" name="username" th:field="*{username}"
+                                   placeholder="Username">
+                            <p class="error-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+                            <p class="error-msg" th:if="${username != null}"
+                                   th:text="'Username already exists'"></p>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="email" name="email" th:field="*{email}"
+                                   placeholder="Email">
+                            <p class="error-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                            <p class="error-msg" th:if="${email != null}"
+                                   th:text="'Email already exists'"></p>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="password" name="password"
+                                   th:field="*{password}" placeholder="Password">
+                            <p class="error-msg" th:if="${#fields.hasErrors('password')}"
+                                   th:errors="*{password}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="confirm" name="confirm"
+                                   placeholder="Confirm Password">
+                        </div>
+                        <div class="row col-sm-12 register-div">
+                        <button type="submit" class="btn btn-primary edit-btn">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Register</button>
-    </form>
+    </div>
 </main>
 <footer th:replace="partials/footer :: footer"></footer>
 <script th:replace="partials/scripts :: scripts"></script>
