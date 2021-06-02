@@ -13,16 +13,13 @@
                 <p class="card-text"><strong>Details:</strong> <span th:text="${user.username}"></span></p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Username</strong><span th:text="${user.username}"></span></li>
-                <li class="list-group-item"><strong>Email</strong><span th:text="${user.email}"></span></li>
-                <li class="list-group-item"><strong>Administrator Status </strong><span th:text="${user.isAdmin}"></span></li>
+                <li class="list-group-item"><strong>Username: </strong><span th:text="${user.username}"></span></li>
+                <li class="list-group-item"><strong>Email: </strong><span th:text="${user.email}"></span></li>
+                <li class="list-group-item"><strong>Administrator Status: </strong><span th:text="${user.isAdmin}"></span></li>
             </ul>
             <div class="card-body">
                 <a th:href="@{admin/users/index}" class="btn btn-secondary">Back</a>
                 <a th:href="@{'/users/edit/' + ${user.id}}" class="btn btn-success">Edit User</a>
-                <form th:action="@{'/users/delete/' + ${user.id}}" th:method="POST">
-                    <button type="submit" class="btn btn-danger mt-1">Delete User</button>
-                </form>
             </div>
         </div>
     </div>

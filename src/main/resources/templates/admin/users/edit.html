@@ -36,8 +36,7 @@
                        th:errors="*{password}"></small>
             </div>
             <button type="submit" class="btn btn-success">Save Updated Information</button>
-            <button type="submit" class="btn btn-danger">Delete this User</button>
-            <a type="submit" class="btn btn-secondary" th:href="@{'admin/users/show/' + ${user.id}}">Cancel</a>
+            <a type="submit" class="btn btn-secondary" th:href="@{'/admin/users/show/' + ${user.id}}">Cancel</a>
         </form>
     </div>
 </div>
