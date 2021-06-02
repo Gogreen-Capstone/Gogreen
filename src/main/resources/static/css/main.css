@@ -31,6 +31,119 @@ header {
     /*background-color: var(--md-green);*/
 }
 
+/* DASHBOARD STYLES */
+/* ------------------------------------------------- */
+#pending-job-card, #completed-job-card{
+    max-width: 320px;
+    background: rgba( 255, 255, 255, 0.90 );
+    backdrop-filter: blur( 20.0px );
+    -webkit-backdrop-filter: blur( 20.0px );
+    border-radius: 20px;
+    border: 1px solid var(--md-green);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+    /*Mobile Responsive Centering of the cards in the card deck*/
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+#show-job-card {
+    max-width: 55vh;
+    background: rgba( 255, 255, 255, 0.90 );
+    backdrop-filter: blur( 20.0px );
+    -webkit-backdrop-filter: blur( 20.0px );
+    border-radius: 20px;
+    border: 1px solid var(--md-green);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+    /*Mobile Responsive Centering of the cards in the card deck*/
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+.card-img-top {
+    border-radius: 20px;
+}
+#pending-job-header, #completed-job-header {
+    text-decoration: underline;
+    color: var(--md-green);
+}
+#job-request-btn {
+    background-color: var(--md-green);
+    border: none;
+}
+#job-request-btn:hover {
+    background-color: var(--yellow-green);
+}
+.view-btn {
+    background-color: var(--yellow-green);
+    border: none;
+}
+.view-btn:hover {
+    background-color: var(--md-green);
+}
+.edit-btn {
+    background-color: var(--md-green);
+    border: none;
+}
+.edit-btn:hover {
+    background-color: var(--yellow-green);
+}
+.delete-form {
+    display: inline-block;
+}
+#job-divider {
+    border: 5px solid var(--md-green);
+    border-radius: 5px;
+    opacity: 1;
+}
+.service-divider {
+    width: 60%;
+    border: 5px solid var(--md-green);
+    border-radius: 5px;
+    opacity: 1;
+    margin: auto auto 1rem;
+}
+/* ------------------------------------------------- */
+/* END OF DASHBOARD STYLING */
+
+
+/* REGISTER/LOGIN PAGE STYLE */
+/* ------------------------------------------------- */
+
+.register-card, .login-card {
+    border: 1px solid var(--md-green);
+    border-radius: 20px;
+    background: rgba( 255, 255, 255, 0.90 );
+    backdrop-filter: blur( 20.0px );
+    -webkit-backdrop-filter: blur( 20.0px );
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+    float: none;
+    margin: 2rem auto 10px;
+}
+.login-link, .register-link {
+    color: var(--md-green);
+}
+.login-link:hover, .register-link:hover {
+    color: var(--yellow-green);
+}
+.error-msg {
+    color: firebrick;
+}
+.login-div, .register-div {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+}
+.logout-msg {
+    color: var(--md-green);
+}
+
+
+/* END OF REGISTER/LOGIN PAGE STYLE */
+/* ------------------------------------------------- */
+
 
 .gogreen-logo {
     text-decoration: none;
