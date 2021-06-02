@@ -13,10 +13,18 @@
     --yellow-green: #D2D911;
 }
 
-
 body {
-    /*background-color: lightblue;*/
+    background-image: url("static/img/background-grass.jpg"); /*Image used*/
+    background-color: #cccccc; /* Used if the image is unavailable */
+    height: 500px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
     font-family: var(--font-family);
+}
+
+.background-img {
+    opacity: 0.5;
 }
 
 .card-styling {
