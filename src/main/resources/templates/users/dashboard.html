@@ -71,33 +71,6 @@
         </div>
     </div>
 
-    <!--        <div class="row justify-content-evenly">-->
-    <!--        <div class="card mb-2 mt-2 d-flex col-4 " style="width: 18rem;"  th:each="job : ${jobs}">-->
-    <!--            <h5 th:text="${job.id}" hidden></h5>-->
-    <!--            <div class="card-body ">-->
-    <!--                <p class="card-title"><strong>Job Title:</strong> <span name="jobTitle" th:text="${job.jobTitle}"></span>-->
-    <!--                </p>-->
-    <!--                <p class="card-text" name="jobDetails" th:text="${job.jobDetails}"></p>-->
-    <!--                <hr>-->
-    <!--                <p class="card-text"><strong>Scheduled Date:</strong> <span name="scheduledDate" th:text="${job.scheduledDate}"></span></p>-->
-    <!--                <p class="card-text"><strong>Scheduled Time:</strong> <span name="scheduledTime" th:text="${job.scheduledTime}"></span></p>-->
-    <!--                <a th:href="'/jobs/show/' + ${job.id}" class="btn btn-warning">View Job</a>-->
-    <!--                <hr th:if="${job.reviewTitle != null}">-->
-    <!--                <p class="card-title" th:if="${job.reviewTitle != null}"><strong>Review Title: </strong><span name="reviewTitle" th:text="${job.reviewTitle}"></span></p>-->
-    <!--                <p class="card-text" name="reviewBody" th:if="${job.reviewBody != null}" th:text="${job.reviewBody}"></p>-->
-    <!--                <a th:if="${job.isCompleted == true and job.reviewTitle == null}" th:href="'/reviews/' + ${job.id} + '/create'" class="btn btn-success" type="button">Create Review</a>-->
-    <!--                <a th:if="${job.reviewTitle != null}" th:href="'/reviews/' + ${job.id} + '/edit'" class="btn btn-primary" type="button">Edit Review</a>-->
-    <!--                <div th:if="${job.reviewTitle != null}">-->
-    <!--                    <form class="mt-2" th:action="'/reviews/' + ${job.id} + '/delete'" th:method="POST">-->
-    <!--                        <p class="card-title"  name="reviewTitle" th:text="${job.reviewTitle}" hidden></p>-->
-    <!--                        <p class="card-title"  name="reviewBody" th:text="${job.reviewBody}" hidden></p>-->
-    <!--                        <h5 th:text="${job.isCompleted}" name="isCompleted" hidden></h5>-->
-    <!--                        <button type="submit" class="btn btn-danger">Delete</button>-->
-    <!--                    </form>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--        </div>-->
 </main>
 
 <footer th:replace="partials/footer :: footer"></footer>
