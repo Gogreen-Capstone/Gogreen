@@ -1,5 +1,10 @@
-/*VARIABLES*/
-/*------------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* INDIVIDUAL STYLING ITEMS WHICH CAN BE USED THROUGHOUT */
+/*-------------------------------------------------------*/
 
 :root{
     --font-family: 'Karla', sans-serif;
@@ -32,11 +37,30 @@ html {
 
 body {
     font-family: var(--font-family);
+    padding-bottom: 20px;
+}
+
+/*.bg-color{*/
+/*    background-color: slategrey; !* Used if the image is unavailable *!*/
+/*}*/
+
+.background-img {
+    background-image: url("../img/background-img-grey.jpeg"); /*Image used*/
+    background-color: slategrey; /* Used if the image is unavailable */
+    height: 500px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.hero-img {
+    background-image: url("../img/hero-img.jpg"); /*Image used*/
     height: 100%;
     margin: 0;
     scroll-behavior: smooth;
     background-repeat: no-repeat;
     background-attachment: fixed;
+
 }
 
 .card-styling {
@@ -47,8 +71,19 @@ header {
     /*background-color: var(--md-green);*/
 }
 
+.zero-space-container {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-size: 0;
+    width: 100%;
+}
+
+/* END OF INDIVIDUAL STYLING VARIABLES */
+/*-------------------------------------------------------*/
+
 /* DASHBOARD STYLES */
-/* ------------------------------------------------- */
+/*-------------------------------------------------------*/
 #pending-job-card, #completed-job-card{
     max-width: 320px;
     background: rgba( 255, 255, 255, 0.90 );
@@ -109,12 +144,12 @@ header {
     opacity: 1;
     margin: auto auto 1rem;
 }
-/* ------------------------------------------------- */
+/*------------------------------------------------------*/
 /* END OF DASHBOARD STYLING */
 
 
 /* REGISTER/LOGIN PAGE STYLE */
-/* ------------------------------------------------- */
+/*------------------------------------------------------*/
 
 .register-card, .login-card {
     border: 1px solid var(--md-green);
@@ -147,7 +182,7 @@ header {
 
 
 /* END OF REGISTER/LOGIN PAGE STYLE */
-/* ------------------------------------------------- */
+/*---------------------------------------------------*/
 
 
 .gogreen-logo {
@@ -162,7 +197,7 @@ header {
 }
 
 li > a.nav-link {
-color: black
+    color: black
 }
 
 li > a.nav-link:hover {
@@ -177,16 +212,12 @@ li > a.nav-link:hover {
     color: black;
 }
 
-
-jumbotron {
-
-}
-
 .nav-container {
 
 }
 
 /* ABOUT US PAGE */
+/*--------------------------------------------------------*/
 .about-us-img {
     margin-top: 20px;
     border-radius: 50%;
@@ -202,7 +233,6 @@ jumbotron {
 
 .about-us-card {
     max-width: 320px;
-
     background: rgba( 255, 255, 255, 0.90 );
     backdrop-filter: blur( 20.0px );
     -webkit-backdrop-filter: blur( 20.0px );
@@ -229,11 +259,35 @@ jumbotron {
     border: none;
 }
 
+.reviews-card-wrap {
+    padding-bottom: 60px;
+}
+
 /* FOOTER STYLING */
-/*------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------*/
+.footer-content-wrap {
+    padding-top: 20px;    /* Footer height */
+}
+
 .footer-style {
-    width: 100vw;
-    background: #ffc107;
+    display: block;
+    background-size: auto;
+    box-sizing: content-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 50px;   /* Footer height */
+    min-height: content-box;
+    /*background: #ffc107;*/
+    background: white;
+    bottom: 0;
+    position: fixed;
+}
+
+.footer-container {
+
+    background-size: contain;
+    background-position: center;
 }
 
 .footer-link a {
@@ -250,17 +304,18 @@ jumbotron {
 .footer-label {
     text-align: center;
     align-content: center;
-    height: 2rem;
+    height: 2em;
 }
 
 .text-center{
     padding: 10px;
 }
 
-.img-container {
-    text-align: center;
-}
+/* END OF FOOTER STYLING */
+/*-------------------------------------------------------*/
+
 /*MEDIA QUERIES*/
+/*-------------------------------------------------------*/
 
 /* Breakpoints
    Breakpoints are what we refer to as major resolution changes, which you specify with media queries,
