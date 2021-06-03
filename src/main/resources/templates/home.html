@@ -21,31 +21,28 @@
     </div>
 </div>
 
+<header th:replace="partials/header :: header('How It Works')"></header>
 
-<div class="background-img zero-space-container">
-    <div class="how-it-works">
-    <header th:replace="partials/header :: header('How It Works')"></header>
-        <div class="mb-1 d-flex justify-content-evenly">
-            <div class="text-center ">
-                <img src="/img/step-1.jpg"
-                    alt="Sign-up" style="height: 200px; width: auto">
-                <h4><span class="badge bg-secondary" style="border-radius: 50%">1</span> Sign up as a member</h4>
-                <p>Sign up as a member to be able to create job request.</p>
-            </div>
-            <div class="text-center">
-                <img src="/img/step-2.jpg"
-                    alt="Job-request" style="height: 200px; width: auto">
-                <h4><span class="badge bg-secondary" style="border-radius: 50%">2</span> Send a Job request</h4>
-                <p>Tell us what you need done, when and where it works for you.</p>
-            </div>
-            <div class="text-center">
-                <img src="/img/step-3.jpg"
-                    alt="get-it-done" style="height: 200px; width: auto">
-                <h4><span class="badge bg-secondary" style="border-radius: 50%">3</span> GoGreen gets it done!</h4>
-                <p>GoGreen employee arrives and gets the job done.</p>
-            </div>
-        </div>
-
+<div class="mb-1 d-flex justify-content-evenly row">
+    <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
+        <img src="/img/step-1.jpg"
+             alt="Sign-up" style="height: 200px; width: auto">
+        <h4><span class="badge bg-secondary" style="border-radius: 50%">1</span> Sign up as a member</h4>
+        <p>Sign up as a member to be able to create job request.</p>
+    </div>
+    <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
+        <img src="/img/step-2.jpg"
+             alt="Job-request" style="height: 200px; width: auto">
+        <h4><span class="badge bg-secondary" style="border-radius: 50%">2</span> Send a Job request</h4>
+        <p>Tell us what you need done, when and where it works for you.</p>
+    </div>
+    <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
+        <img src="/img/step-3.jpg"
+             alt="get-it-done" style="height: 200px; width: auto">
+        <h4><span class="badge bg-secondary" style="border-radius: 50%">3</span> GoGreen gets it done!</h4>
+        <p>GoGreen employee arrives and gets the job done.</p>
+    </div>
+</div>
 
     <div class="zero-space-container">
         <header th:replace="partials/header :: header('Customer Reviews')"></header>
