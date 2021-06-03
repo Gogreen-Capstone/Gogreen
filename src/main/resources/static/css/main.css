@@ -4,14 +4,6 @@
 :root{
     --font-family: 'Karla', sans-serif;
 
-    /*BACKGROUND IMAGE*/
-    --background-image: url("../img/background-grass.jpg"); /*Image used*/
-    --width: 3600px;
-    --height: 2400px; /* You must set a specified height */
-    --background-color: #cccccc; /* Used if the image is unavailable */
-    --background-position: center; /* Center the image */
-    --background-repeat: no-repeat; /* Do not repeat the image */
-    --background-size: cover; /* Resize the background image to cover the entire container */
 
     /*APP COLORS*/
     --dark-green: #1B4001;
@@ -21,19 +13,15 @@
     --yellow-green: #D2D911;
 }
 
-body {
-    font-family: var(--font-family);
+#customer-review-home {
+    border-radius: 20px;
 }
 
-/*.background-img {*/
-/*    background-image: url("/static/img/background-grass.jpg"); !*Image used*!*/
-/*    background-color: #cccccc; !* Used if the image is unavailable *!*/
-/*    height: 500px; !* You must set a specified height *!*/
-/*    background-position: center; !* Center the image *!*/
-/*    background-repeat: no-repeat; !* Do not repeat the image *!*/
-/*    background-size: cover; !* Resize the background image to cover the entire container *!*/
-/*    opacity: 0.5;*/
-/*}*/
+
+body {
+    /*background-color: lightblue;*/
+    font-family: var(--font-family);
+}
 
 .card-styling {
     min-height: 150px;
@@ -109,28 +97,75 @@ header {
     border-radius: 5px;
     opacity: 1;
 }
+.service-divider {
+    width: 60%;
+    border: 5px solid var(--md-green);
+    border-radius: 5px;
+    opacity: 1;
+    margin: auto auto 1rem;
+}
 /* ------------------------------------------------- */
 /* END OF DASHBOARD STYLING */
 
 
-/*#navbar {*/
-/*    display: flex;*/
-/*    justify-content: space-evenly;*/
-/*    align-items: stretch;*/
-/*    text-align: center;*/
-/*}*/
+/* REGISTER/LOGIN PAGE STYLE */
+/* ------------------------------------------------- */
+
+.register-card, .login-card {
+    border: 1px solid var(--md-green);
+    border-radius: 20px;
+    background: rgba( 255, 255, 255, 0.90 );
+    backdrop-filter: blur( 20.0px );
+    -webkit-backdrop-filter: blur( 20.0px );
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+    float: none;
+    margin: 2rem auto 10px;
+}
+.login-link, .register-link {
+    color: var(--md-green);
+}
+.login-link:hover, .register-link:hover {
+    color: var(--yellow-green);
+}
+.error-msg {
+    color: firebrick;
+}
+.login-div, .register-div {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+}
+.logout-msg {
+    color: var(--md-green);
+}
 
 
-/*.navbar-logo-font {*/
-/*    font-family: 'Satisfy', cursive;*/
-/*    color: #3d3e40;*/
-/*    font-size: 2rem;*/
-/*}*/
+/* END OF REGISTER/LOGIN PAGE STYLE */
+/* ------------------------------------------------- */
 
 
-/*.navbar-logo-font:hover {*/
-/*   color: #D2D911;*/
-/*}*/
+.gogreen-logo {
+    text-decoration: none;
+    font-family: 'Satisfy', cursive;
+    color: #1B4001;
+    font-size: xx-large;
+}
+
+.gogreen-logo:hover {
+    color: var(--green);
+}
+
+
+
+li > a.nav-link {
+    color: black
+}
+
+
+li > a.nav-link:hover {
+    color: var(--green);
+}
 
 
 jumbotron {

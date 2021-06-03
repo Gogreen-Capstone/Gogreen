@@ -7,40 +7,49 @@
     <!--Edit Form where user can edit their information--> <!--To access user have used th:object${user}-->
     <!--and we are using th:if's to show error messages if those entities are not unique-->
     <div class="container">
-        <div class="row d-flex justify-content-center">
-        <h2>Edit personal information</h2>
-        <form th:action="@{/edit-user}" th:method="POST" th:object="${user}">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input id="username" class="form-control" name="username" th:field="*{username}">
-                <p class="error-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
-                <small class="error-msg form-text text-muted" th:if="${username != null}"
-                       th:text="'Username already exists'"></small>
+        <div class="card register-card mb-3" style="height: 100%; width: 80%;">
+            <div class="row d-flex">
+                <div class="col">
+                    <div class="card-body">
+                        <header th:replace="partials/header :: header('Edit Personal Information')"></header>
+                        <form th:action="@{/edit-user}" th:method="POST" th:object="${user}">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input id="username" class="form-control" name="username" th:field="*{username}">
+                                <p class="error-msg" th:if="${#fields.hasErrors('username')}"
+                                   th:errors="*{username}"></p>
+                                <small class="error-msg form-text text-muted" th:if="${username != null}"
+                                       th:text="'Username already exists'"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" class="form-control" name="email" th:field="*{email}">
+                                <p class="error-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                                <small class="error-msg form-text text-muted" th:if="${email != null}"
+                                       th:text="'Email already exists'"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input id="password" class="form-control" type="password" name="password"
+                                       th:field="*{password}">
+                                <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}"
+                                       th:errors="*{password}"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm">Confirm Password</label>
+                                <input class="form-control" id="confirm" name="confirm" type="password">
+                                <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}"
+                                       th:errors="*{password}"></small>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2 mb-2 edit-btn">Save</button>
+                            <a th:href="@{/dashboard}" class="btn btn-secondary">Cancel</a>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input id="email" class="form-control" name="email" th:field="*{email}">
-                <p class="error-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-                <small class="error-msg form-text text-muted" th:if="${email != null}"
-                       th:text="'Email already exists'"></small>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password" class="form-control" type="password" name="password" th:field="*{password}">
-                <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}"
-                       th:errors="*{password}"></small>
-            </div>
-            <div class="form-group">
-                <label for="confirm">Confirm Password</label>
-                <input class="form-control" id="confirm" name="confirm" type="password">
-                <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}"
-                       th:errors="*{password}"></small>
-            </div>
-            <button type="submit" class="btn btn-primary mt-2 mb-2 edit-btn">Save</button>
-            <a th:href="@{/dashboard}" class="btn btn-secondary">Cancel</a>
-        </form>
+        </div>
     </div>
-    </div>
+</div>
 </div>
 <footer th:replace="partials/footer :: footer"></footer>
 <th:block th:replace="partials/scripts :: scripts"/>
