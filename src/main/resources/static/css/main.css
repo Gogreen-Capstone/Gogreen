@@ -1,5 +1,10 @@
-/*VARIABLES*/
-/*------------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* INDIVIDUAL STYLING ITEMS WHICH CAN BE USED THROUGHOUT */
+/*-------------------------------------------------------*/
 
 :root{
     --font-family: 'Karla', sans-serif;
@@ -17,10 +22,26 @@
     border-radius: 20px;
 }
 
-
 body {
     /*background-color: lightblue;*/
     font-family: var(--font-family);
+}
+
+/*.bg-color{*/
+/*    background-color: slategrey; !* Used if the image is unavailable *!*/
+/*}*/
+
+.background-img {
+    background-image: url("../img/background-img-grey.jpeg"); /*Image used*/
+    background-color: slategrey; /* Used if the image is unavailable */
+    height: 500px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.hero-img {
+    background-image: url("../img/hero-img.jpg"); /*Image used*/
 }
 
 .card-styling {
@@ -31,8 +52,19 @@ header {
     /*background-color: var(--md-green);*/
 }
 
+.zero-space-container {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-size: 0;
+    width: 100%;
+}
+
+/* END OF INDIVIDUAL STYLING VARIABLES */
+/*-------------------------------------------------------*/
+
 /* DASHBOARD STYLES */
-/* ------------------------------------------------- */
+/*-------------------------------------------------------*/
 #pending-job-card, #completed-job-card{
     max-width: 320px;
     background: rgba( 255, 255, 255, 0.90 );
@@ -104,12 +136,12 @@ header {
     opacity: 1;
     margin: auto auto 1rem;
 }
-/* ------------------------------------------------- */
+/*------------------------------------------------------*/
 /* END OF DASHBOARD STYLING */
 
 
 /* REGISTER/LOGIN PAGE STYLE */
-/* ------------------------------------------------- */
+/*------------------------------------------------------*/
 
 .register-card, .login-card {
     border: 1px solid var(--md-green);
@@ -142,7 +174,7 @@ header {
 
 
 /* END OF REGISTER/LOGIN PAGE STYLE */
-/* ------------------------------------------------- */
+/*---------------------------------------------------*/
 
 
 .gogreen-logo {
@@ -156,20 +188,12 @@ header {
     color: var(--green);
 }
 
-
-
 li > a.nav-link {
     color: black
 }
 
-
 li > a.nav-link:hover {
     color: var(--green);
-}
-
-
-jumbotron {
-
 }
 
 .nav-container {
@@ -177,6 +201,7 @@ jumbotron {
 }
 
 /* ABOUT US PAGE */
+/*--------------------------------------------------------*/
 .about-us-img {
     margin-top: 20px;
     border-radius: 50%;
@@ -192,7 +217,6 @@ jumbotron {
 
 .about-us-card {
     max-width: 320px;
-
     background: rgba( 255, 255, 255, 0.90 );
     backdrop-filter: blur( 20.0px );
     -webkit-backdrop-filter: blur( 20.0px );
@@ -220,10 +244,18 @@ jumbotron {
 }
 
 /* FOOTER STYLING */
-/*------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------*/
 .footer-style {
-    width: 100vw;
+    width: 100%;
+    height: 100%;
+    min-height: content-box;
     background: #ffc107;
+    position: sticky;
+}
+
+.footer-container {
+    background-size: contain;
+    background-position: center;
 }
 
 .footer-link a {
@@ -247,10 +279,11 @@ jumbotron {
     padding: 10px;
 }
 
-.img-container {
-    text-align: center;
-}
+/* END OF FOOTER STYLING */
+/*-------------------------------------------------------*/
+
 /*MEDIA QUERIES*/
+/*-------------------------------------------------------*/
 
 /* Breakpoints
    Breakpoints are what we refer to as major resolution changes, which you specify with media queries,
@@ -271,3 +304,47 @@ jumbotron {
 
 /* Extra large devices (large desktops, 1200px and up) */
 /* @media screen and (min-width:1200px) { /* ... */
+
+/*@media screen and (min-width:375px) {*/
+/*    ***VARIABLE {*/
+/*        width: 350px;*/
+/*        height: 550px;*/
+/*    }*/
+/*}*/
+
+/*!* iphone X , XS, 11 Pro, 12 Mini *!*/
+/*@media only screen*/
+/*and (min-width : 375px)*/
+/*and (min-height : 812px)*/
+/*and (-webkit-device-pixel-ratio : 3) {*/
+/*    ***VARIABLE {*/
+/*        width: 350px;*/
+/*        height: 500px;*/
+/*    }*/
+/*}*/
+
+/*!* iphone 12, 12 Pro *!*/
+/*@media only screen*/
+/*and (min-width: 390px)*/
+/*and (min-height: 844px)*/
+/*and (-webkit-device-pixel-ratio: 3) {*/
+/*    ***VARIABLE {*/
+/*        width: 90%;*/
+/*        max-width: 380px;*/
+/*        min-width: 350px;*/
+/*        height: 600px;*/
+/*    }*/
+/*}*/
+
+/*@media screen and (min-width:411px) {*/
+/*    ***VARIABLE {*/
+/*        width: 90%;*/
+/*        height: 500px;*/
+/*    }*/
+/*}*/
+
+/*@media screen and (min-width:1200px) {*/
+/*    ***VARIABLE {*/
+/*        width: 1000px;*/
+/*    }*/
+/*}*/
