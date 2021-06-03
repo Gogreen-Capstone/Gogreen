@@ -1,84 +1,100 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head('Admin Edit Job View')"/>
+<head th:replace="partials/head :: head('Edit User Job')"/>
 <body>
 <nav th:replace="partials/navbar :: admin-navbar"/>
 <main class="container mb-1">
-    <form th:action="@{'/admin/jobs/edit/' + ${job.id}}" th:method="POST" th:object="${job}" enctype="multipart/form-data">
-        <h4>Edit Job:</h4>
-        <div class="form-group">
-            <label for="jobTitle">Job Title</label>
-            <input type="text" id="jobTitle" class="form-control" placeholder="" th:field="*{jobTitle}" required>
-        </div>
-        <hr>
-        <h5>Update your image:</h5>
-        <div class="form-group" th:if="${images.isEmpty()}">
-            <input type="file" class="form-control-file" id="file" name="file">
-        </div>
-        <div class="form-group" th:each="image : ${images}">
-            <input type="file" class="form-control-file" id="file" name="file">
-        </div>
-        <hr>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="scheduledTime">Time:</label>
-                <select id="scheduledTime" class="form-select" th:field="*{scheduledTime}" required>
-                    <option value="0" disabled>- none selected -</option>
-                    <option value="1">Morning(8am - 12pm)</option>
-                    <option value="2">Afternoon(1pm - 5pm)</option>
-                </select>
+    <div class="card register-card mb-3" style="height: 100%; width: 80%;">
+        <div class="row d-flex">
+            <div class="col">
+                <div class="card-body">
+                    <header th:replace="partials/header :: header('Edit User Job')"></header>
+                    <form th:action="@{'/admin/jobs/edit/' + ${job.id}}" th:method="POST" th:object="${job}"
+                          enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="jobTitle">Job Title</label>
+                            <input type="text" id="jobTitle" class="form-control" placeholder="" th:field="*{jobTitle}"
+                                   required>
+                        </div>
+                        <hr>
+                        <h5>Update your image:</h5>
+                        <div class="form-group" th:if="${images.isEmpty()}">
+                            <input type="file" class="form-control-file" id="file" name="file">
+                        </div>
+                        <div class="form-group" th:each="image : ${images}">
+                            <input type="file" class="form-control-file" id="file" name="file">
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="scheduledTime">Time:</label>
+                                <select id="scheduledTime" class="form-select" th:field="*{scheduledTime}" required>
+                                    <option value="0" disabled>- none selected -</option>
+                                    <option value="1">Morning(8am - 12pm)</option>
+                                    <option value="2">Afternoon(1pm - 5pm)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="scheduledDate">Job Date:</label>
+                                <input type="date" class="form-control" id="scheduledDate" th:field="*{scheduledDate}"
+                                       required>
+                            </div>
+                        </div>
+                        <hr>
+                        <h5>Service Type:</h5>
+                        <small></small>
+                        <div class="form-group">
+                            <select multiple class="form-control" name="services" required>
+                                <option th:each="service : ${services}" th:value="${service.id}"
+                                        th:text="${service.title}"></option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="jobDetails">Job Details:</label>
+                            <textarea id="jobDetails" class="form-control" rows="3" th:field="*{jobDetails}"
+                                      placeholder="e.g. mow front yard; tree to trim located in backyard;"
+                                      required></textarea>
+                        </div>
+                        <hr>
+                        <h5>Location:</h5>
+                        <div>
+                            <input type="hidden" th:value="${job.location.id}" name="locationId">
+                            <label for="houseNumber">House number</label>
+                            <input type="text" class="form-control" id="houseNumber" name="houseNumber"
+                                   placeholder="1234" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="street">Street name</label>
+                            <input type="text" class="form-control" id="street" name="street" placeholder="Main St"
+                                   required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio"
+                                   required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="state">State</label>
+                            <input type="text" id="state" class="form-control" name="state" maxlength="2"
+                                   placeholder="TX" required>
+                        </div>
+                        <div class="form-group col-md-2 mb-1">
+                            <label for="zip">Zip</label>
+                            <input type="text" class="form-control" id="zip" name="zip" placeholder="78250" required>
+                        </div>
+                        <input type="hidden" name="user" th:field="*{user}" hidden>
+                        <button type="submit" class="btn btn-success edit-btn">Save</button>
+                        <a type="submit" class="btn btn-secondary"
+                           th:href="@{/admin/jobs}">Cancel</a>
+                    </form>
+                </div>
             </div>
         </div>
-        <hr>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="scheduledDate">Job Date:</label>
-                <input type="date" class="form-control" id="scheduledDate" th:field="*{scheduledDate}" required>
-            </div>
-        </div>
-        <hr>
-        <h5>Service Type:</h5>
-        <small></small>
-        <div class="form-group">
-            <select multiple class="form-control" name="services" required>
-                <option th:each="service : ${services}" th:value="${service.id}" th:text="${service.title}"></option>
-            </select>
-        </div>
-        <hr>
-        <div class="form-group">
-            <label for="jobDetails">Job Details:</label>
-            <textarea id="jobDetails" class="form-control" rows="3" th:field="*{jobDetails}"
-                      placeholder="e.g. mow front yard; tree to trim located in backyard;" required></textarea>
-        </div>
-        <hr>
-        <h5>Location:</h5>
-        <div>
-            <input type="hidden" th:value="${job.location.id}" name="locationId">
-            <label for="houseNumber">House number</label>
-            <input type="text" class="form-control" id="houseNumber" name="houseNumber"
-                   placeholder="1234" required>
-        </div>
-        <div class="form-group">
-            <label for="street">Street name</label>
-            <input type="text" class="form-control" id="street" name="street" placeholder="Main St" required>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="city">City</label>
-            <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio" required>
-        </div>
-        <div class="form-group col-md-4">
-            <label for="state">State</label>
-            <input type="text" id="state" class="form-control" name="state" maxlength="2"
-                   placeholder="TX" required>
-        </div>
-        <div class="form-group col-md-2 mb-1">
-            <label for="zip">Zip</label>
-            <input type="text" class="form-control" id="zip" name="zip" placeholder="78250" required>
-        </div>
-        <input type="hidden" name="user" th:field="*{user}" hidden>
-        <button type="submit" class="btn btn-success">Save</button>
-        <a type="submit" class="btn btn-secondary" th:href="@{'/admin/jobs/show/' + ${job.id}}">Cancel</a>
-    </form>
+    </div>
 </main>
 <footer th:replace="partials/footer :: footer"></footer>
 <th:block th:replace="partials/scripts :: scripts"/>

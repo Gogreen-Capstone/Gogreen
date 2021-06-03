@@ -7,7 +7,7 @@
 
 <main class="container mb-1">
     <div class="row d-flex justify-content-center">
-        <div class="card" style="width: 100vh; padding: 0">
+        <div class="card" id="show-job-card" style="width: 100vh; padding: 0">
             <th:block th:each="image : ${images}">
                 <img th:if="${image.isReview == false}" th:src="${image.url}" class="card-img-top" alt="job-image" width="80" height="400">
             </th:block>
@@ -24,15 +24,15 @@
                 <li class="list-group-item"><strong>Location: </strong><span
                         th:text="${job.location.houseNumber + ' ' + job.location.street + ' ' + job.location.city + ' ' + job.location.state + ' ' + job.location.zipCode}"></span>
                 </li>
-                <li class="list-group-item"><strong>Service type: </strong><span th:each="service : ${services}"
+                <li class="list-group-item"><strong>Service type: </strong><span th:each="service, iterStat : ${services}"
                                                                                  th:text="${!iterStat.last} ? ${service.title} + ', ': ${service.title}"></span>
                 </li>
             </ul>
             <div class="card-body">
                 <a th:href="@{/admin/jobs}" class="btn btn-secondary">Back</a>
                 <th:block th:if="${job.isCompleted == false}">
-                <form th:action="@{'/admin/jobs/complete/' + ${job.id}}" th:method="POST">
-                    <button class="btn btn-success">Complete Job</button>
+                <form class="complete-form" th:action="@{'/admin/jobs/complete/' + ${job.id}}" th:method="POST">
+                    <button class="btn btn-success edit-btn">Complete Job</button>
                 </form>
                 </th:block>
             </div>

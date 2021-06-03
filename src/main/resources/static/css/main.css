@@ -17,13 +17,25 @@
     --bright-green: #84BF04;
     --yellow-green: #D2D911;
 }
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+    font-family: var(--font-family);
+}
 
 #customer-review-home {
     border-radius: 20px;
 }
 
+#map {
+    width: 120vh;
+    height: 70vh;
+    border: var(--md-green);
+    border-radius: 10px;
+    margin: auto;
+}
+
 body {
-    /*background-color: lightblue;*/
     font-family: var(--font-family);
     padding-bottom: 20px;
 }
@@ -43,6 +55,12 @@ body {
 
 .hero-img {
     background-image: url("../img/hero-img.jpg"); /*Image used*/
+    height: 100%;
+    margin: 0;
+    scroll-behavior: smooth;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
 }
 
 .card-styling {
@@ -74,11 +92,8 @@ header {
     border-radius: 20px;
     border: 1px solid var(--md-green);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
-    /*Mobile Responsive Centering of the cards in the card deck*/
-    margin: 0 auto; /* Added */
-    float: none; /* Added */
-    margin-bottom: 10px; /* Added */
+    float: none;
+    margin: 0 auto 10px;
 }
 #show-job-card {
     max-width: 55vh;
@@ -88,11 +103,8 @@ header {
     border-radius: 20px;
     border: 1px solid var(--md-green);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
-    /*Mobile Responsive Centering of the cards in the card deck*/
-    margin: 0 auto; /* Added */
-    float: none; /* Added */
-    margin-bottom: 10px; /* Added */
+    float: none;
+    margin: 0 auto 10px;
 }
 .card-img-top {
     border-radius: 20px;
@@ -101,19 +113,13 @@ header {
     text-decoration: underline;
     color: var(--md-green);
 }
-#job-request-btn {
-    background-color: var(--md-green);
-    border: none;
-}
-#job-request-btn:hover {
-    background-color: var(--yellow-green);
-}
 .view-btn {
     background-color: var(--yellow-green);
     border: none;
 }
 .view-btn:hover {
     background-color: var(--md-green);
+    color: white;
 }
 .edit-btn {
     background-color: var(--md-green);
@@ -121,8 +127,9 @@ header {
 }
 .edit-btn:hover {
     background-color: var(--yellow-green);
+    color: black;
 }
-.delete-form {
+.delete-form, .complete-form {
     display: inline-block;
 }
 #job-divider {
@@ -181,12 +188,12 @@ header {
 .gogreen-logo {
     text-decoration: none;
     font-family: 'Satisfy', cursive;
-    color: #1B4001;
+    color: var(--md-green);
     font-size: xx-large;
 }
 
 .gogreen-logo:hover {
-    color: var(--green);
+    color: var(--yellow-green);
 }
 
 li > a.nav-link {
@@ -195,6 +202,14 @@ li > a.nav-link {
 
 li > a.nav-link:hover {
     color: var(--green);
+}
+.register-btn {
+    color: var(--md-green);
+    border-color: var(--md-green);
+}
+.register-btn:hover {
+    background-color: var(--yellow-green);
+    color: black;
 }
 
 .nav-container {
@@ -311,57 +326,33 @@ li > a.nav-link:hover {
 */
 
 /* Small devices (phones and pocket devices, 576 and up) */
-/* @media screen and (min-width:576px) { /* ... */
+ @media screen and (min-width:576px) {
+     #map {
+         width: 70vh;
+         height: 50vh;
+     }
+ }
 
 /* Medium devices (tablets, 768px and up) */
-/* @media screen and (min-width:768px) { /* ... */
+ @media screen and (min-width:768px) {
+     #map {
+         width: 90vh;
+         height: 70vh;
+     }
+ }
 
 /* Large devices (desktops, 992px and up) */
-/* @media screen and (min-width:992px) { /* ... */
+ @media screen and (min-width:992px) {
+     #map {
+         width: 110vh;
+         height: 60vh;
+     }
+ }
 
 /* Extra large devices (large desktops, 1200px and up) */
-/* @media screen and (min-width:1200px) { /* ... */
-
-/*@media screen and (min-width:375px) {*/
-/*    ***VARIABLE {*/
-/*        width: 350px;*/
-/*        height: 550px;*/
-/*    }*/
-/*}*/
-
-/*!* iphone X , XS, 11 Pro, 12 Mini *!*/
-/*@media only screen*/
-/*and (min-width : 375px)*/
-/*and (min-height : 812px)*/
-/*and (-webkit-device-pixel-ratio : 3) {*/
-/*    ***VARIABLE {*/
-/*        width: 350px;*/
-/*        height: 500px;*/
-/*    }*/
-/*}*/
-
-/*!* iphone 12, 12 Pro *!*/
-/*@media only screen*/
-/*and (min-width: 390px)*/
-/*and (min-height: 844px)*/
-/*and (-webkit-device-pixel-ratio: 3) {*/
-/*    ***VARIABLE {*/
-/*        width: 90%;*/
-/*        max-width: 380px;*/
-/*        min-width: 350px;*/
-/*        height: 600px;*/
-/*    }*/
-/*}*/
-
-/*@media screen and (min-width:411px) {*/
-/*    ***VARIABLE {*/
-/*        width: 90%;*/
-/*        height: 500px;*/
-/*    }*/
-/*}*/
-
-/*@media screen and (min-width:1200px) {*/
-/*    ***VARIABLE {*/
-/*        width: 1000px;*/
-/*    }*/
-/*}*/
+ @media screen and (min-width:1200px) {
+     #map {
+         width: 120vh;
+         height: 70vh;
+     }
+ }

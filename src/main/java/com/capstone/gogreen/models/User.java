@@ -119,4 +119,8 @@ public class User {
     public void setJobList(List<Job> jobList) {
         this.jobList = jobList;
     }
+
+    public String capitalizeUsername(String username) {
+        return username.substring(0, 1).toUpperCase() + username.substring(1);
+    }
 }
