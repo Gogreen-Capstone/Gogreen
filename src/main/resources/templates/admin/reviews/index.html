@@ -4,7 +4,9 @@
 <body>
 <nav th:replace="partials/navbar :: admin-navbar"></nav>
 
-<table class="table table-striped table-hover">
+<header th:replace="partials/header :: header('Job Reviews')"></header>
+
+<table class="table table-responsive table-hover">
     <thead>
     <tr>
         <th scope="col">Job ID</th>

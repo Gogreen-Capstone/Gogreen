@@ -17,25 +17,27 @@
 </head>
 <body>
 
-<footer th:fragment="footer" class="text-center footer-style">
-    <hr class="inline-block mx-auto" style="width: 100%;">
-    <div class="container mx-auto">
-        <ul style="list-style-type: none" class="footer-links row justify-content-center p-0">
-            <li class="footer-link col text-center">
-                <a class="fas fa-toolbox" th:href="@{/services}"></a>
-            </li>
-            <li class="footer-link col text-center">
-                <a class="fas fa-leaf" th:href="@{/gopher}"></a>
-            </li>
-            <li class="footer-link col text-center">
-                <a class="fab fa-github" href="https://github.com/Gogreen-Capstone/Gogreen" target="_blank"></a>
-            </li>
-            <li class="footer-link col text-center">
-                <a class="fas fa-heart" th:href="@{/about-us}"></a>
-            </li>
-        </ul>
-    </div>
-</footer>
-
+<div class="footer-content-wrap">
+    <footer th:fragment="footer" class="text-center footer-style">
+        <div class="footer-container inline-block fixed-bottom  mx-auto">
+            <div class="container-fluid mx-auto fixed-bottom">
+                <ul style="list-style-type: none" class="footer-links row justify-content-center p-0">
+                    <li class="footer-link col text-center">
+                        <a class="fas fa-toolbox" th:href="@{/services}"></a>
+                    </li>
+                    <li class="footer-link col text-center">
+                        <a class="fas fa-leaf" th:href="@{/gopher}"></a>
+                    </li>
+                    <li class="footer-link col text-center">
+                        <a class="fab fa-github" href="https://github.com/Gogreen-Capstone/Gogreen" target="_blank"></a>
+                    </li>
+                    <li class="footer-link col text-center">
+                        <a class="fas fa-heart" th:href="@{/about-us}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</div>
 </body>
 </html>

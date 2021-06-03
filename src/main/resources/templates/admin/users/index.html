@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head('Admin Show All Users')"></head>
+<head th:replace="partials/head :: head('All Users')"></head>
 <body>
 <nav th:replace="partials/navbar :: admin-navbar"></nav>
-
-<table class="table table-striped table-hover">
+<header th:replace="partials/header :: header('All Users')"></header>
+<table class="table table-hover table-responsive">
     <thead>
     <tr>
         <th scope="col">User ID</th>
@@ -21,7 +21,7 @@
         <td th:text="${user.email}"></td>
         <td th:text="${user.isAdmin}"></td>
         <td>
-            <a th:href="'/admin/users/edit/' + ${user.id}" class="btn btn-primary"
+            <a th:href="'/admin/users/edit/' + ${user.id}" class="btn btn-primary edit-btn"
                type="button">Edit</a>
         </td>
     </tr>

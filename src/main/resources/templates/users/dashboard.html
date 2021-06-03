@@ -5,49 +5,59 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <main class="container">
-    <header th:replace="partials/header :: header(${user.username} + '\'s Dashboard')"></header>
 
-    <h2>Edit your information</h2>
+    <header th:replace="partials/header :: header(${user.capitalizeUsername(user.username)} + '\'s Dashboard')"></header>
 
-    <a class="btn btn-success" th:href="@{/jobs/create}">New Job Request</a>
-    <a class="btn btn-primary" type="button" href="/edit-user">Edit User Information</a>
+    <div class="row mb-1 d-grid gap-2 col-6 mx-auto text-center">
+        <a type="button btn-lg" class="btn btn-lg btn-success edit-btn" th:href="@{/jobs/create}">New Job Request</a>
+    </div>
 
-<h2>Pending Jobs</h2>
-    <div class="row justify-content-evenly text-center">
-        <div class="card mb-3" style="max-width: 18rem;" th:if="${job.isCompleted == false}" th:each="job : ${jobs}">
+
+    <div class="row justify-content-between text-center">
+        <h2 class="mb-3" id="pending-job-header">Pending Jobs</h2>
+        <div class="card mb-3" id="pending-job-card" style="max-width: 18rem;" th:if="${job.isCompleted == false}"
+             th:each="job : ${jobs}">
             <div class="card-header bg-transparent" th:text="${job.stringToDate(job.scheduledDate)}">Date</div>
             <div class="card-body">
                 <h5 class="card-title" th:text="${job.jobTitle}">Job title</h5>
                 <p class="card-text" th:text="${job.jobDetails}">Job details</p>
             </div>
-            <div class="card-footer bg-transparent" th:if="${job.scheduledTime == 1}">Shift: <span>Morning(8am - 12pm)</span></div>
-            <div class="card-footer bg-transparent" th:if="${job.scheduledTime == 2}">Shift: <span>Afternoon(1pm - 5pm)</span></div>
+            <div class="card-footer bg-transparent" th:if="${job.scheduledTime == 1}">Shift:
+                <span>Morning(8am - 12pm)</span></div>
+            <div class="card-footer bg-transparent" th:if="${job.scheduledTime == 2}">Shift:
+                <span>Afternoon(1pm - 5pm)</span></div>
             <div class="card-footer bg-transparent">
-                <a th:href="'/jobs/show/' + ${job.id}" class="btn btn-warning">View Job</a>
-                <a th:href="@{'/jobs/edit/' + ${job.id}}" class="btn btn-success">Edit Job</a>
+                <a th:href="'/jobs/show/' + ${job.id}" class="btn btn-warning view-btn">View Job</a>
+                <a th:href="@{'/jobs/edit/' + ${job.id}}" class="btn btn-success edit-btn">Edit Job</a>
             </div>
         </div>
     </div>
-    <hr>
-    <h2>Completed Jobs</h2>
-    <div class="row justify-content-evenly text-center">
-        <div class="card mb-3" style="max-width: 18rem;" th:if="${job.isCompleted == true}" th:each="job : ${jobs}">
+    <hr id="job-divider">
+
+    <div class="row justify-content-between text-center">
+        <h2 class="mb-3" id="completed-job-header">Completed Jobs</h2>
+        <div class="card mb-3" id="completed-job-card" style="max-width: 18rem;" th:if="${job.isCompleted == true}"
+             th:each="job : ${jobs}">
             <div class="card-header bg-transparent" th:text="${job.stringToDate(job.scheduledDate)}">Date</div>
             <div class="card-body">
                 <h5 class="card-title" th:text="${job.jobTitle}">Job title</h5>
                 <p class="card-text" th:text="${job.jobDetails}">Job details</p>
             </div>
-            <div class="card-footer bg-transparent" th:if="${job.scheduledTime == 1}">Shift: <span>Morning(8am - 12pm)</span></div>
-            <div class="card-footer bg-transparent" th:if="${job.scheduledTime == 2}">Shift: <span>Afternoon(1pm - 5pm)</span></div>
+            <div class="card-footer bg-transparent" th:if="${job.scheduledTime == 1}">Shift:
+                <span>Morning(8am - 12pm)</span></div>
+            <div class="card-footer bg-transparent" th:if="${job.scheduledTime == 2}">Shift:
+                <span>Afternoon(1pm - 5pm)</span></div>
             <div class="card-footer bg-transparent" th:if="${job.reviewTitle != null}">
                 <h4>Review:</h4>
                 <h5 class="card-title" th:text="${job.reviewTitle}"></h5>
                 <p class="card-text" th:text="${job.reviewBody}"></p>
             </div>
             <div class="card-footer bg-transparent">
-                <a th:href="'/jobs/show/' + ${job.id}" class="btn btn-warning">View Job</a>
-                <a th:href="'/reviews/' + ${job.id} + '/create'" class="btn btn-success" type="button" th:if="${job.reviewTitle == null}">Write Review</a>
-                <a th:href="'/reviews/' + ${job.id} + '/edit'" class="btn btn-success" type="button" th:if="${job.reviewTitle != null}">Edit Review</a>
+                <a th:href="'/jobs/show/' + ${job.id}" class="btn btn-warning view-btn">View Job</a>
+                <a th:href="'/reviews/' + ${job.id} + '/create'" class="btn btn-success edit-btn" type="button"
+                   th:if="${job.reviewTitle == null}">Write Review</a>
+                <a th:href="'/reviews/' + ${job.id} + '/edit'" class="btn btn-success edit-btn" type="button"
+                   th:if="${job.reviewTitle != null}">Edit Review</a>
                 <th:block th:if="${job.reviewTitle != null}">
                     <form class="mt-2" th:action="'/reviews/' + ${job.id} + '/delete'" th:method="POST">
                         <p name="reviewTitle" th:text="${job.reviewTitle}" hidden></p>
