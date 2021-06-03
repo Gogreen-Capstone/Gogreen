@@ -17,6 +17,14 @@
     border-radius: 20px;
 }
 
+#map {
+    width: 120vh;
+    height: 70vh;
+    border: var(--md-green);
+    border-radius: 10px;
+    margin: auto;
+}
+
 
 body {
     /*background-color: lightblue;*/
@@ -261,13 +269,33 @@ jumbotron {
 */
 
 /* Small devices (phones and pocket devices, 576 and up) */
-/* @media screen and (min-width:576px) { /* ... */
+ @media screen and (min-width:576px) {
+     #map {
+         width: 70vh;
+         height: 50vh;
+     }
+ }
 
 /* Medium devices (tablets, 768px and up) */
-/* @media screen and (min-width:768px) { /* ... */
+ @media screen and (min-width:768px) {
+     #map {
+         width: 90vh;
+         height: 70vh;
+     }
+ }
 
 /* Large devices (desktops, 992px and up) */
-/* @media screen and (min-width:992px) { /* ... */
+ @media screen and (min-width:992px) {
+     #map {
+         width: 110vh;
+         height: 60vh;
+     }
+ }
 
 /* Extra large devices (large desktops, 1200px and up) */
-/* @media screen and (min-width:1200px) { /* ... */
+ @media screen and (min-width:1200px) {
+     #map {
+         width: 120vh;
+         height: 70vh;
+     }
+ }

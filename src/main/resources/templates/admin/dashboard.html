@@ -6,13 +6,13 @@
 
 <main class="container">
 
-
-    <header th:replace="partials/header :: header(${user.username} + '\'s Admin Dashboard')"></header>
-
+    <header th:replace="partials/header :: header(${user.username} + '\'s Dashboard')"></header>
+    <div class="text-center">
+        <h3>Please review incomplete jobs with their addresses below</h3>
+    </div>
 
     <!-- The HTML element that serves as the Mapbox container -->
-    <div id="map"
-         style='width: 400px; height: 300px; border: 1px solid black; width: 120vh; height: 70vh; margin: 7em auto'></div>
+    <div id="map" class="mb-4"></div>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script th:inline="javascript">
@@ -43,7 +43,7 @@
         var map = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v11', // style URL
-            center: [-98.598600, 29.609500], // starting position [lng, lat]
+            center: [-98.493629, 29.424122], // starting position [lng, lat]
             zoom: 9 // starting zoom
         });
 
