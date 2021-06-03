@@ -11,7 +11,8 @@
             <i class="fab fa-pagelines fa-sm" style="color: var(--md-green)"></i>
             GoGreen
         </a>&nbsp&nbsp
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -36,10 +37,12 @@
                 </li>
             </ul>
             <div class="d-flex ">
-                <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" type="button" th:href="@{/login}">Login</a> &nbsp
-                <a sec:authorize="!isAuthenticated()" class="btn btn-outline-success" type="button" th:href="@{/register}">Register</a>
-                <form sec:authorize="isAuthenticated()"  th:action="@{/logout}" th:method="post">
-                <button  class="btn btn-outline-success" type="submit">Logout</button>
+                <a sec:authorize="!isAuthenticated()" class="btn btn-outline-primary" type="button" th:href="@{/login}">Login</a>
+                &nbsp
+                <a sec:authorize="!isAuthenticated()" class="btn btn-outline-success" type="button"
+                   th:href="@{/register}">Register</a>
+                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
+                    <button class="btn btn-outline-success" type="submit">Logout</button>
                 </form>
             </div>
         </div>
