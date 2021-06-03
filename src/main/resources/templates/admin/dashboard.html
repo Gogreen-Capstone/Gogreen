@@ -6,7 +6,7 @@
 
 <main class="container">
 
-    <header th:replace="partials/header :: header(${user.username} + '\'s Dashboard')"></header>
+    <header th:replace="partials/header :: header(${user.capitalizeUsername(user.username)} + '\'s Admin Dashboard')"></header>
     <div class="text-center">
         <h3>Please review incomplete jobs with their addresses below</h3>
     </div>

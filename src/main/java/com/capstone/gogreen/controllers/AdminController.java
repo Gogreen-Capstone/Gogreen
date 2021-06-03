@@ -38,15 +38,6 @@ public class AdminController {
 
 //////////////// USERS ////////////////////////
 
-    // shows specific user
-    @GetMapping("/admin/users/show/{id}")
-    public String showOneUser(Model model, @PathVariable long id) {
-        User userToView = usersDao.getOne(id);
-        model.addAttribute("user", userToView);
-        model.addAttribute("admin", userToView.getIsAdmin());
-        return "admin/users/show";
-    }
-
     @GetMapping("/admin/users")
     public String adminShowUsers(Model model, @ModelAttribute User user) {
         model.addAttribute("users", usersDao.findAll()); //getting all users to admin view

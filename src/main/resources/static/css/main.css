@@ -12,6 +12,11 @@
     --bright-green: #84BF04;
     --yellow-green: #D2D911;
 }
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+    font-family: var(--font-family);
+}
 
 #customer-review-home {
     border-radius: 20px;
@@ -25,10 +30,13 @@
     margin: auto;
 }
 
-
 body {
-    /*background-color: lightblue;*/
     font-family: var(--font-family);
+    height: 100%;
+    margin: 0;
+    scroll-behavior: smooth;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .card-styling {
@@ -49,11 +57,8 @@ header {
     border-radius: 20px;
     border: 1px solid var(--md-green);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
-    /*Mobile Responsive Centering of the cards in the card deck*/
-    margin: 0 auto; /* Added */
-    float: none; /* Added */
-    margin-bottom: 10px; /* Added */
+    float: none;
+    margin: 0 auto 10px;
 }
 #show-job-card {
     max-width: 55vh;
@@ -63,11 +68,8 @@ header {
     border-radius: 20px;
     border: 1px solid var(--md-green);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
-    /*Mobile Responsive Centering of the cards in the card deck*/
-    margin: 0 auto; /* Added */
-    float: none; /* Added */
-    margin-bottom: 10px; /* Added */
+    float: none;
+    margin: 0 auto 10px;
 }
 .card-img-top {
     border-radius: 20px;
@@ -76,19 +78,13 @@ header {
     text-decoration: underline;
     color: var(--md-green);
 }
-#job-request-btn {
-    background-color: var(--md-green);
-    border: none;
-}
-#job-request-btn:hover {
-    background-color: var(--yellow-green);
-}
 .view-btn {
     background-color: var(--yellow-green);
     border: none;
 }
 .view-btn:hover {
     background-color: var(--md-green);
+    color: white;
 }
 .edit-btn {
     background-color: var(--md-green);
@@ -96,8 +92,9 @@ header {
 }
 .edit-btn:hover {
     background-color: var(--yellow-green);
+    color: black;
 }
-.delete-form {
+.delete-form, .complete-form {
     display: inline-block;
 }
 #job-divider {
@@ -156,23 +153,28 @@ header {
 .gogreen-logo {
     text-decoration: none;
     font-family: 'Satisfy', cursive;
-    color: #1B4001;
+    color: var(--md-green);
     font-size: xx-large;
 }
 
 .gogreen-logo:hover {
-    color: var(--green);
+    color: var(--yellow-green);
 }
-
-
 
 li > a.nav-link {
 color: black
 }
 
-
 li > a.nav-link:hover {
     color: var(--green);
+}
+.register-btn {
+    color: var(--md-green);
+    border-color: var(--md-green);
+}
+.register-btn:hover {
+    background-color: var(--yellow-green);
+    color: black;
 }
 
 

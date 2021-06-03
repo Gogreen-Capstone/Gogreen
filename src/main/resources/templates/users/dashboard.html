@@ -6,10 +6,10 @@
 
 <main class="container">
 
-    <header th:replace="partials/header :: header(${user.username} + '\'s Dashboard')"></header>
+    <header th:replace="partials/header :: header(${user.capitalizeUsername(user.username)} + '\'s Dashboard')"></header>
 
     <div class="row mb-1 d-grid gap-2 col-6 mx-auto text-center">
-        <a type="button btn-lg" class="btn btn-lg btn-success" id="job-request-btn" th:href="@{/jobs/create}">New Job Request</a>
+        <a type="button btn-lg" class="btn btn-lg btn-success edit-btn" th:href="@{/jobs/create}">New Job Request</a>
     </div>
 
 
