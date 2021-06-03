@@ -76,19 +76,13 @@ header {
     text-decoration: underline;
     color: var(--md-green);
 }
-#job-request-btn {
-    background-color: var(--md-green);
-    border: none;
-}
-#job-request-btn:hover {
-    background-color: var(--yellow-green);
-}
 .view-btn {
     background-color: var(--yellow-green);
     border: none;
 }
 .view-btn:hover {
     background-color: var(--md-green);
+    color: white;
 }
 .edit-btn {
     background-color: var(--md-green);
@@ -96,8 +90,9 @@ header {
 }
 .edit-btn:hover {
     background-color: var(--yellow-green);
+    color: black;
 }
-.delete-form {
+.delete-form, .complete-form {
     display: inline-block;
 }
 #job-divider {
@@ -156,23 +151,28 @@ header {
 .gogreen-logo {
     text-decoration: none;
     font-family: 'Satisfy', cursive;
-    color: #1B4001;
+    color: var(--md-green);
     font-size: xx-large;
 }
 
 .gogreen-logo:hover {
-    color: var(--green);
+    color: var(--yellow-green);
 }
-
-
 
 li > a.nav-link {
 color: black
 }
 
-
 li > a.nav-link:hover {
     color: var(--green);
+}
+.register-btn {
+    color: var(--md-green);
+    border-color: var(--md-green);
+}
+.register-btn:hover {
+    background-color: var(--yellow-green);
+    color: black;
 }
 
 
