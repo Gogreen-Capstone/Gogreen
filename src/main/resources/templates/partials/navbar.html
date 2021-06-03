@@ -30,10 +30,10 @@
                     <a class="nav-link" th:href="@{/about-us}">About Us</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="navbar-item">
-                    <a class="nav-link" th:href="@{/edit-user}">Profile-Settings</a>
+                    <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="navbar-item">
-                    <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
+                    <a class="nav-link" th:href="@{/edit-user}">Profile-Settings</a>
                 </li>
             </ul>
             <div class="d-flex ">
