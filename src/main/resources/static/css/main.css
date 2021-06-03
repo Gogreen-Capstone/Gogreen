@@ -4,6 +4,14 @@
 :root{
     --font-family: 'Karla', sans-serif;
 
+    /*BACKGROUND IMAGE*/
+    --background-image: url("../img/background-grass.jpg"); /*Image used*/
+    --width: 3600px;
+    --height: 2400px; /* You must set a specified height */
+    --background-color: #cccccc; /* Used if the image is unavailable */
+    --background-position: center; /* Center the image */
+    --background-repeat: no-repeat; /* Do not repeat the image */
+    --background-size: cover; /* Resize the background image to cover the entire container */
 
     /*APP COLORS*/
     --dark-green: #1B4001;
@@ -15,14 +23,6 @@
 
 body {
     font-family: var(--font-family);
-    background-image: url("../img/background-grass.jpg"); /*Image used*/
-    width: 3600px;
-    background-color: #cccccc; /* Used if the image is unavailable */
-    height: 2400px; /* You must set a specified height */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
-    /*opacity: 0.5;*/
 }
 
 /*.background-img {*/
