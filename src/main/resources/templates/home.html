@@ -45,11 +45,12 @@
             </div>
         </div>
     </div>
+
     <div class="zero-space-container">
         <header th:replace="partials/header :: header('Customer Reviews')"></header>
 
         <!-- Card Container -->
-        <div class="container about-us-card-container d-flex justify-content-evenly flex-wrap">
+        <div class="container reviews-card-wrap about-us-card-container d-flex justify-content-evenly flex-wrap">
             <th:block th:each="job : ${jobs}" th:if="${jobStat.index} < 5">
                 <th:block th:if="${job.reviewTitle != null}">
                     <!-- Card Deck 1 -->
@@ -107,7 +108,11 @@
 <!--        </th:block>-->
 <!--    </div>-->
 <!--</main>-->
-<span></span>
+<div>
+    <p></p>
+    <p></p>
+    <p></p>
+</div>
 <footer th:replace="partials/footer :: footer"></footer>
 <script th:replace="partials/scripts :: scripts"></script>
 </body>

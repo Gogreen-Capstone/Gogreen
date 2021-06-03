@@ -25,6 +25,7 @@
 body {
     /*background-color: lightblue;*/
     font-family: var(--font-family);
+    padding-bottom: 20px;
 }
 
 /*.bg-color{*/
@@ -243,17 +244,33 @@ li > a.nav-link:hover {
     border: none;
 }
 
+.reviews-card-wrap {
+    padding-bottom: 60px;
+}
+
 /* FOOTER STYLING */
 /*-------------------------------------------------------*/
+.footer-content-wrap {
+    padding-top: 20px;    /* Footer height */
+}
+
 .footer-style {
+    display: block;
+    background-size: auto;
+    box-sizing: content-box;
+    margin: 0;
+    padding: 0;
     width: 100%;
-    height: 100%;
+    height: 50px;   /* Footer height */
     min-height: content-box;
-    background: #ffc107;
-    position: sticky;
+    /*background: #ffc107;*/
+    background: white;
+    bottom: 0;
+    position: fixed;
 }
 
 .footer-container {
+
     background-size: contain;
     background-position: center;
 }
@@ -272,7 +289,7 @@ li > a.nav-link:hover {
 .footer-label {
     text-align: center;
     align-content: center;
-    height: 2rem;
+    height: 2em;
 }
 
 .text-center{
