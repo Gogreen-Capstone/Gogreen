@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head('Error 404')"></head>
+<head th:replace="partials/head :: head('404 - Missing Page')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div class="container text-center">
-    <h1 class="pt-5">Page Not Found</h1>
+    <h1 style="font-size: 150px;">404 Error</h1>
 </div>
 
 <div class="container text-center">
-    <a class="btn btn-primary" href="/" type="button">Return Home</a>
+    <h3>Sorry, we couldn’t find the page you were looking for!</h3>
+    <a type="button btn-lg" class="btn btn-lg btn-outline-success" th:href="@{/}">
+        Return Home
+    </a>
 </div>
 
 <footer th:replace="partials/footer :: footer"></footer>
