@@ -18,6 +18,10 @@ html {
     font-family: var(--font-family);
 }
 
+#customer-review-home {
+    border-radius: 20px;
+}
+
 body {
     font-family: var(--font-family);
     height: 100%;
@@ -149,24 +153,27 @@ header {
 /* ------------------------------------------------- */
 
 
-/*#navbar {*/
-/*    display: flex;*/
-/*    justify-content: space-evenly;*/
-/*    align-items: stretch;*/
-/*    text-align: center;*/
-/*}*/
+.gogreen-logo {
+    text-decoration: none;
+    font-family: 'Satisfy', cursive;
+    color: #1B4001;
+    font-size: xx-large;
+}
+
+.gogreen-logo:hover {
+    color: var(--green);
+}
 
 
-/*.navbar-logo-font {*/
-/*    font-family: 'Satisfy', cursive;*/
-/*    color: #3d3e40;*/
-/*    font-size: 2rem;*/
-/*}*/
+
+li > a.nav-link {
+color: black
+}
 
 
-/*.navbar-logo-font:hover {*/
-/*   color: #D2D911;*/
-/*}*/
+li > a.nav-link:hover {
+    color: var(--green);
+}
 
 
 jumbotron {
