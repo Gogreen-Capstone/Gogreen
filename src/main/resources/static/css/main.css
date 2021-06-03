@@ -57,11 +57,8 @@ header {
     border-radius: 20px;
     border: 1px solid var(--md-green);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
-    /*Mobile Responsive Centering of the cards in the card deck*/
-    margin: 0 auto; /* Added */
-    float: none; /* Added */
-    margin-bottom: 10px; /* Added */
+    float: none;
+    margin: 0 auto 10px;
 }
 #show-job-card {
     max-width: 55vh;
@@ -71,11 +68,8 @@ header {
     border-radius: 20px;
     border: 1px solid var(--md-green);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
-    /*Mobile Responsive Centering of the cards in the card deck*/
-    margin: 0 auto; /* Added */
-    float: none; /* Added */
-    margin-bottom: 10px; /* Added */
+    float: none;
+    margin: 0 auto 10px;
 }
 .card-img-top {
     border-radius: 20px;
