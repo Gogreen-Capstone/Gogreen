@@ -305,12 +305,12 @@ li > a.nav-link:hover {
 .footer-styling {
     width: 100vw;
     /*background: transparent;*/
-    background-color: #D2D911;
+    background-color: var(--md-green);
 }
 
 .footer-link a {
     /*color: forestgreen;*/
-    color: #467302;
+    color: var(--yellow-green);
     padding-bottom: 10px;
     font-size: 2em;
 }

@@ -16,7 +16,8 @@
         <div class="container-fluid">
             <header th:replace="partials/header :: header('Welcome To GoGreen')"></header>
             <div class="d-grid gap-2 col-6 mx-auto text-center">
-                <h3 class="text-color">Get Help for your lawn service requests.<br> We are a professional lawn care company that offers
+                <h3 class="text-color">Get Help for your lawn service requests.<br> We are a professional lawn care
+                    company that offers
                     convenient scheduling for an array of services.</h3>
                 <a type="button btn-lg" class="btn btn-lg btn-success edit-btn" sec:authorize="!isAuthenticated()"
                    th:href="@{/register}">
@@ -43,30 +44,30 @@
                 <img src="/img/step-1.jpg"
                      alt="Sign-up" style="height: 200px; width: auto">
                 <h4><span class="badge bg-secondary" style="border-radius: 50%">1</span> Sign up as a member</h4>
-<!--                <p>Sign up as a member to be able to create job request.</p>-->
+                <!--                <p>Sign up as a member to be able to create job request.</p>-->
             </div>
             <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
                 <img src="/img/step-2.jpg"
                      alt="Job-request" style="height: 200px; width: auto">
                 <h4><span class="badge bg-secondary" style="border-radius: 50%">2</span> Send a Job request</h4>
-<!--                <p>Tell us what you need done, when and where it works for you.</p>-->
+                <!--                <p>Tell us what you need done, when and where it works for you.</p>-->
             </div>
             <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
                 <img src="/img/step-3.jpg"
                      alt="get-it-done" style="height: 200px; width: auto">
                 <h4><span class="badge bg-secondary" style="border-radius: 50%">3</span> GoGreen gets it done!</h4>
-<!--                <p>GoGreen employee arrives and gets the job done.</p>-->
+                <!--                <p>GoGreen employee arrives and gets the job done.</p>-->
             </div>
         </div>
     </div>
     <!------------------- END HOW IT WORKS ------------------>
 
     <!------------------- BEGIN CUSTOMER REVIEWS ------------>
-        <div class="zero-space-container">
+    <div class="zero-space-container">
 
-            <header th:replace="partials/header :: header('Customer Reviews')"></header>
+        <header th:replace="partials/header :: header('Customer Reviews')"></header>
 
-            <!-- Card Container -->
+        <!-- Card Container -->
         <div class="container reviews-card-wrap about-us-card-container d-flex justify-content-evenly flex-wrap">
             <th:block th:each="job : ${jobs}" th:if="${jobStat.index} < 5">
                 <th:block th:if="${job.reviewTitle != null}">
@@ -74,7 +75,8 @@
                     <div class="card-deck about-us-card-deck mb-3">
                         <div class="card about-us-card mb-4" style="width: 18rem;">
                             <th:block th:each="image : ${images}">
-                                <img id="customer-review-home" th:if="${image.isReview == true && image.job.id == job.id}"
+                                <img id="customer-review-home"
+                                     th:if="${image.isReview == true && image.job.id == job.id}"
                                      th:src="${image.url}"
                                      class="card-img-top" width="80" height="200" alt="job-image">
                             </th:block>
@@ -96,10 +98,11 @@
         </div>
     </div>
     <!-------------------------- END CUSTOMER REVIEWS ----------------->
-    </div> <!-- END BACKGROUND IMAGE -->
+</div> <!-- END BACKGROUND IMAGE -->
 
+<hr class="horizontal-hr-spacer">
 
-    <footer th:replace="partials/footer :: footer"></footer>
-    <script th:replace="partials/scripts :: scripts"></script>
-    </body>
-    </html>
+<footer th:replace="partials/footer :: footer"></footer>
+<script th:replace="partials/scripts :: scripts"></script>
+</body>
+</html>
