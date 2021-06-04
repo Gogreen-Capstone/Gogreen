@@ -18,7 +18,7 @@
     --yellow-green: #D2D911;
 }
 html {
-    height: 100%;
+    /*height: 100%;*/
     scroll-behavior: smooth;
     font-family: var(--font-family);
 }
@@ -37,7 +37,9 @@ html {
 
 body {
     font-family: var(--font-family);
-    padding-bottom: 20px;
+    min-height: 400px;
+    margin-bottom: 100px;
+    clear: both;
 }
 
 /*.bg-color{*/
@@ -280,29 +282,32 @@ li > a.nav-link:hover {
 /* FOOTER STYLING */
 /*-------------------------------------------------------*/
 .footer-content-wrap {
-    padding-top: 20px;    /* Footer height */
+    /*padding-top: 20px;    !* Footer height *!*/
 }
 
 .footer-style {
-    display: block;
+    position: fixed;
+    /*display: block;*/
     background-size: auto;
-    box-sizing: content-box;
+    /*box-sizing: content-box;*/
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 50px;   /* Footer height */
-    min-height: content-box;
+    height: 80px;   /* Footer height */
+    min-height: 80px;
     /*background: #ffc107;*/
-    background: white;
-    bottom: 0;
-    position: fixed;
+    background-color: lightslategrey;
+    /*bottom: 0;*/ /*stackoverflow example*/
+    /*position: absolute;*/
+    /*bottom: 0px;*/
+    /*width: 100%;*/
+    /*height: 100px;*/
 }
 
-.footer-container {
-
-    background-size: contain;
-    background-position: center;
-}
+/*.footer-container {*/
+/*    background-size: contain;*/
+/*    background-position: center;*/
+/*}*/
 
 .footer-link a {
     color: green;
