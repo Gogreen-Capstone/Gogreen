@@ -4,29 +4,30 @@
 <body>
 <nav th:replace="partials/navbar :: admin-navbar"></nav>
 <header th:replace="partials/header :: header('All Users')"></header>
-<table class="table table-hover table-responsive">
-    <thead>
-    <tr>
-        <th scope="col">User ID</th>
-        <th scope="col">Username</th>
-        <th scope="col">Email</th>
-        <th scope="col">Administrator</th>
-        <th scope="col">Actions</th>
-    </tr>
-    </thead>
-    <tbody th:each="user : ${users}">
-    <tr>
-        <th th:text="${user.id}"></th>
-        <td th:text="${user.username}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.isAdmin}"></td>
-        <td>
-            <a th:href="'/admin/users/edit/' + ${user.id}" class="btn btn-primary edit-btn"
-               type="button">Edit</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<main class="container">
+    <table class="table table-hover table-responsive">
+        <thead>
+        <tr>
+            <th scope="col">User ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody th:each="user : ${users}">
+        <tr>
+            <th th:text="${user.id}"></th>
+            <td th:if="${user.isAdmin == true}"><i class="fas fa-user"></i><th:block th:text="' ' + ${user.username}"></th:block></td>
+            <td th:if="${user.isAdmin == false}" th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td>
+                <a th:href="'/admin/users/edit/' + ${user.id}" class="btn btn-primary btn-sm edit-btn"
+                   type="button">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
 
 <footer th:replace="partials/footer :: footer"></footer>
 <th:block th:replace="partials/scripts :: scripts"/>

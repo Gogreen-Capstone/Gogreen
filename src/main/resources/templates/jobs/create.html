@@ -19,8 +19,10 @@
                         </div>
                         <hr>
                         <h5>Upload image of the job:</h5>
-                        <div class="form-group">
-                            <input type="file" class="form-control-file" id="file" name="file">
+                        <div class="form-group file-input">
+                            <input type="file" class="form-control-file file" id="file" name="file">
+                            <label for="file">Choose file</label>
+                            <p class="file-name"></p>
                         </div>
                         <hr>
                         <div class="row">
@@ -40,7 +42,6 @@
                         </div>
                         <hr>
                         <h5>Service Type:</h5>
-                        <small></small>
                         <div class="form-group">
                             <select multiple class="form-control" name="services">
                                 <option th:each="service : ${services}" th:value="${service.id}"
@@ -57,32 +58,35 @@
                         <hr>
                         <h5>Location:</h5>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-sm-4">
                                 <label for="houseNumber">House number</label>
                                 <input type="text" class="form-control" id="houseNumber" name="houseNumber"
                                        placeholder="1234" required>
                             </div>
-                            <div class="form-group col">
+                            <div class="form-group col-sm-8">
                                 <label for="street">Street name</label>
                                 <input type="text" class="form-control" id="street" name="street" placeholder="Main St"
                                        required>
                             </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio"
-                                   required>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio"
+                                       required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="state">State</label>
+                                <input type="text" id="state" class="form-control" name="state" maxlength="2"
+                                       placeholder="TX" required>
+                            </div>
+                            <div class="form-group col-md-2 mb-1">
+                                <label for="zip">Zip</label>
+                                <input type="text" class="form-control" id="zip" name="zip" placeholder="78250"
+                                       required>
+                            </div>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="state">State</label>
-                            <input type="text" id="state" class="form-control" name="state" maxlength="2"
-                                   placeholder="TX" required>
-                        </div>
-                        <div class="form-group col-md-2 mb-1">
-                            <label for="zip">Zip</label>
-                            <input type="text" class="form-control" id="zip" name="zip" placeholder="78250" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary edit-btn">Submit</button>
+                        <button type="submit" class="btn btn-primary edit-btn mr-1">Submit</button>
                         <a type="submit" class="btn btn-secondary" th:href="@{/dashboard}">Cancel</a>
                     </form>
                 </div>

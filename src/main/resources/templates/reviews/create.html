@@ -24,8 +24,10 @@
                                           th:field="*{reviewBody}"></textarea>
                             </div>
                             <h5>Upload image of the completed job:</h5>
-                            <div class="form-group">
-                                <input type="file" class="form-control-file" id="file" name="file">
+                            <div class="form-group file-input">
+                                <input type="file" class="form-control-file file" id="file" name="file">
+                                <label for="file">Choose file</label>
+                                <p class="file-name"></p>
                             </div>
                             <button type="submit" class="btn btn-primary edit-btn mt-2 mb-2">Submit</button>
                             <a th:href="@{/dashboard}" class="btn btn-secondary">Cancel</a>
