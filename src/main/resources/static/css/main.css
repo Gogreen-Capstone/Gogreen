@@ -143,6 +143,7 @@ header {
 .edit-btn {
     background-color: var(--md-green);
     border: none;
+    margin-right: 1px;
 }
 .edit-btn:hover {
     background-color: var(--yellow-green);
@@ -198,11 +199,12 @@ header {
 .logout-msg {
     color: var(--md-green);
 }
-
-
 /* END OF REGISTER/LOGIN PAGE STYLE */
 /*---------------------------------------------------*/
 
+.btn-group {
+    margin: 1px;
+}
 /* NAVBAR STYLE */
 
 #nav-divider {
@@ -241,6 +243,49 @@ li > a.nav-link:hover {
 
 }
 
+/* INPUT FILE TYPE STYLING */
+/*--------------------------------------------------------*/
+.file {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+}
+.file-input label {
+    display: block;
+    position: relative;
+    width: 140px;
+    height: 40px;
+    border-radius: 10px;
+    /*background: linear-gradient(40deg, var(--md-green), var(--yellow-green));*/
+    background: var(--md-green);
+    /*box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform .2s ease-out;
+}
+input:hover + label,
+input:focus + label {
+    transform: scale(1.02);
+    background: var(--yellow-green);
+}
+input:focus + label {
+    outline: 1px solid #000;
+    outline: -webkit-focus-ring-color auto 2px;
+}
+.file-name {
+    display: block;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+/*--------------------------------------------------------*/
+/* END OF INPUT FILE TYPE STYLING */
+
 /* ABOUT US PAGE */
 /*--------------------------------------------------------*/
 .about-us-img {
@@ -262,7 +307,7 @@ li > a.nav-link:hover {
     backdrop-filter: blur( 20.0px );
     -webkit-backdrop-filter: blur( 20.0px );
     border-radius: 20px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid var(--md-green);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 
     /*Mobile Responsive Centering of the cards in the card deck*/
