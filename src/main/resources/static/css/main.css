@@ -140,6 +140,7 @@ header {
 .edit-btn {
     background-color: var(--md-green);
     border: none;
+    margin-right: 1px;
 }
 .edit-btn:hover {
     background-color: var(--yellow-green);
