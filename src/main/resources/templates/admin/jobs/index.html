@@ -4,36 +4,38 @@
 <body>
 <nav th:replace="partials/navbar :: admin-navbar"></nav>
 <header th:replace="partials/header :: header('All Jobs')"></header>
+<main class="container">
 <table class="table table-hover table-responsive">
     <thead>
     <tr>
-        <th scope="col"><strong>Job ID</strong></th>
-        <th scope="col"><strong>Job Title</strong></th>
-        <th scope="col"><strong>Job Details</strong></th>
         <th scope="col"><strong>User</strong></th>
-        <th scope="col"><strong>Completed</strong></th>
+        <th scope="col"><strong>Job Title</strong></th>
+<!--        <th scope="col"><strong>Job Details</strong></th>-->
+        <th scope="col"><strong>Job Status</strong></th>
         <th scope="col"><strong>Actions</strong></th>
     </tr>
     </thead>
     <tbody th:each="job : ${jobs}">
     <tr>
-        <th scope="row" th:text="${job.id}"></th>
+        <th scope="row" th:text="${job.user.username}"></th>
         <td th:text="${job.jobTitle}"></td>
-        <td th:text="${job.jobDetails}"></td>
-        <td th:text="${job.user.username}"></td>
-        <td th:if="${job.isCompleted == true}">Yes</td>
-        <td th:if="${job.isCompleted == false}">No</td>
+<!--        <td th:text="${job.jobDetails}"></td>-->
+        <td th:if="${job.isCompleted == true}">Completed</td>
+        <td th:if="${job.isCompleted == false}">Pending</td>
         <td>
-            <a th:href="'/admin/jobs/show/'+ ${job.id}" class="btn btn-warning view-btn"
-               type="button">View Job</a>
-            <a th:href="@{'/admin/jobs/edit/' + ${job.id}}" class="btn btn-success edit-btn">Edit Job</a>
-            <form th:action="@{'/admin/jobs/delete/' + ${job.id}}" th:method="POST">
-                <button class="btn btn-danger mt-1">Delete Job</button>
+            <a th:href="'/admin/jobs/show/'+ ${job.id}" class="btn btn-sm btn-warning view-btn"
+               type="button">View</a>
+            <a th:href="@{'/admin/jobs/edit/' + ${job.id}}" class="btn btn-sm btn-success edit-btn">Edit</a>
+            <span>
+            <form class="delete-form" th:action="@{'/admin/jobs/delete/' + ${job.id}}" th:method="POST">
+                <button class="btn btn-sm btn-danger">Delete</button>
             </form>
+                </span>
         </td>
     </tr>
     </tbody>
 </table>
+</main>
 <footer th:replace="partials/footer :: footer"></footer>
 <th:block th:replace="partials/scripts :: scripts"/>
 </body>

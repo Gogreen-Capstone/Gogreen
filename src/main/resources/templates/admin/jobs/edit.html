@@ -18,15 +18,17 @@
                         </div>
                         <hr>
                         <h5>Update your image:</h5>
-                        <div class="form-group" th:if="${images.isEmpty()}">
-                            <input type="file" class="form-control-file" id="file" name="file">
+                        <div class="form-group file-input" th:if="${images.isEmpty()}">
+                            <input type="file" class="form-control-file file" id="file" name="file">
+                            <label for="file">Choose file</label>
+                            <p class="file-name"></p>
                         </div>
                         <div class="form-group" th:each="image : ${images}">
                             <input type="file" class="form-control-file" id="file" name="file">
                         </div>
                         <hr>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
+                        <div class="row">
+                            <div class="form-group col">
                                 <label for="scheduledTime">Time:</label>
                                 <select id="scheduledTime" class="form-select" th:field="*{scheduledTime}" required>
                                     <option value="0" disabled>- none selected -</option>
@@ -34,10 +36,7 @@
                                     <option value="2">Afternoon(1pm - 5pm)</option>
                                 </select>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col">
                                 <label for="scheduledDate">Job Date:</label>
                                 <input type="date" class="form-control" id="scheduledDate" th:field="*{scheduledDate}"
                                        required>
@@ -61,32 +60,37 @@
                         </div>
                         <hr>
                         <h5>Location:</h5>
-                        <div>
-                            <input type="hidden" th:value="${job.location.id}" name="locationId">
-                            <label for="houseNumber">House number</label>
-                            <input type="text" class="form-control" id="houseNumber" name="houseNumber"
-                                   placeholder="1234" required>
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <input type="hidden" th:value="${job.location.id}" name="locationId">
+                                <label for="houseNumber">House number</label>
+                                <input type="text" class="form-control" id="houseNumber" name="houseNumber"
+                                       placeholder="1234" required>
+                            </div>
+                            <div class="form-group col-sm-8">
+                                <label for="street">Street name</label>
+                                <input type="text" class="form-control" id="street" name="street" placeholder="Main St"
+                                       required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="street">Street name</label>
-                            <input type="text" class="form-control" id="street" name="street" placeholder="Main St"
-                                   required>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio"
+                                       required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="state">State</label>
+                                <input type="text" id="state" class="form-control" name="state" maxlength="2"
+                                       placeholder="TX" required>
+                            </div>
+                            <div class="form-group col-md-2 mb-1">
+                                <label for="zip">Zip</label>
+                                <input type="text" class="form-control" id="zip" name="zip" placeholder="78250"
+                                       required>
+                            </div>
+                            <input type="hidden" name="user" th:field="*{user}" hidden>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio"
-                                   required>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="state">State</label>
-                            <input type="text" id="state" class="form-control" name="state" maxlength="2"
-                                   placeholder="TX" required>
-                        </div>
-                        <div class="form-group col-md-2 mb-1">
-                            <label for="zip">Zip</label>
-                            <input type="text" class="form-control" id="zip" name="zip" placeholder="78250" required>
-                        </div>
-                        <input type="hidden" name="user" th:field="*{user}" hidden>
                         <button type="submit" class="btn btn-success edit-btn">Save</button>
                         <a type="submit" class="btn btn-secondary"
                            th:href="@{/admin/jobs}">Cancel</a>
