@@ -200,7 +200,13 @@ header {
 /* END OF REGISTER/LOGIN PAGE STYLE */
 /*---------------------------------------------------*/
 
+/* NAVBAR STYLE */
 
+#nav-divider {
+    border: 2px solid var(--md-green);
+    border-radius: 1px;
+    opacity: 1;
+}
 .gogreen-logo {
     text-decoration: none;
     font-family: 'Satisfy', cursive;
