@@ -325,6 +325,14 @@ li > a.nav-link:hover {
     frequently used breakpoints.
 */
 
+/* XSmall devices (phones and pocket devices, 576 and up) */
+@media screen and (max-width:576px) {
+    #map {
+        width: 60vh;
+        height: 50vh;
+    }
+}
+
 /* Small devices (phones and pocket devices, 576 and up) */
  @media screen and (min-width:576px) {
      #map {
