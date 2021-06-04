@@ -10,22 +10,27 @@
                 <div class="card-body">
                     <h1 class="text-center"><strong>Login</strong></h1>
 
-                    <h6 class="text-center">Not a member?<br><a class="register-link"
-                                                                th:href="@{/register}">Register</a></h6>
+                    <h6 class="text-center h5">Not a member?
+                        <a class="register-link" th:href="@{/register}">Register</a>
+                    </h6>
 
                     <form class="container p-1" th:action="@{/login}" method="POST">
-                        <div class="error-msg" th:if="${param.error}">
+                        <h5 class="error-msg" th:if="${param.error}">
                             Invalid Username and Password.
                             <!--    if a user fails to put correct username or password they will get this message-->
-                        </div>
-                        <div class="logout-msg" th:if="${param.logout}">
+                        </h5>
+                        <h5 class="logout-msg" th:if="${param.logout}">
                             You have successfully logged out.   <!-- when a user logs out they will see this message -->
-                        </div>
+                        </h5>
 
                         <div class="mb-3">
                             <input type="text" class="form-control" id="username" name="username"
                                    placeholder="Username">
                         </div>
+                        <h5 class="error-msg" th:if="${param.error}">
+                            Invalid Username and Password.
+                            <!--    if a user fails to put correct username or password they will get this message-->
+                        </h5>
                         <div class="mb-3">
                             <input type="password" class="form-control" id="password" name="password"
                                    placeholder="Password">

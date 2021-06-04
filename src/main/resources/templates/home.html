@@ -2,16 +2,18 @@
 <html id="home.html" xmlns:th="http://www.thymeleaf.org"
       lang="en">
 <head th:replace="partials/head :: head('Home')">
+    <link rel="stylesheet" th:href="@{/main.css}">
 </head>
+
 <body>
 <!-- ===NAVBAR=== -->
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div class="hero-img zero-space-container">
+<div class="main-hero-img zero-space-container">
     <div class="flex">
         <div class="container-fluid">
             <header th:replace="partials/header :: header('Welcome To GoGreen')"></header>
             <div class="d-grid gap-2 col-6 mx-auto text-center">
-                <h3>Get Help for your lawn service requests.<br> We are a professional lawn care company that offers
+                <h3 class="text-color">Get Help for your lawn service requests.<br> We are a professional lawn care company that offers
                     convenient scheduling for an array of services.</h3>
                 <a type="button btn-lg" class="btn btn-lg btn-success edit-btn" sec:authorize="!isAuthenticated()"
                    th:href="@{/register}">
@@ -20,67 +22,80 @@
             </div>
         </div>
     </div>
+</div> <!-- END HERO IMAGE -->
+
+<div class="home-page-spacer">
+    <hr>
 </div>
 
-<header th:replace="partials/header :: header('How It Works')"></header>
+<div class="main-background-img"> <!-- BEGIN BACKGROUND IMAGE -->
 
-<div class="mb-1 d-flex justify-content-evenly row">
-    <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
-        <img src="/img/step-1.jpg"
-             alt="Sign-up" style="height: 200px; width: auto">
-        <h4><span class="badge bg-secondary" style="border-radius: 50%">1</span> Sign up as a member</h4>
-        <p>Sign up as a member to be able to create job request.</p>
+    <div class="zero-space-container">
+
+        <header th:replace="partials/header :: header('How It Works')"></header>
+
+        <div class="mb-1 d-flex justify-content-evenly row">
+            <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
+                <img src="/img/step-1.jpg"
+                     alt="Sign-up" style="height: 200px; width: auto">
+                <h4><span class="badge bg-secondary" style="border-radius: 50%">1</span> Sign up as a member</h4>
+<!--                <p>Sign up as a member to be able to create job request.</p>-->
+            </div>
+            <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
+                <img src="/img/step-2.jpg"
+                     alt="Job-request" style="height: 200px; width: auto">
+                <h4><span class="badge bg-secondary" style="border-radius: 50%">2</span> Send a Job request</h4>
+<!--                <p>Tell us what you need done, when and where it works for you.</p>-->
+            </div>
+            <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
+                <img src="/img/step-3.jpg"
+                     alt="get-it-done" style="height: 200px; width: auto">
+                <h4><span class="badge bg-secondary" style="border-radius: 50%">3</span> GoGreen gets it done!</h4>
+<!--                <p>GoGreen employee arrives and gets the job done.</p>-->
+            </div>
+        </div>
     </div>
-    <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
-        <img src="/img/step-2.jpg"
-             alt="Job-request" style="height: 200px; width: auto">
-        <h4><span class="badge bg-secondary" style="border-radius: 50%">2</span> Send a Job request</h4>
-        <p>Tell us what you need done, when and where it works for you.</p>
-    </div>
-    <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
-        <img src="/img/step-3.jpg"
-             alt="get-it-done" style="height: 200px; width: auto">
-        <h4><span class="badge bg-secondary" style="border-radius: 50%">3</span> GoGreen gets it done!</h4>
-        <p>GoGreen employee arrives and gets the job done.</p>
-    </div>
-</div>
+    <!------------------- END HOW IT WORKS ------------------>
 
-<div class="zero-space-container">
-    <header th:replace="partials/header :: header('Customer Reviews')"></header>
+    <!------------------- BEGIN CUSTOMER REVIEWS ------------>
+        <div class="zero-space-container">
 
-    <!-- Card Container -->
-    <div class="container reviews-card-wrap about-us-card-container d-flex justify-content-evenly flex-wrap">
-        <th:block th:each="job : ${jobs}" th:if="${jobStat.index} < 5">
-            <th:block th:if="${job.reviewTitle != null}">
-                <!-- Card Deck 1 -->
-                <div class="card-deck about-us-card-deck mb-3">
-                    <div class="card about-us-card mb-4" style="width: 18rem;">
-                        <th:block th:each="image : ${images}">
-                            <img id="customer-review-home" th:if="${image.isReview == true && image.job.id == job.id}"
-                                 th:src="${image.url}"
-                                 class="card-img-top" width="80" height="200" alt="job-image">
-                        </th:block>
-                        <div class="card-body about-us-card-body">
+            <header th:replace="partials/header :: header('Customer Reviews')"></header>
 
+            <!-- Card Container -->
+        <div class="container reviews-card-wrap about-us-card-container d-flex justify-content-evenly flex-wrap">
+            <th:block th:each="job : ${jobs}" th:if="${jobStat.index} < 5">
+                <th:block th:if="${job.reviewTitle != null}">
+                    <!-- Card Deck 1 -->
+                    <div class="card-deck about-us-card-deck mb-3">
+                        <div class="card about-us-card mb-4" style="width: 18rem;">
+                            <th:block th:each="image : ${images}">
+                                <img id="customer-review-home" th:if="${image.isReview == true && image.job.id == job.id}"
+                                     th:src="${image.url}"
+                                     class="card-img-top" width="80" height="200" alt="job-image">
+                            </th:block>
+                            <div class="card-body about-us-card-body">
+
+                                <div class="card-body text-center">
+                                    <h5 class="card-title" th:text="${job.reviewTitle}"></h5>
+                                    <p class="card-text" th:text="${job.reviewBody}"></p>
+                                </div>
+                            </div>
+                            <hr class="mx-auto about-us-hr">
                             <div class="card-body text-center">
-                                <h5 class="card-title" th:text="${job.reviewTitle}"></h5>
-                                <p class="card-text" th:text="${job.reviewBody}"></p>
+                                <h5 class="card-title" th:text="${job.user.username}"></h5>
                             </div>
                         </div>
-                        <hr class="mx-auto about-us-hr">
-                        <div class="card-body text-center">
-                            <h5 class="card-title" th:text="${job.user.username}"></h5>
-                        </div>
                     </div>
-                </div>
+                </th:block>
             </th:block>
-        </th:block>
+        </div>
     </div>
-</div>
-</div>
-</div>
+    <!-------------------------- END CUSTOMER REVIEWS ----------------->
+    </div> <!-- END BACKGROUND IMAGE -->
 
-<footer th:replace="partials/footer :: footer"></footer>
-<script th:replace="partials/scripts :: scripts"></script>
-</body>
-</html>
+
+    <footer th:replace="partials/footer :: footer"></footer>
+    <script th:replace="partials/scripts :: scripts"></script>
+    </body>
+    </html>

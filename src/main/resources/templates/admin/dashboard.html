@@ -6,7 +6,7 @@
 
 <main class="container">
 
-    <header th:replace="partials/header :: header(${user.capitalizeUsername(user.username)} + '\'s Admin Dashboard')"></header>
+    <header th:replace="partials/header :: header('Admin Dashboard')"></header>
     <div class="text-center">
         <h3>Please review incomplete jobs with their addresses below</h3>
     </div>
@@ -71,9 +71,10 @@
                     var locationPopup = new mapboxgl.Popup()
                         .setHTML(jobAddresses.address + "<br>" + "<a href=\"/admin/jobs/show/" + jobAddresses.id + "\">View Job</a>");
 
+
                     // Checking if job is completed according to that adding marker or removing it
                     if (!jobAddresses.completion) {
-                        new mapboxgl.Marker()
+                        new mapboxgl.Marker({"color": "#72A603"})
                             .setLngLat(result)
                             .setPopup(locationPopup)
                             .addTo(map);
