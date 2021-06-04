@@ -10,30 +10,32 @@
                 <div class="card-body">
                     <h1 class="text-center"><strong>Register</strong></h1>
 
-                    <h6 class="text-center">Already a member?<br><a class="login-link" th:href="@{/login}">Login</a></h6>
+                    <h6 class="text-center">Already a member? <a class="login-link" th:href="@{/login}">Login</a></h6>
 
                     <form class="container p-1" th:action="@{/register}" method="POST" th:object="${user}">
                         <div class="mb-3">
+                            <h5 class="error-msg" th:if="${username != null}"
+                                th:text="'Username already exists'"></h5>
                             <input type="text" class="form-control" id="username" name="username" th:field="*{username}"
                                    placeholder="Username">
                             <p class="error-msg" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
-                            <p class="error-msg" th:if="${username != null}"
-                                   th:text="'Username already exists'"></p>
                         </div>
                         <div class="mb-3">
+                            <h5 class="error-msg" th:if="${email != null}"
+                               th:text="'Email already exists'"></h5>
                             <input type="email" class="form-control" id="email" name="email" th:field="*{email}"
                                    placeholder="Email">
                             <p class="error-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-                            <p class="error-msg" th:if="${email != null}"
-                                   th:text="'Email already exists'"></p>
                         </div>
                         <div class="mb-3">
+                            <h5 class="error-msg" th:if="${#fields.hasErrors('password')}"
+                                th:errors="*{password}"></h5>
                             <input type="password" class="form-control" id="password" name="password"
                                    th:field="*{password}" placeholder="Password">
-                            <p class="error-msg" th:if="${#fields.hasErrors('password')}"
-                                   th:errors="*{password}"></p>
                         </div>
                         <div class="mb-3">
+                            <h5 class="error-msg" th:if="${#fields.hasErrors('password')}"
+                                th:errors="*{password}"></h5>
                             <input type="password" class="form-control" id="confirm" name="confirm"
                                    placeholder="Confirm Password">
                         </div>
