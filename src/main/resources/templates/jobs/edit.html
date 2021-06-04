@@ -18,8 +18,10 @@
                         </div>
                         <hr>
                         <h5>Update your image:</h5>
-                        <div class="form-group" th:if="${images.isEmpty()}">
-                            <input type="file" class="form-control-file" id="file" name="file">
+                        <div class="form-group file-input" th:if="${images.isEmpty()}">
+                            <input type="file" class="form-control-file file" id="file" name="file">
+                            <label for="file">Choose file</label>
+                            <p class="file-name"></p>
                         </div>
                         <div class="form-group" th:each="image : ${images}">
                             <input type="file" class="form-control-file" id="file" name="file">
