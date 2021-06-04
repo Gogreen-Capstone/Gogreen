@@ -60,13 +60,13 @@
                         <hr>
                         <h5>Location:</h5>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-sm-4">
                                 <input type="hidden" th:value="${job.location.id}" name="locationId">
                                 <label for="houseNumber">House number</label>
                                 <input type="text" class="form-control" id="houseNumber" name="houseNumber"
                                        placeholder="1234" required>
                             </div>
-                            <div class="col">
+                            <div class="col-sm-8">
                                 <div class="form-group">
                                     <label for="street">Street name</label>
                                     <input type="text" class="form-control" id="street" name="street"
@@ -74,19 +74,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio"
-                                   required>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="state">State</label>
-                            <input type="text" id="state" class="form-control" name="state" maxlength="2"
-                                   placeholder="TX" required>
-                        </div>
-                        <div class="form-group col-md-2 mb-1">
-                            <label for="zip">Zip</label>
-                            <input type="text" class="form-control" id="zip" name="zip" placeholder="78250" required>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio"
+                                       required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="state">State</label>
+                                <input type="text" id="state" class="form-control" name="state" maxlength="2"
+                                       placeholder="TX" required>
+                            </div>
+                            <div class="form-group col-md-2 mb-1">
+                                <label for="zip">Zip</label>
+                                <input type="text" class="form-control" id="zip" name="zip" placeholder="78250"
+                                       required>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-success edit-btn">Save</button>
                         <a type="submit" class="btn btn-secondary" th:href="@{/dashboard}">Cancel</a>

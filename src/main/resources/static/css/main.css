@@ -179,11 +179,12 @@ header {
 .logout-msg {
     color: var(--md-green);
 }
-
-
 /* END OF REGISTER/LOGIN PAGE STYLE */
 /*---------------------------------------------------*/
 
+.btn-group {
+    margin: 1px;
+}
 
 .gogreen-logo {
     text-decoration: none;
@@ -216,6 +217,7 @@ li > a.nav-link:hover {
 
 }
 
+
 /* ABOUT US PAGE */
 /*--------------------------------------------------------*/
 .about-us-img {
@@ -237,7 +239,7 @@ li > a.nav-link:hover {
     backdrop-filter: blur( 20.0px );
     -webkit-backdrop-filter: blur( 20.0px );
     border-radius: 20px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid var(--md-green);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 
     /*Mobile Responsive Centering of the cards in the card deck*/
