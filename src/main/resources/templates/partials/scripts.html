@@ -15,5 +15,18 @@
     <script src="/js/main.js"></script>
 </th:block>
 
+<th:block th:fragment="delete-script">
+    <script>
+    "use-strict";
+
+    $('.btn-danger').click(function (e){
+    var checkConfirm = confirm("Are you sure you want to delete this?");
+    if (!checkConfirm) {
+    e.preventDefault();
+    }
+    });
+    </script>
+</th:block>
+
 </body>
 </html>
