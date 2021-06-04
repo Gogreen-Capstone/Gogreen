@@ -44,23 +44,37 @@ body {
 /*    background-color: slategrey; !* Used if the image is unavailable *!*/
 /*}*/
 
-.background-img {
+.main-background-img {
     background-image: url("../img/background-img-grey.jpeg"); /*Image used*/
     background-color: slategrey; /* Used if the image is unavailable */
-    height: 500px; /* You must set a specified height */
+    height: 100%; /* You must set a specified height */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
 }
 
-.hero-img {
-    background-image: url("../img/hero-img.jpg"); /*Image used*/
+/*.bg-cover {
+    background-image: url("/../img/landing-bg.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 54em;
+    /*margin-top: 1em;*/
+
+.main-hero-img {
+    background-image: url("../img/hero-img.jpeg"); /*Image used*/
     height: 100%;
     margin: 0;
     scroll-behavior: smooth;
     background-repeat: no-repeat;
     background-attachment: fixed;
 
+}
+
+.text-color {
+    /*color: var(--md-green);*/
+    color: black;
 }
 
 .card-styling {
