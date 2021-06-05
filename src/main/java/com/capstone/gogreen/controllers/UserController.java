@@ -1,7 +1,6 @@
 package com.capstone.gogreen.controllers;
 
 import com.capstone.gogreen.models.Job;
-import com.capstone.gogreen.models.Location;
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.ImageRepository;
 import com.capstone.gogreen.repositories.JobRepository;
@@ -17,7 +16,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -47,7 +45,6 @@ public class UserController {
     public List<Job> userLocations() {
         return jobsDao.findAll();
     }
-
 
 
     @GetMapping("/dashboard")

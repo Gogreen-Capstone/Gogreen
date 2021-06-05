@@ -18,17 +18,14 @@ public class AuthenticationController {
 
     private UserRepository usersDao;
     private PasswordEncoder passwordEncoder;
-//    private ReviewRepository reviewsDao;
 
     public AuthenticationController(UserRepository usersDao, PasswordEncoder passwordEncoder) {
-//    public AuthenticationController(UserRepository usersDao, PasswordEncoder passwordEncoder, ReviewRepository reviewsDao) {
         this.usersDao = usersDao;
         this.passwordEncoder = passwordEncoder;
-//        this.reviewsDao = reviewsDao;
     }
 
     @GetMapping("/login")
-    public String showLoginForm(){
+    public String showLoginForm() {
         return "users/login";
     }
 
@@ -38,18 +35,18 @@ public class AuthenticationController {
     }
 
     @GetMapping("/register")
-    public String showRegisterPage(Model model){
+    public String showRegisterPage(Model model) {
         model.addAttribute("user", new User());
         return "users/register";
     }
 
     @PostMapping("/register")
-    public String registerUser(Model model, @Valid @ModelAttribute User user, Errors validation, @RequestParam(name = "confirm") String confirm){
+    public String registerUser(Model model, @Valid @ModelAttribute User user, Errors validation, @RequestParam(name = "confirm") String confirm) {
 
         String hash = passwordEncoder.encode(user.getPassword());
 
         // checking to make sure password and confirm password match
-        if (!user.getPassword().equals(confirm)){
+        if (!user.getPassword().equals(confirm)) {
             validation.rejectValue(
                     "password",
                     "user.password",
@@ -57,7 +54,7 @@ public class AuthenticationController {
             );
         }
 
-        if (validation.hasErrors()){
+        if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
             model.addAttribute("user", user);
             return "users/register";

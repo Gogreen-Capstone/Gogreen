@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 public interface ImageRepository extends JpaRepository<Image, Long> {

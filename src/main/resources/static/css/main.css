@@ -404,8 +404,8 @@ input:focus + label {
 /* XSmall devices (phones and pocket devices, 576 and up) */
 @media screen and (max-width:576px) {
     #map {
-        width: 60vh;
-        height: 50vh;
+        width: 45vh;
+        height: 45vh;
     }
 }
 
