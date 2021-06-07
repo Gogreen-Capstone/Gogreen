@@ -353,8 +353,40 @@ input:focus + label {
 
 .footer-styling {
     width: 100vw;
+    min-height: 30vh;
     /*background: transparent;*/
     background-color: var(--md-green);
+}
+
+.footer-bold-text {
+    color: var(--yellow-green);
+    text-align: center;
+    align-content: center;
+}
+
+.fa-leaf {
+    size: 25px 25px;
+}
+
+.fa-envelope {
+    color: var(--yellow-green);
+}
+
+.footer-email {
+    color: var(--yellow-green);
+}
+
+.footer-top{
+    display: inline-block;
+    text-align: center;
+    align-content: center;
+    color: var(--yellow-green);
+    font-size: calc(12px + (15 - 12) * ((100vw - 360px) / (1600 - 360))) !important;
+    top: -30px;
+}
+
+.footer-h3 {
+    top: -30px
 }
 
 .footer-link a {
@@ -379,6 +411,7 @@ input:focus + label {
     padding: 10px;
 }
 
+
 .logout-button {
     background: none!important;
     border: none;
@@ -394,14 +427,6 @@ input:focus + label {
 .logout-button:hover {
     color: black;
 }
-/*.footer-content-wrap {
-/*    !*padding-top: 20px;    !* Footer height *!
-/*{
-
-/*!*.footer-container {*!*/
-/*!*    background-size: contain;*!*/
-/*!*    background-position: center;*!*/
-/*!*}*!*/
 
 /* END OF FOOTER STYLING */
 /*-------------------------------------------------------*/
