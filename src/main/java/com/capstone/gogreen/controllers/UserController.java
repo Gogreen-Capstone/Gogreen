@@ -60,7 +60,7 @@ public class UserController {
         boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin(); //Getting User according to logged in user and checking isAdmin row
         // Logic to redirect based off of isAdmin row from User table in db
         if (isAdmin) {
-            return "admin/dashboard";
+            return "admin/map";
         } else {
             return "users/dashboard";
         }

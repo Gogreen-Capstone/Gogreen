@@ -29,11 +29,11 @@
                         <hr>
                         <div class="row">
                             <div class="form-group col">
-                                <label for="scheduledTime">Time:</label>
+                                <label for="scheduledTime">Shift:</label>
                                 <select id="scheduledTime" class="form-select" th:field="*{scheduledTime}" required>
                                     <option value="0" disabled>- none selected -</option>
-                                    <option value="1">Morning(8am - 12pm)</option>
-                                    <option value="2">Afternoon(1pm - 5pm)</option>
+                                    <option value="1">Morning (8am - 12pm)</option>
+                                    <option value="2">Afternoon (1pm - 5pm)</option>
                                 </select>
                             </div>
                             <div class="form-group col">
@@ -66,30 +66,30 @@
                                 <input type="hidden" th:value="${job.location.id}" name="locationId">
                                 <label for="houseNumber">House number</label>
                                 <input type="text" class="form-control" id="houseNumber" name="houseNumber"
-                                       placeholder="1234" required>
+                                       placeholder="1234" th:value="${job.location.houseNumber}" required>
                             </div>
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label for="street">Street name</label>
                                     <input type="text" class="form-control" id="street" name="street"
-                                           placeholder="Main St" required>
+                                           placeholder="Main St" th:value="${job.location.street}" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="city">City</label>
-                                <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio"
+                                <input type="text" class="form-control" id="city" name="city" placeholder="San Antonio" th:value="${job.location.city}"
                                        required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="state">State</label>
                                 <input type="text" id="state" class="form-control" name="state" maxlength="2"
-                                       placeholder="TX" required>
+                                       placeholder="TX" th:value="${job.location.state}" required>
                             </div>
                             <div class="form-group col-md-2 mb-1">
                                 <label for="zip">Zip</label>
-                                <input type="text" class="form-control" id="zip" name="zip" placeholder="78250"
+                                <input type="text" class="form-control" id="zip" name="zip" placeholder="78250" th:value="${job.location.zipCode}"
                                        required>
                             </div>
                         </div>

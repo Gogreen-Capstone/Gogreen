@@ -10,7 +10,8 @@
                 <div class="card-body">
                     <h1 class="text-center"><strong>Register</strong></h1>
 
-                    <h6 class="text-center h5">Already a member? <a class="login-link" th:href="@{/login}">Login</a></h6>
+                    <h6 class="text-center h5">Already a member? <a class="login-link" th:href="@{/login}">Login</a>
+                    </h6>
 
                     <form class="container p-1" th:action="@{/register}" method="POST" th:object="${user}">
                         <div class="mb-3">
@@ -22,7 +23,7 @@
                         </div>
                         <div class="mb-3">
                             <h5 class="error-msg" th:if="${email != null}"
-                               th:text="'Email already exists'"></h5>
+                                th:text="'Email already exists'"></h5>
                             <input type="email" class="form-control" id="email" name="email" th:field="*{email}"
                                    placeholder="Email">
                             <p class="error-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
@@ -40,7 +41,7 @@
                                    placeholder="Confirm Password">
                         </div>
                         <div class="row col-sm-12 register-div">
-                        <button type="submit" class="btn btn-primary edit-btn">Register</button>
+                            <button type="submit" class="btn btn-primary edit-btn">Register</button>
                         </div>
                     </form>
                 </div>
