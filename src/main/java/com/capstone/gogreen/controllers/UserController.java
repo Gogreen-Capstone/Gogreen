@@ -1,6 +1,7 @@
 package com.capstone.gogreen.controllers;
 
 import com.capstone.gogreen.models.Job;
+import com.capstone.gogreen.models.Location;
 import com.capstone.gogreen.models.User;
 import com.capstone.gogreen.repositories.ImageRepository;
 import com.capstone.gogreen.repositories.JobRepository;
@@ -16,6 +17,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -47,6 +49,7 @@ public class UserController {
     }
 
 
+
     @GetMapping("/dashboard")
     public String showUserDashboard(Model model, @ModelAttribute Job job) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -57,7 +60,7 @@ public class UserController {
         boolean isAdmin = usersDao.getOne(loggedInUser.getId()).getIsAdmin(); //Getting User according to logged in user and checking isAdmin row
         // Logic to redirect based off of isAdmin row from User table in db
         if (isAdmin) {
-            return "admin/dashboard";
+            return "admin/map";
         } else {
             return "users/dashboard";
         }
