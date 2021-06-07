@@ -6,13 +6,13 @@
 
 <main class="container">
 
-    <header th:replace="partials/header :: header(${user.capitalizeUsername(user.username)} + '\'s Dashboard')"></header>
+    <header th:replace="partials/header :: header('Welcome, ' + ${user.username})"></header>
 
     <div class="row mb-1 d-grid gap-2 col-6 mx-auto text-center">
         <a type="button btn-lg" class="btn btn-lg btn-success edit-btn" th:href="@{/jobs/create}">New Job Request</a>
     </div>
 
-
+<!--    PENDING JOB CARDS-->
     <div class="row justify-content-between text-center">
         <h2 class="mb-3" id="pending-job-header">Pending Jobs</h2>
         <div class="card mb-3" id="pending-job-card" style="max-width: 18rem;" th:if="${job.isCompleted == false}"
@@ -23,9 +23,9 @@
                 <p class="card-text" th:text="${job.jobDetails}">Job details</p>
             </div>
             <div class="card-footer bg-transparent" th:if="${job.scheduledTime == 1}">Shift:
-                <span>Morning(8am - 12pm)</span></div>
+                <span>Morning (8am - 12pm)</span></div>
             <div class="card-footer bg-transparent" th:if="${job.scheduledTime == 2}">Shift:
-                <span>Afternoon(1pm - 5pm)</span></div>
+                <span>Afternoon (1pm - 5pm)</span></div>
             <div class="card-footer bg-transparent">
                 <a th:href="'/jobs/show/' + ${job.id}" class="btn btn-warning view-btn">View Job</a>
                 <a th:href="@{'/jobs/edit/' + ${job.id}}" class="btn btn-success edit-btn">Edit Job</a>
@@ -34,6 +34,7 @@
     </div>
     <hr id="job-divider">
 
+<!--    COMPLETED JOB CARDS-->
     <div class="row justify-content-between text-center">
         <h2 class="mb-3" id="completed-job-header">Completed Jobs</h2>
         <div class="card mb-3" id="completed-job-card" style="max-width: 18rem;" th:if="${job.isCompleted == true}"
@@ -58,16 +59,7 @@
                    th:if="${job.reviewTitle == null}">Write Review</a>
                 <a th:href="'/reviews/' + ${job.id} + '/edit'" class="btn btn-success edit-btn" type="button"
                    th:if="${job.reviewTitle != null}">Edit Review</a>
-                <th:block th:if="${job.reviewTitle != null}">
-                    <form class="mt-2" th:action="'/reviews/' + ${job.id} + '/delete'" th:method="POST">
-                        <p name="reviewTitle" th:text="${job.reviewTitle}" hidden></p>
-                        <p name="reviewBody" th:text="${job.reviewBody}" hidden></p>
-                        <p name="isCompleted" th:text="${job.isCompleted}" hidden></p>
-                        <button type="submit" class="btn btn-danger">Delete Review</button>
-                    </form>
-                </th:block>
             </div>
-
         </div>
     </div>
 

@@ -53,24 +53,12 @@ public class AdminController {
 
     @PostMapping("/admin/users/edit/{id}")
     public String adminEditUser(@PathVariable long id, @Valid @ModelAttribute User user, //Valid attribute is for validation
-                                @RequestParam(name = "password") String password,
                                 @RequestParam(name = "username") String username,
                                 @RequestParam(name = "email") String email,
-                                @RequestParam(name = "confirm") String confirm,
                                 Errors validation,
                                 Model model) { //errors validation also needed for validation
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //Getting logged in user
         User userId = usersDao.getOne(id);
-        String hash = passwordEncoder.encode(password);
-
-        // checking to make sure password and confirm password match
-        if (!user.getPassword().equals(confirm) && user.getIsAdmin()) {
-            validation.rejectValue(
-                    "password",
-                    "user.password",
-                    "Passwords do not match"
-            );
-        }
 
         //Check if username and email is match with some other records from our database
         if (validation.hasErrors()) {
@@ -89,8 +77,7 @@ public class AdminController {
             return "admin/users";
         }
 
-        //setting the username email and password
-        userId.setPassword(hash);
+        //setting the username & password
         userId.setUsername(username);
         userId.setEmail(email);
 

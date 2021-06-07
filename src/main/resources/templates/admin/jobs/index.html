@@ -10,7 +10,6 @@
     <tr>
         <th scope="col"><strong>User</strong></th>
         <th scope="col"><strong>Job Title</strong></th>
-<!--        <th scope="col"><strong>Job Details</strong></th>-->
         <th scope="col"><strong>Job Status</strong></th>
         <th scope="col"><strong>Actions</strong></th>
     </tr>
@@ -19,7 +18,6 @@
     <tr>
         <th scope="row" th:text="${job.user.username}"></th>
         <td th:text="${job.jobTitle}"></td>
-<!--        <td th:text="${job.jobDetails}"></td>-->
         <td th:if="${job.isCompleted == true}">Completed</td>
         <td th:if="${job.isCompleted == false}">Pending</td>
         <td>

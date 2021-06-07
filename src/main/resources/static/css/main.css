@@ -46,7 +46,7 @@ body {
 }
 
 .main-background-img {
-    background-image: url("../img/background-img2.jpeg"); /*Image used*/
+    background-image: url("../img/hero-img.jpeg"); /*Image used*/
     background-color: slategrey; /* Used if the image is unavailable */
     height: 100%; /* You must set a specified height */
     background-position: center; /* Center the image */
@@ -55,7 +55,7 @@ body {
 }
 
 .main-hero-img {
-    background-image: url("../img/hero-img.jpeg"); /*Image used*/
+    background-image: url("../img/header-pic.jpg"); /*Image used*/
     height: 100%;
     margin: 0;
     scroll-behavior: smooth;
@@ -353,8 +353,40 @@ input:focus + label {
 
 .footer-styling {
     width: 100vw;
+    min-height: 30vh;
     /*background: transparent;*/
     background-color: var(--md-green);
+}
+
+.footer-bold-text {
+    color: var(--yellow-green);
+    text-align: center;
+    align-content: center;
+}
+
+.fa-leaf {
+    size: 25px 25px;
+}
+
+.fa-envelope {
+    color: var(--yellow-green);
+}
+
+.footer-email {
+    color: var(--yellow-green);
+}
+
+.footer-top{
+    display: inline-block;
+    text-align: center;
+    align-content: center;
+    color: var(--yellow-green);
+    font-size: calc(12px + (15 - 12) * ((100vw - 360px) / (1600 - 360))) !important;
+    top: -30px;
+}
+
+.footer-h3 {
+    top: -30px
 }
 
 .footer-link a {
@@ -378,14 +410,23 @@ input:focus + label {
 .text-center{
     padding: 10px;
 }
-/*.footer-content-wrap {
-/*    !*padding-top: 20px;    !* Footer height *!
-/*{
 
-/*!*.footer-container {*!*/
-/*!*    background-size: contain;*!*/
-/*!*    background-position: center;*!*/
-/*!*}*!*/
+
+.logout-button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: rgba(0, 0, 0, 0.55);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    color: black;
+}
 
 /* END OF FOOTER STYLING */
 /*-------------------------------------------------------*/
@@ -404,8 +445,8 @@ input:focus + label {
 /* XSmall devices (phones and pocket devices, 576 and up) */
 @media screen and (max-width:576px) {
     #map {
-        width: 60vh;
-        height: 50vh;
+        width: 45vh;
+        height: 45vh;
     }
 }
 
