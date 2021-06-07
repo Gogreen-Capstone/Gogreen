@@ -11,7 +11,7 @@
                 <div class="col">
                     <div class="card-body">
                         <header th:replace="partials/header :: header('Edit Job Review')"></header>
-                        <form th:action="@{'/reviews/' + ${job.id} + '/edit'}" th:method="POST" th:object="${job}"
+                        <form class="" th:action="@{'/reviews/' + ${job.id} + '/edit'}" th:method="POST" th:object="${job}"
                               enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="reviewTitle">Review Title</label>
@@ -30,7 +30,6 @@
                                 <p class="file-name"></p>
                             </div>
                             <button type="submit" class="btn btn-primary edit-btn mt-2 mb-2">Save</button>
-                            <a th:href="@{/dashboard}" class="btn btn-secondary">Cancel</a>
                             <input th:field="*{isCompleted}" name="isCompleted" hidden>
                             <input th:field="*{jobDetails}" name="jobDetails" hidden>
                             <input th:field="*{jobTitle}" name="jobTitle" hidden>
@@ -38,7 +37,19 @@
                             <input th:field="*{scheduledTime}" name="scheduledTime" hidden>
                             <input th:field="*{user}" name="user" hidden>
                             <input type="hidden" th:field="*{location}">
+                            <input th:field="*{jobServices}" name="jobServices" hidden>
+                            <a th:href="@{/dashboard}" class="btn btn-secondary">Cancel</a>
                         </form>
+
+                        <th:block th:if="${job.reviewTitle != null}">
+                            <form class="mt-2 delete-form" th:action="'/reviews/' + ${job.id} + '/delete'" th:method="POST" th:object="${job}">
+                                <p name="reviewTitle" th:text="${job.reviewTitle}" hidden></p>
+                                <p name="reviewBody" th:text="${job.reviewBody}" hidden></p>
+                                <p name="isCompleted" th:text="${job.isCompleted}" hidden></p>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </th:block>
+
                     </div>
                 </div>
             </div>

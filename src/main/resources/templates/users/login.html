@@ -16,7 +16,7 @@
 
                     <form class="container p-1" th:action="@{/login}" method="POST">
                         <h5 class="error-msg" th:if="${param.error}">
-                            Invalid Username and Password.
+                            Invalid Username or Password.
                             <!--    if a user fails to put correct username or password they will get this message-->
                         </h5>
                         <h5 class="logout-msg" th:if="${param.logout}">
@@ -28,7 +28,7 @@
                                    placeholder="Username">
                         </div>
                         <h5 class="error-msg" th:if="${param.error}">
-                            Invalid Username and Password.
+                            Invalid Username or Password.
                             <!--    if a user fails to put correct username or password they will get this message-->
                         </h5>
                         <div class="mb-3">

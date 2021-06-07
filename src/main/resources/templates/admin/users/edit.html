@@ -25,19 +25,9 @@
                             <small class="error-msg form-text text-muted" th:if="${email != null}"
                                    th:text="'Email already exists'"></small>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input id="password" class="form-control" type="password" name="password"
+                            <input id="password" class="form-control" type="hidden" name="password"
                                    th:field="*{password}">
-                            <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}"
-                                   th:errors="*{password}"></small>
-                        </div>
-                        <div class="form-group">
-                            <label for="confirm">Confirm Password</label>
-                            <input class="form-control" id="confirm" name="confirm" type="password">
-                            <small class="error-msg form-text text-muted" th:if="${#fields.hasErrors('password')}"
-                                   th:errors="*{password}"></small>
-                        </div>
+                            <input class="form-control" id="confirm" name="confirm" type="hidden">
                         <button type="submit" class="btn btn-success edit-btn mt-1">Save</button>
                         <a type="submit" class="btn btn-secondary mt-1"
                            th:href="@{/admin/users}">Cancel</a>

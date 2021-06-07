@@ -222,7 +222,7 @@ public class JobController {
     }
 
     @PostMapping("/reviews/{id}/delete")
-    public String delete(@PathVariable long id) {
+    public String delete(@PathVariable long id, @ModelAttribute Job job) {
         Job specificJob = jobsDao.getOne(id);
         specificJob.setReviewTitle(null);
         specificJob.setReviewBody(null);

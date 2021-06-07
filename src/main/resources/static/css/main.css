@@ -46,7 +46,7 @@ body {
 }
 
 .main-background-img {
-    background-image: url("../img/background-img2.jpeg"); /*Image used*/
+    background-image: url("../img/hero-img.jpeg"); /*Image used*/
     background-color: slategrey; /* Used if the image is unavailable */
     height: 100%; /* You must set a specified height */
     background-position: center; /* Center the image */
@@ -55,7 +55,7 @@ body {
 }
 
 .main-hero-img {
-    background-image: url("../img/hero-img.jpeg"); /*Image used*/
+    background-image: url("../img/header-pic.jpg"); /*Image used*/
     height: 100%;
     margin: 0;
     scroll-behavior: smooth;
