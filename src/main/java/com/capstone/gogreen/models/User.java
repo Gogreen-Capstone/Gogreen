@@ -13,11 +13,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message ="*Required")
+    @NotBlank(message = "*Required")
     @Column(nullable = false, unique = true)
     private String username;
 
-    @NotBlank(message ="*Required")
+    @NotBlank(message = "*Required")
     @Column(nullable = false, unique = true)
     private String email;
 

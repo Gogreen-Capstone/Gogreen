@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -42,6 +41,7 @@ public class JobController {
         model.addAttribute("image", new Image());
         return "jobs/create";
     }
+
     // creates new job
     @PostMapping("/jobs/create")
     public String saveJob(@ModelAttribute Job job, @ModelAttribute Location location, @ModelAttribute Image image,
@@ -50,8 +50,8 @@ public class JobController {
                           @RequestParam(name = "city") String city,
                           @RequestParam(name = "state") String state,
                           @RequestParam(name = "zip") int zip,
-                          @RequestParam(name = "services")List<Service> services,
-                          @RequestParam(name = "file") MultipartFile uploadedFile){
+                          @RequestParam(name = "services") List<Service> services,
+                          @RequestParam(name = "file") MultipartFile uploadedFile) {
         User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.getOne(principal.getId());  // getting currently signed in user; our Dao gets all info needed
         job.setUser(user); // assigning currently signed in user to newly created post
@@ -80,6 +80,7 @@ public class JobController {
 
         return "redirect:/dashboard";
     }
+
     // shows specific job
     @GetMapping("/jobs/show/{id}")
     public String showOneJob(Model model, @PathVariable long id) {
@@ -90,6 +91,7 @@ public class JobController {
         model.addAttribute("services", jobToView.getJobServices());
         return "jobs/show";
     }
+
     // shows edit form
     @GetMapping("/jobs/edit/{id}")
     public String showEditForm(Model model, @PathVariable long id) {
@@ -102,9 +104,10 @@ public class JobController {
         model.addAttribute("location", locationToEdit.getId());
         return "jobs/edit";
     }
+
     // save edit job
     @PostMapping("/jobs/edit/{id}")
-    public String saveEditJob(@PathVariable long id, @ModelAttribute Job jobToEdit,@ModelAttribute Location locationToEdit, @ModelAttribute Image imageToEdit,
+    public String saveEditJob(@PathVariable long id, @ModelAttribute Job jobToEdit, @ModelAttribute Location locationToEdit, @ModelAttribute Image imageToEdit,
                               @RequestParam(name = "services") List<Service> services,
                               @RequestParam(name = "file") MultipartFile uploadedFile,
                               @RequestParam(name = "houseNumber") int houseNumber,
@@ -227,7 +230,6 @@ public class JobController {
         jobsDao.save(specificJob);
         return "redirect:/dashboard";
     }
-
 
 
 }
