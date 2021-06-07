@@ -17,12 +17,13 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>Date: </strong><span th:text="${job.stringToDate(job.scheduledDate)}"></span></li>
-                <li class="list-group-item" th:if="${job.scheduledTime == 1}"><strong>Time: </strong><span>Morning(8am - 12pm)</span>
+                <li class="list-group-item" th:if="${job.scheduledTime == 1}"><strong>Shift: </strong><span>Morning (8am - 12pm)</span>
                 </li>
-                <li class="list-group-item" th:if="${job.scheduledTime == 2}"><strong>Time: </strong><span>Afternoon(1pm - 5pm)</span>
+                <li class="list-group-item" th:if="${job.scheduledTime == 2}"><strong>Shift: </strong><span>Afternoon (1pm - 5pm)</span>
                 </li>
-                <li class="list-group-item"><strong>Location: </strong><span
-                        th:text="${job.location.houseNumber + ' ' + job.location.street + ' ' + job.location.city + ', ' + job.location.state + ' ' + job.location.zipCode}"></span>
+                <li class="list-group-item"><strong>Location:<br></strong>
+                    <span th:text="${job.location.houseNumber + ' ' + job.location.street}"></span><br>
+                    <span th:text="${job.location.city + ', ' + job.location.state + ' ' + job.location.zipCode}"></span>
                 </li>
                 <li class="list-group-item"><strong>Service type: </strong><span th:each="service, iterStat : ${services}"
                                                                                  th:text="${!iterStat.last} ? ${service.title} + ', ': ${service.title}"></span>
