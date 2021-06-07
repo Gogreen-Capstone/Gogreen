@@ -88,7 +88,7 @@ public class Location {
 
     //Creating a address format
     public String addressToString() {
-        return  houseNumber + " " + street + " " + city + " " + state + " " + zipCode + ".";
+        return houseNumber + " " + street + " " + city + " " + state + " " + zipCode + ".";
     }
 
 }

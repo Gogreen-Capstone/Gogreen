@@ -72,7 +72,7 @@ public class Job {
         this.user = user;
     }
 
-    public Job(long id, String jobTitle, String jobDetails, boolean isCompleted, String reviewTitle, String reviewBody, String scheduledDate, int scheduledTime, User user, Location location, List<Service> jobServices){
+    public Job(long id, String jobTitle, String jobDetails, boolean isCompleted, String reviewTitle, String reviewBody, String scheduledDate, int scheduledTime, User user, Location location, List<Service> jobServices) {
         this.id = id;
         this.jobTitle = jobTitle;
         this.jobDetails = jobDetails;
@@ -187,7 +187,7 @@ public class Job {
                 '}';
     }
 
-    public String stringToDate(String scheduledDate){
+    public String stringToDate(String scheduledDate) {
         try {
             scheduledDate = scheduledDate.replace(" UTC", "");
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(scheduledDate);

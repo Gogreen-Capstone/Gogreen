@@ -36,15 +36,17 @@
                     <a class="nav-link h5" th:href="@{/edit-user}">Profile-Settings</a>
                 </li>
             </ul>
-            <div class="d-flex ">
-                <a sec:authorize="!isAuthenticated()" class="btn btn-warning view-btn mx-1" type="button" th:href="@{/login}">Login</a>
-                &nbsp
-                <a sec:authorize="!isAuthenticated()" class="btn btn-success edit-btn mx-1" type="button"
-                   th:href="@{/register}">Register</a>
+            <ul class="d-flex navbar-nav text-center">
+                <li sec:authorize="!isAuthenticated()" class="navbar-item">
+                    <a class="nav-link h5" th:href="@{/login}">Login</a>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="navbar-item">
+                    <a class="nav-link h5" th:href="@{/register}">Register</a>
+                </li>
                 <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
-                    <button class="btn btn-success edit-btn" type="submit">Logout</button>
+                    <button class="nav-link h5 logout-button" type="submit">Logout</button>
                 </form>
-            </div>
+            </ul>
         </div>
     </div>
 </nav>
@@ -64,7 +66,7 @@
 
             <ul class="navbar-nav me-auto mb-lg-0 text-center mt-2">
                 <li class="navbar-item">
-                    <a class="nav-link h5" th:href="@{/dashboard}">Dashboard</a>
+                    <a class="nav-link h5" th:href="@{/dashboard}">Map</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="navbar-item">
                     <a class="nav-link h5" th:href="@{/admin/users}">Users</a>
@@ -76,15 +78,14 @@
                     <a class="nav-link h5" th:href="@{/admin/reviews}">Reviews</a>
                 </li>
             </ul>
-            <div class="d-flex ">
-                <a sec:authorize="!isAuthenticated()" class="btn btn-warning view-btn mx-1" type="button" th:href="@{/login}">Login</a>
-                &nbsp
-                <a sec:authorize="!isAuthenticated()" class="btn btn-success edit-btn mx-1" type="button"
-                   th:href="@{/register}">Register</a>
+            <ul class="d-flex navbar-nav text-center">
+                <li sec:authorize="isAuthenticated()" class="navbar-item">
+                    <small style="color: rgba(0, 0, 0, 0.55);">Logged in as an Admin &nbsp</small>
+                </li>
                 <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
-                    <button class="btn btn-success edit-btn" type="submit">Logout</button>
+                        <button class="nav-link h5 logout-button" type="submit" >Logout</button>
                 </form>
-            </div>
+            </ul>
         </div>
     </div>
 </nav>
