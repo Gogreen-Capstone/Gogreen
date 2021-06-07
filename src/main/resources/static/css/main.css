@@ -377,7 +377,7 @@ input:focus + label {
 }
 
 .footer-top{
-    display: inline-block;
+    display: inline-flex;
     text-align: center;
     align-content: center;
     color: var(--yellow-green);
