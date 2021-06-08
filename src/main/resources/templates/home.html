@@ -13,13 +13,15 @@
 
 <div class="main-hero-img zero-space-container">
     <div class="flex">
-        <div class="container-fluid">
-            <header th:replace="partials/header :: header('Welcome To GoGreen')"></header>
+        <div class="container-fluid text-container">
+            <header id="home-header" class="container my-3">
+                <h1 class="my-3 text-center display-4">Welcome to GoGreen</h1>
+            </header>
             <div class="d-grid gap-2 col-6 mx-auto text-center">
-                <h3 class="text-light">Get help for your lawn service requests.<br> We are a professional lawn care
+                <h3 class="home-text">Get help for your lawn service requests.<br> We are a professional lawn care
                     company that offers
-                    convenient scheduling for an array of services.</h3>
-                <a type="button btn-lg" class="btn btn-lg btn-success edit-btn" sec:authorize="!isAuthenticated()"
+                    convenient scheduling for an array of contactless services.</h3>
+                <a type="button btn-lg" class="btn btn-lg btn-success join-us" sec:authorize="!isAuthenticated()"
                    th:href="@{/register}">
                     Join Us Today
                 </a>
