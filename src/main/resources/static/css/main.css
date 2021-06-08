@@ -44,10 +44,17 @@ body {
 .home-page-spacer {
     background-color: var(--md-green);
 }
+#home-header, .home-text {
+    color: whitesmoke;
+}
+.text-container {
+    /*background-color: white;*/
+
+}
 
 .main-background-img {
-    background-image: url("../img/hero-img.jpeg"); /*Image used*/
-    background-color: slategrey; /* Used if the image is unavailable */
+    /*background-image: url("../img/hero-img.jpeg"); !*Image used*!*/
+    /*background-color: slategrey; !* Used if the image is unavailable *!*/
     height: 100%; /* You must set a specified height */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
@@ -55,12 +62,23 @@ body {
 }
 
 .main-hero-img {
-    background-image: url("../img/header-pic.jpg"); /*Image used*/
-    height: 100%;
+    background-image: url("../img/header-img-2.jpeg"); /*Image used*/
+    background-color: var(--md-green); /* in case image does not load */
+    background-size: 100% 100%;
+    height: auto;
+    max-width: 100%;
     margin: 0;
     scroll-behavior: smooth;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+.join-us {
+    background-color: white;
+    color: var(--md-green);
+}
+.join-us:hover {
+    background-color: transparent;
+    color: white;
 }
 
 .text-color {
@@ -74,6 +92,9 @@ body {
 
 header {
     /*background-color: var(--md-green);*/
+}
+.badge {
+    background-color: var(--md-green) !important;
 }
 
 .zero-space-container {
@@ -364,7 +385,7 @@ input:focus + label {
     align-content: center;
 }
 
-.fa-leaf {
+.fa-leaf* {
     size: 25px 25px;
 }
 
@@ -374,19 +395,24 @@ input:focus + label {
 
 .footer-email {
     color: var(--yellow-green);
+    text-align: center;
+    align-content: center;
 }
 
 .footer-top{
-    display: inline-block;
+    display: flex;
     text-align: center;
     align-content: center;
     color: var(--yellow-green);
     font-size: calc(12px + (15 - 12) * ((100vw - 360px) / (1600 - 360))) !important;
-    top: -30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .footer-h3 {
-    top: -30px
+    width: 100%;
 }
 
 .footer-link a {
@@ -411,6 +437,24 @@ input:focus + label {
     padding: 10px;
 }
 
+.grid {
+    grid-template-areas:
+'yasin carlos colin';
+}
+
+.yasin {
+    grid-area: yasin;
+}
+
+.carlos {
+    grid-area: carlos;
+}
+
+.colin {
+    grid-area: colin;
+}
+
+/*--------------------------------- END FOOTER --------------------------------------*/
 
 .logout-button {
     background: none!important;
@@ -497,3 +541,18 @@ input:focus + label {
          height: 70vh;
      }
  }
+
+@media screen and (max-width: 768px) {
+    .grid {
+        grid-template-areas:
+            'yasin'
+            'carlos'
+            'colin';
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 1em;
+        justify-content: center;
+        text-align: center;
+        align-content: center;
+    }
+}
