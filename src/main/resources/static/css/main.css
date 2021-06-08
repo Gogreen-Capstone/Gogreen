@@ -451,6 +451,22 @@ input:focus + label {
     color: black;
 }
 
+#map-bg {
+    background-image: url("../img/background-world-map-1.gif");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/*.footer-content-wrap {
+/*    !*padding-top: 20px;    !* Footer height *!
+/*{
+
+/*!*.footer-container {*!*/
+/*!*    background-size: contain;*!*/
+/*!*    background-position: center;*!*/
+/*!*}*!*/
+
+
 /* END OF FOOTER STYLING */
 /*-------------------------------------------------------*/
 
