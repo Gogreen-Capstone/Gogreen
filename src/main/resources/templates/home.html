@@ -43,19 +43,19 @@
             <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
                 <img src="/img/step-1.jpg"
                      alt="Sign-up" style="height: 200px; width: auto">
-                <h4><span class="badge bg-secondary" style="border-radius: 50%">1</span> Sign up as a member</h4>
+                <h4><span class="badge bg-secondary" style="border-radius: 50%; width: 33px">1 </span> Sign up as a member</h4>
                 <!--                <p>Sign up as a member to be able to create job request.</p>-->
             </div>
             <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
                 <img src="/img/step-2.jpg"
                      alt="Job-request" style="height: 200px; width: auto">
-                <h4><span class="badge bg-secondary" style="border-radius: 50%">2</span> Send a Job request</h4>
+                <h4><span class="badge bg-secondary" style="border-radius: 50%; width: 34px">2</span> Send a Job request</h4>
                 <!--                <p>Tell us what you need done, when and where it works for you.</p>-->
             </div>
             <div class="text-center col-sm-auto col-md-auto col-lg-auto col-xl-auto">
                 <img src="/img/step-3.jpg"
                      alt="get-it-done" style="height: 200px; width: auto">
-                <h4><span class="badge bg-secondary" style="border-radius: 50%">3</span> GoGreen gets it done!</h4>
+                <h4><span class="badge bg-secondary" style="border-radius: 50%; width: 34px">3</span> GoGreen gets it done!</h4>
                 <!--                <p>GoGreen employee arrives and gets the job done.</p>-->
             </div>
         </div>
@@ -76,15 +76,14 @@
                         <div class="card about-us-card mb-4" style="width: 18rem;">
                             <th:block th:each="image : ${images}">
                                 <img id="customer-review-home"
-                                     th:if="${image.isReview == true && image.job.id == job.id}"
+                                     th:if="${image.isReview == true and image.job.id == job.id}"
                                      th:src="${image.url}"
                                      class="card-img-top" width="80" height="200" alt="job-image">
                             </th:block>
                             <div class="card-body about-us-card-body">
-
                                 <div class="card-body text-center">
                                     <h5 class="card-title" th:text="${job.reviewTitle}"></h5>
-                                    <p class="card-text" th:text="${job.reviewBody}"></p>
+                                    <p class="card-title" th:text="${job.reviewBody}"></p>
                                 </div>
                             </div>
                             <hr class="mx-auto about-us-hr">
