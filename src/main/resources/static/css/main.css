@@ -329,6 +329,7 @@ input:focus + label {
     border-radius: 50%;
     max-width: 50%;
     max-height: 50%;
+    padding: 0;
 }
 
 .about-us-pg-icons {
@@ -374,41 +375,13 @@ input:focus + label {
 
 .footer-styling {
     width: 100vw;
-    min-height: 30vh;
-    /*background: transparent;*/
     background-color: var(--md-green);
-}
-
-.footer-bold-text {
-    color: var(--yellow-green);
-    text-align: center;
-    align-content: center;
-}
-
-.fa-leaf* {
-    size: 25px 25px;
-}
-
-.fa-envelope {
-    color: var(--yellow-green);
-}
-
-.footer-email {
-    color: var(--yellow-green);
-    text-align: center;
-    align-content: center;
 }
 
 .footer-top{
     display: flex;
     text-align: center;
     align-content: center;
-    color: var(--yellow-green);
-    font-size: calc(12px + (15 - 12) * ((100vw - 360px) / (1600 - 360))) !important;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .footer-h3 {
@@ -416,15 +389,15 @@ input:focus + label {
 }
 
 .footer-link a {
-    /*color: forestgreen;*/
-    color: var(--yellow-green);
-    padding-bottom: 10px;
+    padding-bottom: 0%;
     font-size: 2em;
+    text-decoration: none;
 }
 
 .footer-links {
     padding: 0;
     margin: 0;
+    text-decoration: none;
 }
 
 .footer-label {
@@ -435,23 +408,6 @@ input:focus + label {
 
 .text-center{
     padding: 10px;
-}
-
-.grid {
-    grid-template-areas:
-'yasin carlos colin';
-}
-
-.yasin {
-    grid-area: yasin;
-}
-
-.carlos {
-    grid-area: carlos;
-}
-
-.colin {
-    grid-area: colin;
 }
 
 /*--------------------------------- END FOOTER --------------------------------------*/
@@ -478,15 +434,6 @@ input:focus + label {
     background-position: center;
     background-repeat: no-repeat;
 }
-/*.footer-content-wrap {
-/*    !*padding-top: 20px;    !* Footer height *!
-/*{
-
-/*!*.footer-container {*!*/
-/*!*    background-size: contain;*!*/
-/*!*    background-position: center;*!*/
-/*!*}*!*/
-
 
 /* END OF FOOTER STYLING */
 /*-------------------------------------------------------*/
@@ -541,18 +488,3 @@ input:focus + label {
          height: 70vh;
      }
  }
-
-@media screen and (max-width: 768px) {
-    .grid {
-        grid-template-areas:
-            'yasin'
-            'carlos'
-            'colin';
-        display: grid;
-        grid-template-columns: 1fr;
-        padding: 1em;
-        justify-content: center;
-        text-align: center;
-        align-content: center;
-    }
-}
