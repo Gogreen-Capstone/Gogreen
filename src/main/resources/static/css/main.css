@@ -416,7 +416,6 @@ input:focus + label {
 }
 
 .footer-link a {
-    /*color: forestgreen;*/
     color: var(--yellow-green);
     padding-bottom: 10px;
     font-size: 2em;
